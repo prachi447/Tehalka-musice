@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tehalka Music</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🎵 Tehalka Music</h1>
+  <p>Listen & Download My Original Songs</p>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Latest Songs</a>
+  <a href="#">Albums</a>
+  <a href="#">Contact</a>
+</nav>
+
+<section class="hero">
+  <h2>Welcome to Tehalka Music</h2>
+  <p>Upload, Play & Download Original Songs</p>
+</section>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search Songs">
+  <button onclick="searchSong()">Search</button>
+</div>
+
+<div class="container">
+
+  <div class="song-card">
+    <img src="https://picsum.photos/300/300" alt="Song Cover">
+    <h2>Mera Pehla Song</h2>
+
+    <audio controls>
+      <source src="song1.mp3" type="audio/mpeg">
+    </audio>
+
+    <br><br>
+
+    <a href="song1.mp3" download>
+      <button>⬇ Download</button>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Tehalka Music | All Rights Reserved</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
