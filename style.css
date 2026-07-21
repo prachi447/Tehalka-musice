@@ -1,99 +1,234 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  background:#111;
-  color:white;
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  line-height: 1.6;
 }
 
-header{
-  background:#ff9800;
-  text-align:center;
-  padding:25px;
+
+/* Header */
+
+header {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
 }
 
-header h1{
-  font-size:40px;
+header h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
 }
 
-header p{
-  margin-top:10px;
+header p {
+  font-size: 16px;
 }
 
-nav{
-  background:#000;
-  padding:15px;
-  text-align:center;
+
+/* Navigation */
+
+nav {
+  background: #222;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 12px;
 }
 
-nav a{
-  color:white;
-  text-decoration:none;
-  margin:15px;
-  font-weight:bold;
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
-nav a:hover{
-  color:#ff9800;
+nav a:hover {
+  background: #444;
 }
 
-.hero{
-  background:#222;
-  text-align:center;
-  padding:40px;
+
+/* Hero Section */
+
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: white;
 }
 
-.search-box{
-  text-align:center;
-  margin:20px;
+.hero h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
-.search-box input{
-  padding:10px;
-  width:250px;
+.hero p {
+  font-size: 17px;
+  color: #666;
 }
 
-.search-box button{
-  padding:10px 15px;
-  background:#ff9800;
-  color:white;
-  border:none;
+
+/* Search Box */
+
+.search-box {
+  text-align: center;
+  padding: 25px 15px;
+  background: #eee;
 }
 
-.container{
-  display:flex;
-  justify-content:center;
-  padding:20px;
+.search-box input {
+  width: 70%;
+  max-width: 500px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
-.song-card{
-  background:#222;
-  width:320px;
-  padding:20px;
-  border-radius:10px;
+.search-box button {
+  padding: 12px 20px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 6px;
+  background: #111;
+  color: white;
+  cursor: pointer;
 }
 
-.song-card img{
-  width:100%;
-  border-radius:10px;
+.search-box button:hover {
+  background: #444;
 }
 
-button{
-  background:#ff9800;
-  color:white;
-  border:none;
-  padding:10px 20px;
-  border-radius:5px;
-  cursor:pointer;
+
+/* Main Container */
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
-footer{
-  text-align:center;
-  background:#000;
-  padding:15px;
-  margin-top:30px;
+
+/* Song Card */
+
+.song-card {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.song-card img {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.song-card h2 {
+  margin-bottom: 5px;
+}
+
+.song-card p {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.song-card audio {
+  width: 100%;
+  max-width: 350px;
+}
+
+
+/* Buttons */
+
+.song-card button {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.song-card button:hover {
+  background: #444;
+}
+
+
+/* Footer */
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* Mobile Responsive */
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 26px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  nav a {
+    text-align: center;
+  }
+
+  .hero {
+    padding: 35px 15px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+  .search-box input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-box button {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .song-card img {
+    height: auto;
+  }
+
 }
