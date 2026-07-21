@@ -11,124 +11,105 @@ body {
   line-height: 1.6;
 }
 
-
 /* Header */
-
 header {
   background: #111;
   color: white;
   text-align: center;
-  padding: 30px 15px;
+  padding: 35px 20px;
 }
 
 header h1 {
-  font-size: 32px;
+  font-size: 34px;
   margin-bottom: 8px;
 }
 
 header p {
-  font-size: 16px;
+  font-size: 17px;
+  color: #ccc;
 }
 
-
 /* Navigation */
-
 nav {
   background: #222;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 5px;
-  padding: 12px;
+  gap: 8px;
+  padding: 15px 10px;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 15px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  transition: 0.3s;
 }
 
 nav a:hover {
-  background: #444;
+  background: white;
+  color: #111;
 }
 
-
-/* Hero Section */
-
+/* Hero */
 .hero {
   text-align: center;
-  padding: 50px 20px;
   background: white;
+  padding: 55px 20px;
 }
 
 .hero h2 {
-  font-size: 30px;
-  margin-bottom: 10px;
+  font-size: 38px;
+  margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 17px;
-  color: #666;
+  color: #777;
+  font-size: 20px;
 }
 
-
-/* Search Box */
-
+/* Search */
 .search-box {
-  text-align: center;
-  padding: 25px 15px;
-  background: #eee;
+  max-width: 650px;
+  margin: 35px auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 10px;
 }
 
 .search-box input {
-  width: 70%;
-  max-width: 500px;
-  padding: 12px;
+  flex: 1;
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
 }
 
 .search-box button {
-  padding: 12px 20px;
-  margin-left: 5px;
-  border: none;
-  border-radius: 6px;
+  padding: 15px 25px;
   background: #111;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.search-box button:hover {
-  background: #444;
-}
-
-
-/* Main Container */
-
+/* Songs */
 .container {
-  width: 90%;
   max-width: 1000px;
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
+  margin: 30px auto;
+  padding: 20px;
 }
-
-
-/* Song Card */
 
 .song-card {
-  width: 100%;
-  max-width: 400px;
   background: white;
-  padding: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 18px;
   text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
 .song-card img {
@@ -136,99 +117,86 @@ nav a:hover {
   max-width: 300px;
   height: 300px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 15px;
 }
 
 .song-card h2 {
-  margin-bottom: 5px;
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.song-card h3 {
+  font-size: 24px;
+  margin: 10px 0;
 }
 
 .song-card p {
-  color: #666;
-  margin-bottom: 15px;
+  color: #777;
 }
 
-.song-card audio {
+audio {
   width: 100%;
-  max-width: 350px;
+  max-width: 500px;
+  margin: 20px 0;
 }
-
-
-/* Buttons */
 
 .song-card button {
   background: #111;
   color: white;
   border: none;
-  padding: 12px 22px;
-  border-radius: 6px;
+  padding: 13px 25px;
+  border-radius: 8px;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 15px;
 }
 
 .song-card button:hover {
   background: #444;
 }
 
-
 /* Footer */
-
 footer {
   background: #111;
   color: white;
   text-align: center;
-  padding: 25px 15px;
+  padding: 25px;
   margin-top: 40px;
 }
 
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-
-/* Mobile Responsive */
-
+/* Mobile */
 @media (max-width: 600px) {
 
   header h1 {
-    font-size: 26px;
-  }
-
-  nav {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  nav a {
-    text-align: center;
-  }
-
-  .hero {
-    padding: 35px 15px;
+    font-size: 28px;
   }
 
   .hero h2 {
-    font-size: 25px;
+    font-size: 28px;
   }
 
-  .search-box input {
-    width: 100%;
-    margin-bottom: 10px;
+  .hero p {
+    font-size: 17px;
+  }
+
+  nav {
+    flex-direction: row;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .search-box {
+    flex-direction: column;
   }
 
   .search-box button {
-    margin-left: 0;
     width: 100%;
   }
 
   .song-card img {
-    height: auto;
+    height: 250px;
   }
-
 }
