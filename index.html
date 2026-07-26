@@ -230,6 +230,69 @@
 
 
 
+<!-- SHARE WEBSITE -->
+
+<section class="hero">
+
+  <h2>
+    📤 Share Tehalka Music
+  </h2>
+
+  <p>
+    अपने दोस्तों के साथ Tehalka Music share करें और नए music lovers तक पहुँचाएँ 🎵
+  </p>
+
+
+  <!-- WHATSAPP -->
+
+  <button onclick="shareWhatsApp()">
+    🟢 Share on WhatsApp
+  </button>
+
+
+  <br><br>
+
+
+  <!-- INSTAGRAM -->
+
+  <button onclick="openInstagram()">
+    📸 Open Instagram
+  </button>
+
+
+  <br><br>
+
+
+  <!-- YOUTUBE -->
+
+  <button onclick="openYouTube()">
+    ▶️ Visit YouTube
+  </button>
+
+
+  <br><br>
+
+
+  <!-- MORE SHARE -->
+
+  <button onclick="shareWebsite()">
+    📤 Share Website
+  </button>
+
+
+  <br><br>
+
+
+  <!-- COPY LINK -->
+
+  <button onclick="copyWebsiteLink()">
+    🔗 Copy Website Link
+  </button>
+
+</section>
+
+
+
 <!-- SEARCH BOX -->
 
 <div class="search-box">
@@ -261,9 +324,7 @@
 
 
 
-  <!-- ========================= -->
   <!-- KAMAR KAMAR -->
-  <!-- ========================= -->
 
   <div class="song-card">
 
@@ -323,9 +384,7 @@
 
 
 
-  <!-- ========================= -->
   <!-- PARINDEY -->
-  <!-- ========================= -->
 
   <div class="song-card">
 
@@ -385,9 +444,7 @@
 
 
 
-  <!-- ========================= -->
   <!-- SUKOON -->
-  <!-- ========================= -->
 
   <div class="song-card">
 
@@ -447,9 +504,7 @@
 
 
 
-  <!-- ========================= -->
   <!-- CHUNDADI -->
-  <!-- ========================= -->
 
   <div class="song-card">
 
@@ -509,9 +564,7 @@
 
 
 
-  <!-- ========================= -->
   <!-- PATALI KAMAR -->
-  <!-- ========================= -->
 
   <div class="song-card">
 
@@ -609,7 +662,125 @@
 
 
 
-<!-- JAVASCRIPT -->
+<!-- SHARE JAVASCRIPT -->
+
+<script>
+
+  const websiteUrl = "https://tehalkamusic.website/";
+
+  const websiteText =
+    "🎵 Tehalka Music - Listen and Download Latest Songs";
+
+
+  // WhatsApp Share
+
+  function shareWhatsApp() {
+
+    const whatsappUrl =
+      "https://wa.me/?text=" +
+      encodeURIComponent(
+        websiteText + "\n\n" + websiteUrl
+      );
+
+    window.open(
+      whatsappUrl,
+      "_blank"
+    );
+
+  }
+
+
+  // Instagram
+
+  function openInstagram() {
+
+    window.open(
+      "https://www.instagram.com/",
+      "_blank"
+    );
+
+  }
+
+
+  // YouTube
+
+  function openYouTube() {
+
+    window.open(
+      "https://www.youtube.com/",
+      "_blank"
+    );
+
+  }
+
+
+  // More Share
+
+  function shareWebsite() {
+
+    if (
+      navigator.share
+    ) {
+
+      navigator.share({
+
+        title:
+          "Tehalka Music",
+
+        text:
+          websiteText,
+
+        url:
+          websiteUrl
+
+      });
+
+    }
+
+    else {
+
+      copyWebsiteLink();
+
+    }
+
+  }
+
+
+  // Copy Link
+
+  function copyWebsiteLink() {
+
+    navigator.clipboard
+      .writeText(
+        websiteUrl
+      )
+      .then(
+        function() {
+
+          alert(
+            "✅ Tehalka Music website link copied!"
+          );
+
+        }
+      )
+      .catch(
+        function() {
+
+          alert(
+            "Please copy this link manually: " +
+            websiteUrl
+          );
+
+        }
+      );
+
+  }
+
+</script>
+
+
+
+<!-- MAIN JAVASCRIPT -->
 
 <script src="script.js"></script>
 
