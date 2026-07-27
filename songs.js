@@ -25,7 +25,7 @@ const songsData = [
     artist: "Oye Gurmeet & Prachi Upadhyay",
     image: "Sukoon.png",
     mp3: "Sukoon.mp3",
-    page: "Sukoon.html"
+    page: "sukoon.html"
   },
 
   {
