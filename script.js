@@ -1,122 +1,186 @@
-// ===============================
-// TEHALKA MUSIC SEARCH SYSTEM
-// ===============================
+// ==========================================
+// TEHALKA MUSIC - COMPLETE SCRIPT
+// ==========================================
+
+
+// ==========================================
+// SONG SEARCH SYSTEM
+// ==========================================
 
 function searchSong() {
 
-  let song = document
-    .getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
+  const input = document.getElementById("searchInput");
 
+  // Agar search box nahi mila
+  if (!input) {
+    return;
+  }
+
+  // User ka search text
+  const searchText = input.value.trim().toLowerCase();
 
   // Empty search
-
-  if (song === "") {
-
-    alert(
-      "Please enter a song name."
-    );
-
+  if (searchText === "") {
+    alert("Please enter a song name.");
     return;
-
   }
 
 
-  // Song pages
+  // ========================================
+  // SONG LIST
+  // ========================================
 
-  const songs = {
+  const songs = [
 
-    "kamar kamar":
-      "kamar-kamar.html",
+    {
+      names: [
+        "kamar kamar",
+        "kamar"
+      ],
+      page: "kamar-kamar.html"
+    },
 
-    "parindey":
-      "parindey.html",
+    {
+      names: [
+        "parindey",
+        "parindey song"
+      ],
+      page: "parindey.html"
+    },
 
-    "sukoon":
-      "sukoon.html",
+    {
+      names: [
+        "sukoon",
+        "sukoon song"
+      ],
+      page: "sukoon.html"
+    },
 
-    "chundadi":
-      "Chundadi.html",
+    {
+      names: [
+        "chundadi",
+        "chundadi song"
+      ],
+      page: "Chundadi.html"
+    },
 
-    "patli kamar":
-      "Patali-Kamar.html",
+    {
+      names: [
+        "patli kamar",
+        "patali kamar",
+        "patli",
+        "patali"
+      ],
+      page: "patli-kamar.html"
+    }
 
-    "patali kamar":
-      "Patali-Kamar.html"
-
-  };
-
-
-  // Exact song search
-
-  if (
-    songs[song]
-  ) {
-
-    window.location.href =
-      songs[song];
-
-    return;
-
-  }
+  ];
 
 
-  // Partial search
+  // ========================================
+  // SEARCH SONG
+  // ========================================
 
-  for (
-    let name in songs
-  ) {
+  for (let i = 0; i < songs.length; i++) {
 
-    if (
-      name.includes(song)
-    ) {
+    const song = songs[i];
 
-      window.location.href =
-        songs[name];
+    for (let j = 0; j < song.names.length; j++) {
 
-      return;
+      const name = song.names[j];
+
+      // Exact ya partial match
+      if (
+        name === searchText ||
+        name.includes(searchText) ||
+        searchText.includes(name)
+      ) {
+
+        // Song page open
+        window.location.href = song.page;
+
+        return;
+      }
 
     }
 
   }
 
 
-  // Song not found
+  // ========================================
+  // SONG NOT FOUND
+  // ========================================
 
   alert(
-    "❌ Song not found. Please try another song."
+    "❌ Song not found.\n\nPlease try:\nKamar Kamar\nParindey\nSukoon\nChundadi\nPatli Kamar"
   );
 
 }
 
 
-// ===============================
+// ==========================================
 // ENTER KEY SEARCH
-// ===============================
+// ==========================================
 
-document
-  .getElementById("searchInput")
-  ?.addEventListener(
-    "keypress",
-    function(event) {
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
 
-      if (
-        event.key === "Enter"
-      ) {
+    const searchInput =
+      document.getElementById("searchInput");
 
-        searchSong();
+    const searchButton =
+      document.querySelector(
+        '.search-box button'
+      );
 
-      }
+
+    // Enter key
+    if (searchInput) {
+
+      searchInput.addEventListener(
+        "keydown",
+        function(event) {
+
+          if (
+            event.key === "Enter"
+          ) {
+
+            event.preventDefault();
+
+            searchSong();
+
+          }
+
+        }
+      );
 
     }
-  );
 
 
-// ===============================
-// WEBSITE SHARE
-// ===============================
+    // Search button
+    if (searchButton) {
+
+      searchButton.addEventListener(
+        "click",
+        function(event) {
+
+          event.preventDefault();
+
+          searchSong();
+
+        }
+      );
+
+    }
+
+  }
+);
+
+
+// ==========================================
+// WEBSITE SHARE DETAILS
+// ==========================================
 
 const websiteUrl =
   "https://tehalkamusic.website/";
@@ -125,9 +189,9 @@ const websiteText =
   "🎵 Tehalka Music - Listen and Download Latest Songs";
 
 
-// ===============================
+// ==========================================
 // WHATSAPP SHARE
-// ===============================
+// ==========================================
 
 function shareWhatsApp() {
 
@@ -139,7 +203,6 @@ function shareWhatsApp() {
       websiteUrl
     );
 
-
   window.open(
     whatsappUrl,
     "_blank"
@@ -148,9 +211,9 @@ function shareWhatsApp() {
 }
 
 
-// ===============================
+// ==========================================
 // INSTAGRAM
-// ===============================
+// ==========================================
 
 function openInstagram() {
 
@@ -162,9 +225,9 @@ function openInstagram() {
 }
 
 
-// ===============================
+// ==========================================
 // YOUTUBE
-// ===============================
+// ==========================================
 
 function openYouTube() {
 
@@ -176,9 +239,9 @@ function openYouTube() {
 }
 
 
-// ===============================
+// ==========================================
 // MORE SHARE
-// ===============================
+// ==========================================
 
 function shareWebsite() {
 
@@ -197,7 +260,17 @@ function shareWebsite() {
       url:
         websiteUrl
 
-    });
+    })
+    .catch(
+      function(error) {
+
+        console.log(
+          "Share cancelled:",
+          error
+        );
+
+      }
+    );
 
   }
 
@@ -210,9 +283,9 @@ function shareWebsite() {
 }
 
 
-// ===============================
+// ==========================================
 // COPY WEBSITE LINK
-// ===============================
+// ==========================================
 
 function copyWebsiteLink() {
 
@@ -237,7 +310,7 @@ function copyWebsiteLink() {
         function() {
 
           alert(
-            "Please copy this link manually: " +
+            "Please copy this link manually:\n" +
             websiteUrl
           );
 
@@ -249,7 +322,7 @@ function copyWebsiteLink() {
   else {
 
     alert(
-      "Please copy this link manually: " +
+      "Please copy this link manually:\n" +
       websiteUrl
     );
 
