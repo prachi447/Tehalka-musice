@@ -11,95 +11,60 @@ function searchSong() {
 
   const input = document.getElementById("searchInput");
 
-  // Agar search box nahi mila
   if (!input) {
     return;
   }
 
-  // User ka search text
-  const searchText = input.value.trim().toLowerCase();
+  const searchText =
+    input.value.trim().toLowerCase();
 
-  // Empty search
   if (searchText === "") {
+
     alert("Please enter a song name.");
+
     return;
+
   }
 
 
   // ========================================
-  // SONG LIST
+  // SEARCH FROM SONGS DATABASE
   // ========================================
 
-  const songs = [
+  if (
+    typeof songsData !== "undefined" &&
+    Array.isArray(songsData)
+  ) {
 
-    {
-      names: [
-        "kamar kamar",
-        "kamar"
-      ],
-      page: "kamar-kamar.html"
-    },
+    for (
+      let i = 0;
+      i < songsData.length;
+      i++
+    ) {
 
-    {
-      names: [
-        "parindey",
-        "parindey song"
-      ],
-      page: "parindey.html"
-    },
+      const song =
+        songsData[i];
 
-    {
-      names: [
-        "sukoon",
-        "sukoon song"
-      ],
-      page: "sukoon.html"
-    },
+      const songName =
+        song.name
+          .toLowerCase();
 
-    {
-      names: [
-        "chundadi",
-        "chundadi song"
-      ],
-      page: "Chundadi.html"
-    },
-
-    {
-      names: [
-        "patli kamar",
-        "patali kamar",
-        "patli",
-        "patali"
-      ],
-      page: "patli-kamar.html"
-    }
-
-  ];
+      const artistName =
+        song.artist
+          .toLowerCase();
 
 
-  // ========================================
-  // SEARCH SONG
-  // ========================================
-
-  for (let i = 0; i < songs.length; i++) {
-
-    const song = songs[i];
-
-    for (let j = 0; j < song.names.length; j++) {
-
-      const name = song.names[j];
-
-      // Exact ya partial match
       if (
-        name === searchText ||
-        name.includes(searchText) ||
-        searchText.includes(name)
+        songName.includes(searchText) ||
+        searchText.includes(songName) ||
+        artistName.includes(searchText)
       ) {
 
-        // Song page open
-        window.location.href = song.page;
+        window.location.href =
+          song.page;
 
         return;
+
       }
 
     }
@@ -112,14 +77,20 @@ function searchSong() {
   // ========================================
 
   alert(
-    "❌ Song not found.\n\nPlease try:\nKamar Kamar\nParindey\nSukoon\nChundadi\nPatli Kamar"
+    "❌ Song not found.\n\n" +
+    "Please try:\n" +
+    "Kamar Kamar\n" +
+    "Parindey\n" +
+    "Sukoon\n" +
+    "Chundadi\n" +
+    "Patli Kamar"
   );
 
 }
 
 
 // ==========================================
-// ENTER KEY SEARCH
+// SEARCH BUTTON + ENTER KEY
 // ==========================================
 
 document.addEventListener(
@@ -127,15 +98,18 @@ document.addEventListener(
   function() {
 
     const searchInput =
-      document.getElementById("searchInput");
+      document.getElementById(
+        "searchInput"
+      );
 
     const searchButton =
       document.querySelector(
-        '.search-box button'
+        ".search-box button"
       );
 
 
-    // Enter key
+    // ENTER KEY
+
     if (searchInput) {
 
       searchInput.addEventListener(
@@ -158,7 +132,8 @@ document.addEventListener(
     }
 
 
-    // Search button
+    // SEARCH BUTTON
+
     if (searchButton) {
 
       searchButton.addEventListener(
