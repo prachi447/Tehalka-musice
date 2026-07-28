@@ -5,18 +5,23 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>Tehalka Music - Listen & Download Latest Songs</title>
+  <title>
+    Tehalka Music - Latest Songs, Artists & Albums
+  </title>
 
   <meta
     name="description"
-    content="Tehalka Music is a music platform where you can discover, listen and download latest songs."
+    content="Tehalka Music - Discover latest songs, popular artists and albums. Listen and download music online."
   >
 
   <meta
     name="keywords"
-    content="Tehalka Music, latest songs, listen songs, download songs, music"
+    content="Tehalka Music, latest songs, new songs, music, artists, albums, listen songs, download songs"
   >
 
   <meta
@@ -57,12 +62,12 @@
 
   <meta
     property="og:title"
-    content="Tehalka Music - Listen & Download Latest Songs"
+    content="Tehalka Music - Latest Songs, Artists & Albums"
   >
 
   <meta
     property="og:description"
-    content="Listen and download the latest songs on Tehalka Music."
+    content="Discover latest songs, artists and albums on Tehalka Music."
   >
 
   <meta
@@ -79,23 +84,33 @@
 
   <script>
 
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer =
+      window.dataLayer || [];
 
     function gtag() {
+
       dataLayer.push(arguments);
+
     }
 
-    gtag('js', new Date());
+    gtag(
+      'js',
+      new Date()
+    );
 
-    gtag('config', 'G-WN5JXEYZ1F');
+    gtag(
+      'config',
+      'G-WN5JXEYZ1F'
+    );
 
   </script>
+
 
   <!-- CSS -->
 
   <link
     rel="stylesheet"
-    href="style.css"
+    href="style.css?v=3"
   >
 
 </head>
@@ -104,9 +119,9 @@
 <body>
 
 
-<!-- ================================ -->
+<!-- ================================= -->
 <!-- HEADER -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <header>
 
@@ -121,9 +136,9 @@
 </header>
 
 
-<!-- ================================ -->
+<!-- ================================= -->
 <!-- NAVIGATION -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <nav>
 
@@ -137,6 +152,10 @@
 
   <a href="albums.html">
     Albums
+  </a>
+
+  <a href="artists.html">
+    Artists
   </a>
 
   <a href="about.html">
@@ -162,9 +181,9 @@
 </nav>
 
 
-<!-- ================================ -->
+<!-- ================================= -->
 <!-- HERO -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <section class="hero">
 
@@ -173,16 +192,196 @@
   </h2>
 
   <p>
-    Discover your favourite music
-    and enjoy listening anytime.
+    Discover the latest music,
+    explore artists and enjoy your
+    favourite songs.
   </p>
+
+
+  <div
+    style="margin-top:20px;"
+  >
+
+    <a href="latest-songs.html">
+
+      <button>
+        🎵 Explore Latest Songs
+      </button>
+
+    </a>
+
+
+    <a href="artists.html">
+
+      <button>
+        🎤 Explore Artists
+      </button>
+
+    </a>
+
+  </div>
 
 </section>
 
 
-<!-- ================================ -->
+<!-- ================================= -->
+<!-- SEARCH -->
+<!-- ================================= -->
+
+<section class="container">
+
+  <h2
+    style="text-align:center;"
+  >
+    🔍 Search Music
+  </h2>
+
+
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search songs..."
+    >
+
+
+    <button
+      type="button"
+      onclick="searchSong()"
+    >
+      Search
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- FEATURED SONG -->
+<!-- ================================= -->
+
+<section class="container">
+
+  <h2>
+    ⭐ Featured Music
+  </h2>
+
+
+  <div
+    id="featuredSongContainer"
+  ></div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- LATEST SONGS -->
+<!-- ================================= -->
+
+<section class="container">
+
+  <h2>
+    🆕 Latest Releases
+  </h2>
+
+
+  <div
+    id="homeSongsContainer"
+  ></div>
+
+
+  <div
+    style="text-align:center; margin-top:30px;"
+  >
+
+    <a href="latest-songs.html">
+
+      <button>
+        🎵 View All Songs
+      </button>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- ARTISTS -->
+<!-- ================================= -->
+
+<section class="container">
+
+  <h2>
+    🎤 Popular Artists
+  </h2>
+
+
+  <div
+    class="song-card"
+    style="text-align:center;"
+  >
+
+    <p>
+      Discover your favourite artists
+      and explore their music.
+    </p>
+
+
+    <a href="artists.html">
+
+      <button>
+        🎤 Explore All Artists
+      </button>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- ALBUMS -->
+<!-- ================================= -->
+
+<section class="container">
+
+  <h2>
+    💿 Explore Albums
+  </h2>
+
+
+  <div
+    class="song-card"
+    style="text-align:center;"
+  >
+
+    <p>
+      Explore music collections
+      and discover amazing songs.
+    </p>
+
+
+    <a href="albums.html">
+
+      <button>
+        💿 View All Albums
+      </button>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================================= -->
 <!-- SHARE -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <section class="hero">
 
@@ -191,108 +390,37 @@
   </h2>
 
   <p>
-    Love the music? Share Tehalka Music
-    with your friends and family! 🎵
+    Love the music?
+    Share Tehalka Music with your friends!
   </p>
 
-  <button onclick="shareWhatsApp()">
-    🟢 Share on WhatsApp
+
+  <button
+    onclick="shareWhatsApp()"
+  >
+    🟢 WhatsApp
   </button>
 
-  <br><br>
 
-  <button onclick="openInstagram()">
-    📸 Follow & Share on Instagram
+  <button
+    onclick="shareWebsite()"
+  >
+    📤 Share Website
   </button>
 
-  <br><br>
 
-  <button onclick="openYouTube()">
-    ▶️ Watch Us on YouTube
-  </button>
-
-  <br><br>
-
-  <button onclick="shareWebsite()">
-    📤 Share Tehalka Music
-  </button>
-
-  <br><br>
-
-  <button onclick="copyWebsiteLink()">
-    🔗 Copy Website Link
+  <button
+    onclick="copyWebsiteLink()"
+  >
+    🔗 Copy Link
   </button>
 
 </section>
 
 
-<!-- ================================ -->
-<!-- SEARCH -->
-<!-- ================================ -->
-
-<div class="search-box">
-
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="🔍 Search your favourite song..."
-  >
-
-  <button
-    type="button"
-    onclick="searchSong()"
-  >
-    Search
-  </button>
-
-</div>
-
-
-<!-- ================================ -->
-<!-- LATEST SONGS -->
-<!-- ================================ -->
-
-<div class="container">
-
-  <h2
-    style="text-align:center; margin-bottom:30px;"
-  >
-    🎵 Latest Songs
-  </h2>
-
-
-  <!-- SONGS WILL APPEAR HERE -->
-
-  <div
-    id="homeSongsContainer"
-  ></div>
-
-
-  <br><br>
-
-
-  <!-- VIEW ALL -->
-
-  <div
-    style="text-align:center;"
-  >
-
-    <a href="latest-songs.html">
-
-      <button>
-        🎵 View All Latest Songs
-      </button>
-
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- ================================ -->
+<!-- ================================= -->
 <!-- FOOTER -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <footer>
 
@@ -304,16 +432,16 @@
 </footer>
 
 
-<!-- ================================ -->
+<!-- ================================= -->
 <!-- SONG DATABASE -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <script src="songs.js"></script>
 
 
-<!-- ================================ -->
-<!-- DISPLAY SONGS -->
-<!-- ================================ -->
+<!-- ================================= -->
+<!-- HOME PAGE SYSTEM -->
+<!-- ================================= -->
 
 <script>
 
@@ -322,23 +450,19 @@ document.addEventListener(
   function() {
 
 
-    const container =
-      document.getElementById(
-        "homeSongsContainer"
-      );
-
-
     /*
-    =====================================
+    =================================
     CHECK SONG DATABASE
-    =====================================
+    =================================
     */
 
     if (
       typeof songsData === "undefined"
     ) {
 
-      container.innerHTML =
+      document.getElementById(
+        "homeSongsContainer"
+      ).innerHTML =
 
         "<p style='text-align:center; color:red;'>" +
 
@@ -352,16 +476,18 @@ document.addEventListener(
 
 
     /*
-    =====================================
-    CHECK SONG COUNT
-    =====================================
+    =================================
+    CHECK SONGS
+    =================================
     */
 
     if (
       songsData.length === 0
     ) {
 
-      container.innerHTML =
+      document.getElementById(
+        "homeSongsContainer"
+      ).innerHTML =
 
         "<p style='text-align:center;'>" +
 
@@ -375,9 +501,106 @@ document.addEventListener(
 
 
     /*
-    =====================================
-    SHOW ALL SONGS
-    =====================================
+    =================================
+    FEATURED SONG
+    =================================
+    */
+
+    const featured =
+      songsData[0];
+
+
+    const featuredContainer =
+      document.getElementById(
+        "featuredSongContainer"
+      );
+
+
+    featuredContainer.innerHTML = `
+
+      <div
+        class="song-card"
+        style="text-align:center;"
+      >
+
+        <img
+          src="${featured.image}"
+          alt="${featured.name} by ${featured.artist}"
+        >
+
+        <h2>
+          ⭐ ${featured.name}
+        </h2>
+
+        <p>
+          🎤
+          <strong>
+            ${featured.artist}
+          </strong>
+        </p>
+
+        <audio
+          controls
+          preload="metadata"
+          style="width:100%;"
+        >
+
+          <source
+            src="${featured.mp3}"
+            type="audio/mpeg"
+          >
+
+          Your browser does not support
+          the audio player.
+
+        </audio>
+
+        <br><br>
+
+        <a
+          href="${featured.page}"
+        >
+
+          <button>
+            🎵 View Song
+          </button>
+
+        </a>
+
+        <br><br>
+
+        <a
+          href="${featured.mp3}"
+          download
+        >
+
+          <button>
+            ⬇ Download
+          </button>
+
+        </a>
+
+      </div>
+
+    `;
+
+
+    /*
+    =================================
+    LATEST SONGS
+    =================================
+    */
+
+    const homeContainer =
+      document.getElementById(
+        "homeSongsContainer"
+      );
+
+
+    /*
+    =================================
+    SHOW SONGS
+    =================================
     */
 
     songsData.forEach(
@@ -393,12 +616,6 @@ document.addEventListener(
         songCard.className =
           "song-card";
 
-
-        /*
-        =================================
-        SONG CARD HTML
-        =================================
-        */
 
         songCard.innerHTML = `
 
@@ -421,23 +638,6 @@ document.addEventListener(
           </p>
 
 
-          <p>
-            Listen to
-            <strong>
-              ${song.name}
-            </strong>
-            by
-            <strong>
-              ${song.artist}
-            </strong>
-            on Tehalka Music.
-          </p>
-
-
-          <!-- ===================== -->
-          <!-- AUDIO PLAYER -->
-          <!-- ===================== -->
-
           <audio
             controls
             preload="metadata"
@@ -455,12 +655,8 @@ document.addEventListener(
           </audio>
 
 
-          <br>
+          <br><br>
 
-
-          <!-- ===================== -->
-          <!-- SONG DETAILS -->
-          <!-- ===================== -->
 
           <a
             href="${song.page}"
@@ -476,10 +672,6 @@ document.addEventListener(
           <br><br>
 
 
-          <!-- ===================== -->
-          <!-- DOWNLOAD -->
-          <!-- ===================== -->
-
           <a
             href="${song.mp3}"
             download
@@ -494,13 +686,7 @@ document.addEventListener(
         `;
 
 
-        /*
-        =================================
-        ADD CARD TO PAGE
-        =================================
-        */
-
-        container.appendChild(
+        homeContainer.appendChild(
           songCard
         );
 
@@ -515,13 +701,13 @@ document.addEventListener(
 </script>
 
 
-<!-- ================================ -->
+<!-- ================================= -->
 <!-- MAIN JAVASCRIPT -->
-<!-- ================================ -->
+<!-- ================================= -->
 
 <script src="script.js"></script>
 
 
 </body>
 
-</html>
+    </html>
