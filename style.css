@@ -673,3 +673,175 @@ img {
 
   color: white;
      }
+/* ==========================================
+   TEHALKA MUSIC - PROFESSIONAL MUSIC PLAYER
+========================================== */
+
+#musicPlayer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+
+  background: rgba(15, 23, 42, 0.97);
+  color: white;
+
+  padding: 12px 15px;
+
+  box-shadow:
+    0 -5px 20px
+    rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(10px);
+}
+
+
+.music-player-inner {
+  max-width: 1100px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.music-player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+
+#playerSongName {
+  font-size: 15px;
+  font-weight: bold;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+#playerArtistName {
+  font-size: 12px;
+  opacity: 0.7;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.music-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+
+.music-player-controls button {
+  border: none;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#playerPlayPause {
+  width: 46px;
+  height: 46px;
+}
+
+
+.music-player-controls button:hover {
+  transform: scale(1.05);
+}
+
+
+.music-player-progress {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 0;
+
+  height: 3px;
+
+  background: rgba(255,255,255,0.2);
+}
+
+
+#playerProgress {
+  width: 0%;
+  height: 100%;
+
+  background: #22c55e;
+
+  transition:
+    width 0.1s linear;
+}
+
+
+#playerAudio {
+  display: none;
+}
+
+
+@media (
+  max-width: 600px
+) {
+
+  #musicPlayer {
+    padding:
+      10px 10px;
+  }
+
+
+  .music-player-inner {
+    gap: 8px;
+  }
+
+
+  #playerSongName {
+    font-size: 13px;
+  }
+
+
+  #playerArtistName {
+    font-size: 11px;
+  }
+
+
+  .music-player-controls {
+    gap: 4px;
+  }
+
+
+  .music-player-controls button {
+    width: 34px;
+    height: 34px;
+
+    font-size: 14px;
+  }
+
+
+  #playerPlayPause {
+    width: 42px;
+    height: 42px;
+  }
+
+}
