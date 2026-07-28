@@ -44,12 +44,4 @@ const songsData = [
     page: "patli-kamar.html"
   }
 
-
-  {
-    name: "Test Song",
-    artist: "Test Artist",
-    image: "test.jpg",
-    mp3: "test.mp3",
-    page: "test-song.html"
-}
-];
+]
