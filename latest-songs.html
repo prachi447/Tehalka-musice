@@ -10,20 +10,13 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <!-- SEO -->
-
   <title>
     Latest Songs - Tehalka Music | Listen & Download
   </title>
 
   <meta
     name="description"
-    content="Listen to the latest songs on Tehalka Music. Play songs online, explore song details and download your favourite music."
-  >
-
-  <meta
-    name="keywords"
-    content="Tehalka Music, latest songs, listen songs, download songs, music"
+    content="Listen to the latest songs on Tehalka Music. Play and download songs online."
   >
 
   <meta
@@ -36,79 +29,14 @@
     content="index, follow"
   >
 
-
-  <!-- Canonical -->
-
   <link
     rel="canonical"
     href="https://tehalkamusic.website/latest-songs.html"
   >
 
-
-  <!-- Open Graph -->
-
-  <meta
-    property="og:type"
-    content="website"
-  >
-
-  <meta
-    property="og:title"
-    content="Latest Songs - Tehalka Music"
-  >
-
-  <meta
-    property="og:description"
-    content="Listen to the latest songs on Tehalka Music. Play, explore and download songs."
-  >
-
-  <meta
-    property="og:url"
-    content="https://tehalkamusic.website/latest-songs.html"
-  >
-
-  <meta
-    property="og:site_name"
-    content="Tehalka Music"
-  >
-
-
-  <!-- Google Analytics -->
-
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-WN5JXEYZ1F"
-  ></script>
-
-  <script>
-
-    window.dataLayer =
-      window.dataLayer || [];
-
-    function gtag() {
-
-      dataLayer.push(arguments);
-
-    }
-
-    gtag(
-      'js',
-      new Date()
-    );
-
-    gtag(
-      'config',
-      'G-WN5JXEYZ1F'
-    );
-
-  </script>
-
-
-  <!-- CSS -->
-
   <link
     rel="stylesheet"
-    href="style.css"
+    href="style.css?v=2"
   >
 
 </head>
@@ -130,7 +58,6 @@
   </p>
 
 </header>
-
 
 
 <!-- NAVIGATION -->
@@ -172,7 +99,6 @@
 </nav>
 
 
-
 <!-- HERO -->
 
 <section class="hero">
@@ -188,27 +114,24 @@
 </section>
 
 
-
-<!-- SONGS CONTAINER -->
+<!-- SONGS -->
 
 <div class="container">
 
   <h2
     style="text-align:center; margin-bottom:30px;"
   >
-    🎵 All Latest Songs
+    🎶 All Latest Songs
   </h2>
 
 
   <!-- SONGS WILL LOAD HERE -->
 
   <div
-    id="songsContainer"
+    id="latestSongsContainer"
   ></div>
 
-
 </div>
-
 
 
 <!-- FOOTER -->
@@ -223,20 +146,12 @@
 </footer>
 
 
-
-<!-- ================================= -->
 <!-- SONG DATABASE -->
-<!-- ================================= -->
 
-<script
-  src="songs.js"
-></script>
+<script src="songs.js"></script>
 
 
-
-<!-- ================================= -->
-<!-- AUTOMATIC SONG DISPLAY SYSTEM -->
-<!-- ================================= -->
+<!-- LOAD SONGS -->
 
 <script>
 
@@ -247,11 +162,11 @@ document.addEventListener(
 
     const container =
       document.getElementById(
-        "songsContainer"
+        "latestSongsContainer"
       );
 
 
-    // Check songs database
+    // Check database
 
     if (
       typeof songsData === "undefined"
@@ -259,7 +174,7 @@ document.addEventListener(
 
       container.innerHTML =
 
-        "<p style='text-align:center;'>" +
+        "<p style='text-align:center; color:red;'>" +
 
         "❌ Songs database could not be loaded." +
 
@@ -270,7 +185,7 @@ document.addEventListener(
     }
 
 
-    // Check empty database
+    // Check songs
 
     if (
       songsData.length === 0
@@ -289,7 +204,7 @@ document.addEventListener(
     }
 
 
-    // Create song cards
+    // Display all songs
 
     songsData.forEach(
       function(song) {
@@ -319,7 +234,7 @@ document.addEventListener(
 
 
           <p>
-            🎤 Artist:
+            🎤 Singer:
             <strong>
               ${song.artist}
             </strong>
@@ -339,7 +254,11 @@ document.addEventListener(
           </p>
 
 
-          <audio controls>
+          <audio
+            controls
+            preload="metadata"
+            style="width:100%;"
+          >
 
             <source
               src="${song.mp3}"
@@ -352,7 +271,7 @@ document.addEventListener(
           </audio>
 
 
-          <br><br>
+          <br>
 
 
           <a
@@ -396,14 +315,6 @@ document.addEventListener(
 );
 
 </script>
-
-
-
-<!-- MAIN JAVASCRIPT -->
-
-<script
-  src="script.js"
-></script>
 
 
 </body>
