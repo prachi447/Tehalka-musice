@@ -1,11 +1,12 @@
 /* ==========================================
-   TEHALKA MUSIC - MOBILE FRIENDLY DESIGN
-   ========================================== */
+   TEHALKA MUSIC - PROFESSIONAL STYLE
+   Mobile First Design
+========================================== */
 
 
 /* ==========================================
-   BASIC RESET
-   ========================================== */
+   GLOBAL
+========================================== */
 
 * {
   box-sizing: border-box;
@@ -21,35 +22,40 @@ html {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #f5f5f5;
+  background: #f5f7fb;
   color: #222;
   line-height: 1.6;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 
 /* ==========================================
    HEADER
-   ========================================== */
+========================================== */
 
 header {
   background: linear-gradient(
     135deg,
-    #111111,
-    #333333
+    #111827,
+    #1e3a8a
   );
 
   color: white;
 
   text-align: center;
 
-  padding: 30px 15px;
+  padding: 35px 20px;
+
+  box-shadow:
+    0 4px 15px
+    rgba(0, 0, 0, 0.15);
 }
 
 
 header h1 {
   font-size: 32px;
   margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
 
@@ -61,7 +67,7 @@ header p {
 
 /* ==========================================
    NAVIGATION
-   ========================================== */
+========================================== */
 
 nav {
   background: #ffffff;
@@ -76,24 +82,24 @@ nav {
 
   padding: 12px;
 
-  box-shadow:
-    0 2px 8px
-    rgba(0, 0, 0, 0.08);
-
   position: sticky;
 
   top: 0;
 
   z-index: 1000;
+
+  box-shadow:
+    0 2px 10px
+    rgba(0, 0, 0, 0.08);
 }
 
 
 nav a {
-  color: #222;
+  color: #1e3a8a;
 
   text-decoration: none;
 
-  font-weight: bold;
+  font-weight: 600;
 
   font-size: 14px;
 
@@ -101,85 +107,189 @@ nav a {
 
   border-radius: 20px;
 
-  transition: 0.3s;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
 
 nav a:hover {
-  background: #222;
+  background: #1e3a8a;
 
   color: white;
+
+  transform: translateY(-1px);
 }
 
 
 /* ==========================================
    HERO
-   ========================================== */
+========================================== */
 
 .hero {
-  max-width: 1000px;
+  max-width: 1100px;
 
   margin: 25px auto;
 
-  padding: 35px 20px;
+  padding: 45px 20px;
 
   text-align: center;
 
-  background: white;
+  background:
+    linear-gradient(
+      135deg,
+      #1e3a8a,
+      #7c3aed
+    );
 
-  border-radius: 15px;
+  color: white;
+
+  border-radius: 18px;
 
   box-shadow:
-    0 4px 15px
-    rgba(0, 0, 0, 0.08);
+    0 10px 30px
+    rgba(30, 58, 138, 0.2);
 }
 
 
 .hero h2 {
   font-size: 28px;
 
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 
 .hero p {
   font-size: 16px;
 
-  color: #555;
+  opacity: 0.95;
+
+  max-width: 700px;
+
+  margin: 0 auto 20px;
+}
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.container {
+  width: 92%;
+
+  max-width: 1100px;
+
+  margin: 30px auto;
+}
+
+
+.container > h2 {
+  text-align: center;
+
+  font-size: 25px;
+
+  margin-bottom: 25px;
+
+  color: #111827;
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-box {
+  width: 92%;
+
+  max-width: 650px;
+
+  margin: 25px auto;
+
+  display: flex;
+
+  gap: 10px;
+
+  background: white;
+
+  padding: 10px;
+
+  border-radius: 40px;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+.search-box input {
+  flex: 1;
+
+  min-width: 0;
+
+  border: none;
+
+  outline: none;
+
+  padding: 12px 15px;
+
+  font-size: 16px;
+
+  background: transparent;
+}
+
+
+.search-box button {
+  border-radius: 30px;
+
+  padding:
+    10px 20px;
 }
 
 
 /* ==========================================
    BUTTONS
-   ========================================== */
+========================================== */
 
 button {
   border: none;
 
-  background: #222;
+  background:
+    linear-gradient(
+      135deg,
+      #1e3a8a,
+      #7c3aed
+    );
 
   color: white;
 
-  padding: 12px 20px;
+  padding: 11px 18px;
 
-  border-radius: 8px;
+  border-radius: 25px;
 
-  font-size: 15px;
+  font-size: 14px;
 
-  font-weight: bold;
+  font-weight: 600;
 
   cursor: pointer;
 
-  transition: 0.3s;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 
-  min-height: 44px;
+  margin: 4px;
 }
 
 
 button:hover {
-  background: #444;
+  transform: translateY(-2px);
 
-  transform: translateY(-1px);
+  box-shadow:
+    0 5px 15px
+    rgba(30, 58, 138, 0.25);
+
+  opacity: 0.95;
 }
 
 
@@ -189,271 +299,194 @@ button:active {
 
 
 /* ==========================================
-   SEARCH BOX
-   ========================================== */
-
-.search-box {
-  max-width: 700px;
-
-  margin: 25px auto;
-
-  padding: 0 15px;
-
-  display: flex;
-
-  gap: 10px;
-}
-
-
-.search-box input {
-  flex: 1;
-
-  min-width: 0;
-
-  height: 48px;
-
-  padding: 0 15px;
-
-  border: 1px solid #ccc;
-
-  border-radius: 8px;
-
-  font-size: 16px;
-
-  outline: none;
-}
-
-
-.search-box input:focus {
-  border-color: #222;
-
-  box-shadow:
-    0 0 0 2px
-    rgba(0, 0, 0, 0.08);
-}
-
-
-.search-box button {
-  height: 48px;
-
-  white-space: nowrap;
-}
-
-
-/* ==========================================
-   MAIN CONTAINER
-   ========================================== */
-
-.container {
-  max-width: 1100px;
-
-  margin: 30px auto;
-
-  padding: 0 15px;
-}
-
-
-/* ==========================================
    SONG CARD
-   ========================================== */
+========================================== */
 
 .song-card {
   background: white;
 
-  max-width: 600px;
-
-  margin: 25px auto;
-
   padding: 20px;
 
-  border-radius: 15px;
+  margin: 20px 0;
+
+  border-radius: 18px;
 
   text-align: center;
 
   box-shadow:
-    0 4px 15px
+    0 5px 20px
     rgba(0, 0, 0, 0.08);
 
-  transition: 0.3s;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 
 .song-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 
   box-shadow:
-    0 8px 25px
+    0 12px 30px
     rgba(0, 0, 0, 0.12);
 }
 
 
-/* ==========================================
-   SONG IMAGE
-   ========================================== */
-
 .song-card img {
   width: 100%;
 
-  max-width: 350px;
+  max-width: 280px;
 
   aspect-ratio: 1 / 1;
 
   object-fit: cover;
 
-  border-radius: 12px;
+  border-radius: 15px;
 
   display: block;
 
-  margin: 0 auto 20px;
+  margin: 0 auto 18px;
+
+  box-shadow:
+    0 5px 15px
+    rgba(0, 0, 0, 0.12);
 }
 
 
-/* ==========================================
-   SONG TITLE
-   ========================================== */
-
 .song-card h2 {
-  font-size: 25px;
+  color: #111827;
 
-  margin-bottom: 10px;
+  font-size: 22px;
+
+  margin-bottom: 8px;
 }
 
 
 .song-card p {
   color: #555;
 
-  font-size: 15px;
+  margin-bottom: 8px;
 
-  margin: 6px 0;
+  font-size: 15px;
+}
+
+
+.song-card strong {
+  color: #1e3a8a;
 }
 
 
 /* ==========================================
    AUDIO PLAYER
-   ========================================== */
+========================================== */
 
 .song-card audio {
   width: 100%;
 
-  margin-top: 15px;
+  max-width: 600px;
 
-  max-width: 500px;
+  margin:
+    15px auto;
+
+  display: block;
 }
 
 
 /* ==========================================
-   SONG BUTTON LINKS
-   ========================================== */
+   FEATURED SONG
+========================================== */
+
+#featuredSongContainer .song-card {
+  border:
+    2px solid
+    #7c3aed;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #f5f3ff
+    );
+}
+
+
+#featuredSongContainer .song-card img {
+  max-width: 320px;
+}
+
+
+/* ==========================================
+   LATEST SONGS GRID
+========================================== */
+
+#homeSongsContainer {
+  display: grid;
+
+  grid-template-columns:
+    1fr;
+
+  gap: 20px;
+}
+
+
+#homeSongsContainer .song-card {
+  margin: 0;
+}
+
+
+/* ==========================================
+   LINKS
+========================================== */
+
+a {
+  color: #1e3a8a;
+}
+
 
 .song-card a {
   text-decoration: none;
-
-  display: inline-block;
-
-  margin-top: 5px;
 }
 
 
 /* ==========================================
    FOOTER
-   ========================================== */
+========================================== */
 
 footer {
-  background: #111;
+  background: #111827;
 
   color: white;
 
   text-align: center;
 
-  padding: 25px 15px;
+  padding: 30px 20px;
 
-  margin-top: 40px;
-}
+  margin-top: 50px;
 
-
-footer p {
   font-size: 14px;
 }
 
 
-/* ==========================================
-   TABLET
-   ========================================== */
-
-@media (
-  max-width: 768px
-) {
-
-  header {
-    padding: 25px 15px;
-  }
-
-
-  header h1 {
-    font-size: 27px;
-  }
-
-
-  nav {
-    gap: 5px;
-
-    padding: 10px;
-  }
-
-
-  nav a {
-    font-size: 13px;
-
-    padding: 7px 10px;
-  }
-
-
-  .hero {
-    margin: 20px 12px;
-
-    padding: 28px 15px;
-  }
-
-
-  .hero h2 {
-    font-size: 24px;
-  }
-
-
-  .container {
-    padding: 0 12px;
-  }
-
-
-  .song-card {
-    padding: 16px;
-
-    margin: 20px auto;
-  }
-
-
-  .song-card img {
-    max-width: 300px;
-  }
-
+footer p {
+  opacity: 0.85;
 }
 
 
 /* ==========================================
    MOBILE
-   ========================================== */
+========================================== */
 
 @media (
-  max-width: 480px
+  max-width: 600px
 ) {
 
   header {
-    padding: 22px 12px;
+    padding: 28px 15px;
   }
 
 
   header h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
 
 
@@ -462,46 +495,33 @@ footer p {
   }
 
 
-  /* Mobile Navigation */
-
   nav {
-    position: static;
+    gap: 5px;
 
-    display: grid;
-
-    grid-template-columns:
-      repeat(2, 1fr);
-
-    gap: 6px;
-
-    padding: 10px;
+    padding: 10px 6px;
   }
 
 
   nav a {
-    text-align: center;
-
     font-size: 12px;
 
-    padding: 9px 5px;
-
-    background: #f5f5f5;
+    padding:
+      7px 9px;
   }
 
 
-  /* Hero */
-
   .hero {
-    margin: 15px 10px;
+    width: 94%;
 
-    padding: 25px 15px;
+    padding:
+      35px 15px;
 
-    border-radius: 12px;
+    border-radius: 15px;
   }
 
 
   .hero h2 {
-    font-size: 21px;
+    font-size: 23px;
   }
 
 
@@ -510,146 +530,48 @@ footer p {
   }
 
 
-  /* Share Buttons */
-
-  .hero button {
-    width: 100%;
-
-    max-width: 320px;
-
-    margin: 3px auto;
-  }
-
-
-  /* Search */
-
-  .search-box {
-    padding: 0 10px;
-
-    gap: 7px;
-  }
-
-
-  .search-box input {
-    height: 46px;
-
-    font-size: 15px;
-
-    min-width: 0;
-  }
-
-
-  .search-box button {
-    height: 46px;
-
-    padding: 0 15px;
-  }
-
-
-  /* Container */
-
   .container {
-    padding: 0 10px;
-
-    margin-top: 20px;
+    width: 94%;
   }
 
 
-  /* Song Card */
-
-  .song-card {
-    padding: 15px;
-
-    margin: 18px auto;
-
-    border-radius: 12px;
-  }
-
-
-  /* Song Image */
-
-  .song-card img {
-    width: 100%;
-
-    max-width: 280px;
-
-    border-radius: 10px;
-  }
-
-
-  /* Song Title */
-
-  .song-card h2 {
+  .container > h2 {
     font-size: 22px;
   }
 
 
-  .song-card p {
+  .search-box {
+    width: 94%;
+
+    padding: 7px;
+  }
+
+
+  .search-box input {
     font-size: 14px;
+
+    padding:
+      10px;
   }
 
 
-  /* Audio */
+  .search-box button {
+    padding:
+      9px 14px;
 
-  .song-card audio {
-    width: 100%;
-
-    margin-top: 12px;
+    font-size: 13px;
   }
 
 
-  /* Song Buttons */
+  .song-card {
+    padding: 16px;
 
-  .song-card a {
-    display: block;
-
-    width: 100%;
+    border-radius: 15px;
   }
 
 
-  .song-card button {
-    width: 100%;
-
-    margin-top: 5px;
-  }
-
-
-  /* Footer */
-
-  footer {
-    padding: 20px 10px;
-  }
-
-
-  footer p {
-    font-size: 12px;
-  }
-
-}
-
-
-/* ==========================================
-   EXTRA SMALL MOBILE
-   ========================================== */
-
-@media (
-  max-width: 360px
-) {
-
-  header h1 {
-    font-size: 21px;
-  }
-
-
-  nav a {
-    font-size: 11px;
-
-    padding: 8px 3px;
-  }
-
-
-  .hero h2 {
-    font-size: 19px;
+  .song-card img {
+    max-width: 240px;
   }
 
 
@@ -658,10 +580,96 @@ footer p {
   }
 
 
-  .search-box button {
-    padding: 0 12px;
+  button {
+    width: auto;
 
-    font-size: 14px;
+    max-width: 100%;
+
+    font-size: 13px;
+
+    padding:
+      10px 14px;
+  }
+
+
+  .song-card audio {
+    width: 100%;
   }
 
 }
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (
+  min-width: 601px
+) and (
+  max-width: 900px
+) {
+
+  #homeSongsContainer {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+/* ==========================================
+   DESKTOP
+========================================== */
+
+@media (
+  min-width: 901px
+) {
+
+  #homeSongsContainer {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+
+  .song-card {
+    margin: 0;
+  }
+
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+button:focus,
+input:focus,
+a:focus {
+  outline:
+    3px solid
+    rgba(124, 58, 237, 0.35);
+
+  outline-offset: 2px;
+}
+
+
+/* ==========================================
+   SMOOTH IMAGE LOADING
+========================================== */
+
+img {
+  max-width: 100%;
+
+  height: auto;
+}
+
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection {
+  background: #1e3a8a;
+
+  color: white;
+     }
