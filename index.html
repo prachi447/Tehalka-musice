@@ -5,12 +5,31 @@
 
   <meta charset="UTF-8">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tehalka Music - Listen & Download Latest Songs</title>
+
   <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    name="description"
+    content="Tehalka Music is a music platform where you can discover, listen and download latest songs."
   >
 
-  <!-- Google Search Console Verification -->
+  <meta
+    name="keywords"
+    content="Tehalka Music, latest songs, listen songs, download songs, music"
+  >
+
+  <meta
+    name="author"
+    content="Tehalka Music"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <!-- Google Search Console -->
 
   <meta
     name="google-site-verification"
@@ -23,69 +42,6 @@
     rel="canonical"
     href="https://tehalkamusic.website/"
   >
-
-
-  <!-- Google Analytics -->
-
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-WN5JXEYZ1F"
-  ></script>
-
-  <script>
-
-    window.dataLayer =
-      window.dataLayer || [];
-
-    function gtag() {
-
-      dataLayer.push(arguments);
-
-    }
-
-    gtag(
-      'js',
-      new Date()
-    );
-
-    gtag(
-      'config',
-      'G-WN5JXEYZ1F'
-    );
-
-  </script>
-
-
-  <!-- SEO -->
-
-  <title>
-    Tehalka Music - Listen & Download Latest Songs
-  </title>
-
-
-  <meta
-    name="description"
-    content="Tehalka Music is a music platform where you can discover, listen and download latest songs."
-  >
-
-
-  <meta
-    name="keywords"
-    content="Tehalka Music, latest songs, listen songs, download songs, music"
-  >
-
-
-  <meta
-    name="author"
-    content="Tehalka Music"
-  >
-
-
-  <meta
-    name="robots"
-    content="index, follow"
-  >
-
 
   <!-- Open Graph -->
 
@@ -114,6 +70,26 @@
     content="Tehalka Music"
   >
 
+  <!-- Google Analytics -->
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WN5JXEYZ1F"
+  ></script>
+
+  <script>
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-WN5JXEYZ1F');
+
+  </script>
 
   <!-- CSS -->
 
@@ -128,9 +104,9 @@
 <body>
 
 
-<!-- ================================= -->
+<!-- ================================ -->
 <!-- HEADER -->
-<!-- ================================= -->
+<!-- ================================ -->
 
 <header>
 
@@ -145,10 +121,9 @@
 </header>
 
 
-
-<!-- ================================= -->
+<!-- ================================ -->
 <!-- NAVIGATION -->
-<!-- ================================= -->
+<!-- ================================ -->
 
 <nav>
 
@@ -187,10 +162,9 @@
 </nav>
 
 
-
-<!-- ================================= -->
+<!-- ================================ -->
 <!-- HERO -->
-<!-- ================================= -->
+<!-- ================================ -->
 
 <section class="hero">
 
@@ -206,10 +180,9 @@
 </section>
 
 
-
-<!-- ================================= -->
-<!-- SHARE TEHALKA MUSIC -->
-<!-- ================================= -->
+<!-- ================================ -->
+<!-- SHARE -->
+<!-- ================================ -->
 
 <section class="hero">
 
@@ -222,38 +195,29 @@
     with your friends and family! 🎵
   </p>
 
-
   <button onclick="shareWhatsApp()">
     🟢 Share on WhatsApp
   </button>
 
-
   <br><br>
-
 
   <button onclick="openInstagram()">
     📸 Follow & Share on Instagram
   </button>
 
-
   <br><br>
-
 
   <button onclick="openYouTube()">
     ▶️ Watch Us on YouTube
   </button>
 
-
   <br><br>
-
 
   <button onclick="shareWebsite()">
     📤 Share Tehalka Music
   </button>
 
-
   <br><br>
-
 
   <button onclick="copyWebsiteLink()">
     🔗 Copy Website Link
@@ -262,10 +226,9 @@
 </section>
 
 
-
-<!-- ================================= -->
-<!-- SEARCH BOX -->
-<!-- ================================= -->
+<!-- ================================ -->
+<!-- SEARCH -->
+<!-- ================================ -->
 
 <div class="search-box">
 
@@ -285,13 +248,11 @@
 </div>
 
 
-
-<!-- ================================= -->
-<!-- SONGS -->
-<!-- ================================= -->
+<!-- ================================ -->
+<!-- LATEST SONGS -->
+<!-- ================================ -->
 
 <div class="container">
-
 
   <h2
     style="text-align:center; margin-bottom:30px;"
@@ -300,17 +261,20 @@
   </h2>
 
 
-  <!-- SONGS WILL LOAD HERE -->
+  <!-- SONGS WILL APPEAR HERE -->
 
   <div
     id="homeSongsContainer"
   ></div>
 
 
-  <!-- VIEW ALL SONGS -->
+  <br><br>
+
+
+  <!-- VIEW ALL -->
 
   <div
-    style="text-align:center; margin-top:30px;"
+    style="text-align:center;"
   >
 
     <a href="latest-songs.html">
@@ -323,14 +287,12 @@
 
   </div>
 
-
 </div>
 
 
-
-<!-- ================================= -->
+<!-- ================================ -->
 <!-- FOOTER -->
-<!-- ================================= -->
+<!-- ================================ -->
 
 <footer>
 
@@ -342,44 +304,57 @@
 </footer>
 
 
-
-<!-- ================================= -->
+<!-- ================================ -->
 <!-- SONG DATABASE -->
-<!-- ================================= -->
+<!-- ================================ -->
 
 <script src="songs.js"></script>
 
 
-
-<!-- ================================= -->
-<!-- HOME SONG DISPLAY -->
-<!-- ================================= -->
+<!-- ================================ -->
+<!-- DISPLAY SONGS -->
+<!-- ================================ -->
 
 <script>
 
-  const container =
-    document.getElementById(
-      "homeSongsContainer"
-    );
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
 
 
-  /*
-  ======================================
-  CHECK SONG DATABASE
-  ======================================
-  */
-
-  if (
-    container &&
-    typeof songsData !== "undefined" &&
-    Array.isArray(songsData)
-  ) {
+    const container =
+      document.getElementById(
+        "homeSongsContainer"
+      );
 
 
     /*
-    ====================================
-    NO SONGS
-    ====================================
+    =====================================
+    CHECK SONG DATABASE
+    =====================================
+    */
+
+    if (
+      typeof songsData === "undefined"
+    ) {
+
+      container.innerHTML =
+
+        "<p style='text-align:center; color:red;'>" +
+
+        "❌ Songs database could not be loaded." +
+
+        "</p>";
+
+      return;
+
+    }
+
+
+    /*
+    =====================================
+    CHECK SONG COUNT
+    =====================================
     */
 
     if (
@@ -394,201 +369,159 @@
 
         "</p>";
 
+      return;
+
     }
 
 
     /*
-    ====================================
+    =====================================
     SHOW ALL SONGS
-    ====================================
+    =====================================
     */
 
-    else {
+    songsData.forEach(
+      function(song) {
 
 
-      songsData.forEach(
-        function(song) {
-
-
-          /*
-          ==============================
-          CREATE SONG CARD
-          ==============================
-          */
-
-          const songCard =
-            document.createElement(
-              "div"
-            );
-
-
-          songCard.className =
-            "song-card";
-
-
-          /*
-          ==============================
-          SONG CARD HTML
-          ==============================
-          */
-
-          songCard.innerHTML = `
-
-            <img
-              src="${song.image}"
-              alt="${song.name} song cover by ${song.artist}"
-              loading="lazy"
-            >
-
-
-            <h2>
-              ${song.name}
-            </h2>
-
-
-            <p>
-
-              🎤 Artist:
-
-              <strong>
-                ${song.artist}
-              </strong>
-
-            </p>
-
-
-            <p>
-
-              Listen to
-
-              <strong>
-                ${song.name}
-              </strong>
-
-              by
-
-              <strong>
-                ${song.artist}
-              </strong>
-
-              on Tehalka Music.
-
-            </p>
-
-
-            <!-- AUDIO PLAYER -->
-
-            <audio
-              controls
-              preload="none"
-            >
-
-              <source
-                src="${song.mp3}"
-                type="audio/mpeg"
-              >
-
-              Your browser does not support
-              the audio player.
-
-            </audio>
-
-
-            <br><br>
-
-
-            <!-- SONG DETAILS -->
-
-            <a
-              href="${song.page}"
-            >
-
-              <button>
-
-                🎵 View Song Details
-
-              </button>
-
-            </a>
-
-
-            <br><br>
-
-
-            <!-- DOWNLOAD -->
-
-            <a
-              href="${song.mp3}"
-              download
-            >
-
-              <button>
-
-                ⬇ Download Song
-
-              </button>
-
-            </a>
-
-          `;
-
-
-          /*
-          ==============================
-          ADD SONG CARD TO PAGE
-          ==============================
-          */
-
-          container.appendChild(
-            songCard
+        const songCard =
+          document.createElement(
+            "div"
           );
 
 
-        }
-      );
+        songCard.className =
+          "song-card";
 
 
-    }
+        /*
+        =================================
+        SONG CARD HTML
+        =================================
+        */
+
+        songCard.innerHTML = `
+
+          <img
+            src="${song.image}"
+            alt="${song.name} song cover by ${song.artist}"
+          >
+
+
+          <h2>
+            ${song.name}
+          </h2>
+
+
+          <p>
+            🎤 Singer:
+            <strong>
+              ${song.artist}
+            </strong>
+          </p>
+
+
+          <p>
+            Listen to
+            <strong>
+              ${song.name}
+            </strong>
+            by
+            <strong>
+              ${song.artist}
+            </strong>
+            on Tehalka Music.
+          </p>
+
+
+          <!-- ===================== -->
+          <!-- AUDIO PLAYER -->
+          <!-- ===================== -->
+
+          <audio
+            controls
+            preload="metadata"
+            style="width:100%;"
+          >
+
+            <source
+              src="${song.mp3}"
+              type="audio/mpeg"
+            >
+
+            Your browser does not support
+            the audio player.
+
+          </audio>
+
+
+          <br>
+
+
+          <!-- ===================== -->
+          <!-- SONG DETAILS -->
+          <!-- ===================== -->
+
+          <a
+            href="${song.page}"
+          >
+
+            <button>
+              🎵 View Song Details
+            </button>
+
+          </a>
+
+
+          <br><br>
+
+
+          <!-- ===================== -->
+          <!-- DOWNLOAD -->
+          <!-- ===================== -->
+
+          <a
+            href="${song.mp3}"
+            download
+          >
+
+            <button>
+              ⬇ Download Song
+            </button>
+
+          </a>
+
+        `;
+
+
+        /*
+        =================================
+        ADD CARD TO PAGE
+        =================================
+        */
+
+        container.appendChild(
+          songCard
+        );
+
+
+      }
+    );
 
 
   }
-
-
-  /*
-  ======================================
-  DATABASE ERROR
-  ======================================
-  */
-
-  else {
-
-
-    if (container) {
-
-      container.innerHTML =
-
-        "<p style='text-align:center;'>" +
-
-        "❌ Songs database could not be loaded." +
-
-        "</p>";
-
-    }
-
-
-  }
+);
 
 </script>
 
 
-
-<!-- ================================= -->
+<!-- ================================ -->
 <!-- MAIN JAVASCRIPT -->
-<!-- ================================= -->
+<!-- ================================ -->
 
 <script src="script.js"></script>
 
 
 </body>
 
-</html>         
+</html>
