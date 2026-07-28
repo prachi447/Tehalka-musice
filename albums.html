@@ -10,63 +10,42 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <!-- SEO TITLE -->
-
   <title>
-    Music Albums - Tehalka Music | Listen & Download Songs
+    Albums - Tehalka Music
   </title>
-
-
-  <!-- SEO DESCRIPTION -->
 
   <meta
     name="description"
-    content="Explore music albums and songs on Tehalka Music. Listen and download Kamar Kamar by Billa Sonipat Ala, Parindey by Sumit Goswami and Sukoon by Oye Gurmeet and Prachi Upadhyay."
+    content="Explore music albums and collections on Tehalka Music. Listen to and download your favourite songs."
   >
-
-
-  <!-- SEO KEYWORDS -->
 
   <meta
     name="keywords"
-    content="Tehalka Music albums, music albums, latest albums, Hindi songs, Haryanvi songs, Kamar Kamar, Billa Sonipat Ala, Parindey, Sumit Goswami, Sukoon, Oye Gurmeet, Prachi Upadhyay, listen songs online, download songs"
+    content="Tehalka Music albums, music albums, latest albums, songs, artists, download music"
   >
-
-
-  <!-- AUTHOR -->
 
   <meta
     name="author"
     content="Tehalka Music"
   >
 
-
-  <!-- SEARCH ENGINE -->
-
   <meta
     name="robots"
     content="index, follow"
   >
 
-
-  <!-- CANONICAL URL -->
+  <!-- Canonical -->
 
   <link
     rel="canonical"
     href="https://tehalkamusic.website/albums.html"
   >
 
-
-  <!-- OPEN GRAPH -->
-
-  <meta
-    property="og:title"
-    content="Music Albums - Tehalka Music"
-  >
+  <!-- Open Graph -->
 
   <meta
-    property="og:description"
-    content="Explore music albums and listen to your favourite songs on Tehalka Music."
+    property="og:type"
+    content="website"
   >
 
   <meta
@@ -75,17 +54,197 @@
   >
 
   <meta
-    property="og:type"
-    content="website"
+    property="og:title"
+    content="Albums - Tehalka Music"
   >
 
+  <meta
+    property="og:description"
+    content="Explore albums and music collections on Tehalka Music."
+  >
+
+  <meta
+    property="og:site_name"
+    content="Tehalka Music"
+  >
 
   <!-- CSS -->
 
   <link
     rel="stylesheet"
-    href="style.css"
+    href="style.css?v=3"
   >
+
+  <!-- Album Page Extra Design -->
+
+  <style>
+
+    .album-search {
+      width: 92%;
+      max-width: 650px;
+      margin: 25px auto;
+      display: flex;
+      gap: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 40px;
+      box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.08);
+    }
+
+
+    .album-search input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      padding: 12px 15px;
+      font-size: 16px;
+      background: transparent;
+    }
+
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+
+    .album-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+
+    .album-card:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.12);
+    }
+
+
+    .album-cover {
+      width: 100%;
+      max-width: 250px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+
+    .album-card h2 {
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+
+    .album-card p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+
+    .album-songs {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+
+    .album-song {
+      background: #f5f7fb;
+      padding: 15px;
+      margin-top: 12px;
+      border-radius: 12px;
+    }
+
+
+    .album-song h3 {
+      margin-bottom: 5px;
+      color: #111827;
+    }
+
+
+    .album-song p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+
+    .album-song audio {
+      width: 100%;
+      margin: 8px 0;
+    }
+
+
+    .album-song-actions {
+      text-align: center;
+    }
+
+
+    .album-song-actions button {
+      margin: 4px;
+    }
+
+
+    @media (
+      min-width: 601px
+    ) {
+
+      .album-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    @media (
+      min-width: 901px
+    ) {
+
+      .album-grid {
+        grid-template-columns:
+          repeat(3, 1fr);
+      }
+
+    }
+
+
+    @media (
+      max-width: 600px
+    ) {
+
+      .album-search {
+        width: 94%;
+      }
+
+
+      .album-search input {
+        font-size: 14px;
+      }
+
+
+      .album-search button {
+        padding:
+          9px 14px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -93,7 +252,9 @@
 <body>
 
 
+<!-- ================================= -->
 <!-- HEADER -->
+<!-- ================================= -->
 
 <header>
 
@@ -108,8 +269,9 @@
 </header>
 
 
-
+<!-- ================================= -->
 <!-- NAVIGATION -->
+<!-- ================================= -->
 
 <nav>
 
@@ -123,6 +285,10 @@
 
   <a href="albums.html">
     Albums
+  </a>
+
+  <a href="artists.html">
+    Artists
   </a>
 
   <a href="about.html">
@@ -148,176 +314,108 @@
 </nav>
 
 
-
-<!-- HERO SECTION -->
+<!-- ================================= -->
+<!-- HERO -->
+<!-- ================================= -->
 
 <section class="hero">
 
   <h2>
-    💿 Music Albums
+    💿 Explore Albums
   </h2>
 
   <p>
-    Explore music albums and enjoy your favourite songs on Tehalka Music.
+    Discover artists and explore
+    their music collections on
+    Tehalka Music.
   </p>
 
 </section>
 
 
+<!-- ================================= -->
+<!-- SEARCH -->
+<!-- ================================= -->
 
-<!-- ALBUMS CONTAINER -->
+<section class="container">
 
-<div class="container">
-
-
-  <h2 style="text-align:center;">
-    🎶 Explore Our Music
+  <h2>
+    🔍 Search Albums
   </h2>
 
 
+  <div class="album-search">
 
-  <!-- KAMAR KAMAR -->
-
-  <div class="song-card">
-
-    <img
-      src="Kamar-Kamar-Unknown-2025-20251126103334-500x500.jpg"
-      alt="Kamar Kamar album cover by Billa Sonipat Ala"
+    <input
+      type="text"
+      id="albumSearchInput"
+      placeholder="Search by artist or song..."
+      autocomplete="off"
     >
 
-    <h2>
-      Kamar Kamar
-    </h2>
 
-    <p>
-      🎤 Singer: Billa Sonipat Ala
-    </p>
-
-    <audio controls>
-
-      <source
-        src="Kamar_Kamar_1.mp3"
-        type="audio/mpeg"
-      >
-
-      Your browser does not support
-      the audio player.
-
-    </audio>
-
-    <br><br>
-
-    <a
-      href="Kamar_Kamar_1.mp3"
-      download
+    <button
+      type="button"
+      onclick="filterAlbums()"
     >
-
-      <button>
-        ⬇ Download Kamar Kamar
-      </button>
-
-    </a>
+      Search
+    </button>
 
   </div>
 
+</section>
 
 
-  <!-- PARINDEY -->
+<!-- ================================= -->
+<!-- ALBUM COUNT -->
+<!-- ================================= -->
 
-  <div class="song-card">
+<section class="container">
 
-    <img
-      src="size_m.jpg"
-      alt="Parindey album cover by Sumit Goswami"
-    >
+  <p
+    id="albumCount"
+    style="text-align:center; font-weight:bold;"
+  ></p>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- ALBUMS -->
+<!-- ================================= -->
+
+<section class="container">
+
+  <div
+    id="albumsContainer"
+    class="album-grid"
+  ></div>
+
+
+  <!-- NO RESULTS -->
+
+  <div
+    id="noAlbums"
+    style="display:none; text-align:center;"
+  >
 
     <h2>
-      Parindey
+      😔 No Albums Found
     </h2>
 
     <p>
-      🎤 Singer: Sumit Goswami
+      Try searching with another
+      artist or song name.
     </p>
-
-    <audio controls>
-
-      <source
-        src="Parindey_1.mp3"
-        type="audio/mpeg"
-      >
-
-      Your browser does not support
-      the audio player.
-
-    </audio>
-
-    <br><br>
-
-    <a
-      href="Parindey_1.mp3"
-      download
-    >
-
-      <button>
-        ⬇ Download Parindey
-      </button>
-
-    </a>
 
   </div>
 
+</section>
 
 
-  <!-- SUKOON -->
-
-  <div class="song-card">
-
-    <img
-      src="Sukoon.png"
-      alt="Sukoon album cover by Oye Gurmeet and Prachi Upadhyay"
-    >
-
-    <h2>
-      Sukoon
-    </h2>
-
-    <p>
-      🎤 Singer: Oye Gurmeet | Prachi Upadhyay
-    </p>
-
-    <audio controls>
-
-      <source
-        src="Sukoon.mp3"
-        type="audio/mpeg"
-      >
-
-      Your browser does not support
-      the audio player.
-
-    </audio>
-
-    <br><br>
-
-    <a
-      href="Sukoon.mp3"
-      download
-    >
-
-      <button>
-        ⬇ Download Sukoon
-      </button>
-
-    </a>
-
-  </div>
-
-
-</div>
-
-
-
+<!-- ================================= -->
 <!-- FOOTER -->
+<!-- ================================= -->
 
 <footer>
 
@@ -327,6 +425,536 @@
   </p>
 
 </footer>
+
+
+<!-- ================================= -->
+<!-- SONG DATABASE -->
+<!-- ================================= -->
+
+<script src="songs.js"></script>
+
+
+<!-- ================================= -->
+<!-- AUTOMATIC ALBUM SYSTEM -->
+<!-- ================================= -->
+
+<script>
+
+let allAlbums = [];
+
+
+/* =================================
+   PAGE LOAD
+================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+
+    /*
+    ================================
+    CHECK SONG DATABASE
+    ================================
+    */
+
+    if (
+      typeof songsData === "undefined"
+    ) {
+
+      document.getElementById(
+        "albumsContainer"
+      ).innerHTML =
+
+        "<p style='text-align:center; color:red;'>" +
+
+        "❌ Songs database could not be loaded." +
+
+        "</p>";
+
+      return;
+
+    }
+
+
+    /*
+    ================================
+    CREATE AUTOMATIC ALBUMS
+    ================================
+    */
+
+    const albumMap = {};
+
+
+    songsData.forEach(
+      function(song) {
+
+
+        const artist =
+          song.artist.trim();
+
+
+        /*
+        ==============================
+        CREATE ALBUM FOR ARTIST
+        ==============================
+        */
+
+        if (
+          !albumMap[artist]
+        ) {
+
+          albumMap[artist] = {
+
+            name:
+              artist + " Collection",
+
+            artist:
+              artist,
+
+            image:
+              song.image,
+
+            songs:
+              []
+
+          };
+
+        }
+
+
+        /*
+        ==============================
+        ADD SONG
+        ==============================
+        */
+
+        albumMap[artist]
+          .songs
+          .push(song);
+
+
+      }
+    );
+
+
+    /*
+    ================================
+    CONVERT TO ARRAY
+    ================================
+    */
+
+    allAlbums =
+      Object.values(
+        albumMap
+      );
+
+
+    /*
+    ================================
+    SHOW ALBUMS
+    ================================
+    */
+
+    displayAlbums(
+      allAlbums
+    );
+
+
+    /*
+    ================================
+    ENTER KEY SEARCH
+    ================================
+    */
+
+    const searchInput =
+      document.getElementById(
+        "albumSearchInput"
+      );
+
+
+    searchInput.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Enter"
+        ) {
+
+          event.preventDefault();
+
+          filterAlbums();
+
+        }
+
+      }
+    );
+
+
+  }
+);
+
+
+/* =================================
+   DISPLAY ALBUMS
+================================= */
+
+function displayAlbums(
+  albums
+) {
+
+
+  const container =
+    document.getElementById(
+      "albumsContainer"
+    );
+
+
+  const noAlbums =
+    document.getElementById(
+      "noAlbums"
+    );
+
+
+  const albumCount =
+    document.getElementById(
+      "albumCount"
+    );
+
+
+  /*
+  ================================
+  CLEAR OLD ALBUMS
+  ================================
+  */
+
+  container.innerHTML = "";
+
+
+  /*
+  ================================
+  NO RESULTS
+  ================================
+  */
+
+  if (
+    albums.length === 0
+  ) {
+
+    noAlbums.style.display =
+      "block";
+
+
+    albumCount.textContent =
+      "0 albums found";
+
+
+    return;
+
+  }
+
+
+  noAlbums.style.display =
+    "none";
+
+
+  albumCount.textContent =
+
+    albums.length +
+
+    (
+      albums.length === 1
+        ? " album found"
+        : " albums found"
+    );
+
+
+  /*
+  ================================
+  CREATE ALBUM CARDS
+  ================================
+  */
+
+  albums.forEach(
+    function(album) {
+
+
+      const albumCard =
+        document.createElement(
+          "div"
+        );
+
+
+      albumCard.className =
+        "album-card";
+
+
+      /*
+      ==============================
+      SONG LIST
+      ==============================
+      */
+
+      let songsHTML = "";
+
+
+      album.songs.forEach(
+        function(song) {
+
+
+          songsHTML += `
+
+            <div
+              class="album-song"
+            >
+
+              <h3>
+                🎵 ${song.name}
+              </h3>
+
+
+              <p>
+                🎤 ${song.artist}
+              </p>
+
+
+              <audio
+                controls
+                preload="metadata"
+              >
+
+                <source
+                  src="${song.mp3}"
+                  type="audio/mpeg"
+                >
+
+                Your browser does not support
+                the audio player.
+
+              </audio>
+
+
+              <div
+                class="album-song-actions"
+              >
+
+                <a
+                  href="${song.page}"
+                >
+
+                  <button>
+                    🎵 View
+                  </button>
+
+                </a>
+
+
+                <a
+                  href="${song.mp3}"
+                  download
+                >
+
+                  <button>
+                    ⬇ Download
+                  </button>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          `;
+
+
+        }
+      );
+
+
+      /*
+      ==============================
+      ALBUM CARD
+      ==============================
+      */
+
+      albumCard.innerHTML = `
+
+        <img
+          class="album-cover"
+          src="${album.image}"
+          alt="${album.name}"
+          loading="lazy"
+        >
+
+
+        <h2>
+          💿 ${album.name}
+        </h2>
+
+
+        <p>
+          🎤 Artist:
+          <strong>
+            ${album.artist}
+          </strong>
+        </p>
+
+
+        <p>
+          🎵
+          ${album.songs.length}
+          ${
+            album.songs.length === 1
+              ? "Song"
+              : "Songs"
+          }
+        </p>
+
+
+        <div
+          class="album-songs"
+        >
+
+          ${songsHTML}
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        albumCard
+      );
+
+
+    }
+  );
+
+
+}
+
+
+/* =================================
+   FILTER ALBUMS
+================================= */
+
+function filterAlbums() {
+
+
+  const input =
+    document.getElementById(
+      "albumSearchInput"
+    );
+
+
+  const searchText =
+    input.value
+      .trim()
+      .toLowerCase();
+
+
+  /*
+  ================================
+  EMPTY SEARCH
+  ================================
+  */
+
+  if (
+    searchText === ""
+  ) {
+
+    displayAlbums(
+      allAlbums
+    );
+
+    return;
+
+  }
+
+
+  /*
+  ================================
+  FILTER
+  ================================
+  */
+
+  const filteredAlbums =
+    allAlbums.filter(
+      function(album) {
+
+
+        const artistName =
+          album.artist
+            .toLowerCase();
+
+
+        const albumName =
+          album.name
+            .toLowerCase();
+
+
+        const songFound =
+          album.songs.some(
+            function(song) {
+
+              return (
+
+                song.name
+                  .toLowerCase()
+                  .includes(
+                    searchText
+                  )
+
+              );
+
+            }
+          );
+
+
+        return (
+
+          artistName.includes(
+            searchText
+          )
+
+          ||
+
+          albumName.includes(
+            searchText
+          )
+
+          ||
+
+          songFound
+
+        );
+
+
+      }
+    );
+
+
+  /*
+  ================================
+  DISPLAY FILTERED
+  ================================
+  */
+
+  displayAlbums(
+    filteredAlbums
+  );
+
+
+}
+
+</script>
+
+
+<!-- ================================= -->
+<!-- MAIN JAVASCRIPT -->
+<!-- ================================= -->
+
+<script src="script.js"></script>
 
 
 </body>
