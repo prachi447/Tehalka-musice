@@ -128,7 +128,9 @@
 <body>
 
 
+<!-- ================================= -->
 <!-- HEADER -->
+<!-- ================================= -->
 
 <header>
 
@@ -144,7 +146,9 @@
 
 
 
+<!-- ================================= -->
 <!-- NAVIGATION -->
+<!-- ================================= -->
 
 <nav>
 
@@ -184,7 +188,9 @@
 
 
 
+<!-- ================================= -->
 <!-- HERO -->
+<!-- ================================= -->
 
 <section class="hero">
 
@@ -201,7 +207,9 @@
 
 
 
+<!-- ================================= -->
 <!-- SHARE TEHALKA MUSIC -->
+<!-- ================================= -->
 
 <section class="hero">
 
@@ -255,7 +263,9 @@
 
 
 
+<!-- ================================= -->
 <!-- SEARCH BOX -->
+<!-- ================================= -->
 
 <div class="search-box">
 
@@ -276,7 +286,9 @@
 
 
 
+<!-- ================================= -->
 <!-- SONGS -->
+<!-- ================================= -->
 
 <div class="container">
 
@@ -316,7 +328,9 @@
 
 
 
+<!-- ================================= -->
 <!-- FOOTER -->
+<!-- ================================= -->
 
 <footer>
 
@@ -333,9 +347,7 @@
 <!-- SONG DATABASE -->
 <!-- ================================= -->
 
-<script
-  src="songs.js"
-></script>
+<script src="songs.js"></script>
 
 
 
@@ -345,37 +357,30 @@
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
+  const container =
+    document.getElementById(
+      "homeSongsContainer"
+    );
 
 
-    const container =
-      document.getElementById(
-        "homeSongsContainer"
-      );
+  /*
+  ======================================
+  CHECK SONG DATABASE
+  ======================================
+  */
+
+  if (
+    container &&
+    typeof songsData !== "undefined" &&
+    Array.isArray(songsData)
+  ) {
 
 
-    // Check database
-
-    if (
-      typeof songsData === "undefined"
-    ) {
-
-      container.innerHTML =
-
-        "<p style='text-align:center;'>" +
-
-        "❌ Songs database could not be loaded." +
-
-        "</p>";
-
-      return;
-
-    }
-
-
-    // Check songs
+    /*
+    ====================================
+    NO SONGS
+    ====================================
+    */
 
     if (
       songsData.length === 0
@@ -389,128 +394,201 @@ document.addEventListener(
 
         "</p>";
 
-      return;
+    }
+
+
+    /*
+    ====================================
+    SHOW ALL SONGS
+    ====================================
+    */
+
+    else {
+
+
+      songsData.forEach(
+        function(song) {
+
+
+          /*
+          ==============================
+          CREATE SONG CARD
+          ==============================
+          */
+
+          const songCard =
+            document.createElement(
+              "div"
+            );
+
+
+          songCard.className =
+            "song-card";
+
+
+          /*
+          ==============================
+          SONG CARD HTML
+          ==============================
+          */
+
+          songCard.innerHTML = `
+
+            <img
+              src="${song.image}"
+              alt="${song.name} song cover by ${song.artist}"
+              loading="lazy"
+            >
+
+
+            <h2>
+              ${song.name}
+            </h2>
+
+
+            <p>
+
+              🎤 Artist:
+
+              <strong>
+                ${song.artist}
+              </strong>
+
+            </p>
+
+
+            <p>
+
+              Listen to
+
+              <strong>
+                ${song.name}
+              </strong>
+
+              by
+
+              <strong>
+                ${song.artist}
+              </strong>
+
+              on Tehalka Music.
+
+            </p>
+
+
+            <!-- AUDIO PLAYER -->
+
+            <audio
+              controls
+              preload="none"
+            >
+
+              <source
+                src="${song.mp3}"
+                type="audio/mpeg"
+              >
+
+              Your browser does not support
+              the audio player.
+
+            </audio>
+
+
+            <br><br>
+
+
+            <!-- SONG DETAILS -->
+
+            <a
+              href="${song.page}"
+            >
+
+              <button>
+
+                🎵 View Song Details
+
+              </button>
+
+            </a>
+
+
+            <br><br>
+
+
+            <!-- DOWNLOAD -->
+
+            <a
+              href="${song.mp3}"
+              download
+            >
+
+              <button>
+
+                ⬇ Download Song
+
+              </button>
+
+            </a>
+
+          `;
+
+
+          /*
+          ==============================
+          ADD SONG CARD TO PAGE
+          ==============================
+          */
+
+          container.appendChild(
+            songCard
+          );
+
+
+        }
+      );
+
 
     }
 
 
-    // Show songs
-
-    songsData.forEach(
-      function(song) {
+  }
 
 
-        const songCard =
-          document.createElement(
-            "div"
-          );
+  /*
+  ======================================
+  DATABASE ERROR
+  ======================================
+  */
+
+  else {
 
 
-        songCard.className =
-          "song-card";
+    if (container) {
 
+      container.innerHTML =
 
-        songCard.innerHTML = `
+        "<p style='text-align:center;'>" +
 
-          <img
-            src="${song.image}"
-            alt="${song.name} song cover by ${song.artist}"
-          >
+        "❌ Songs database could not be loaded." +
 
+        "</p>";
 
-          <h2>
-            ${song.name}
-          </h2>
-
-
-          <p>
-            🎤 Artist:
-            <strong>
-              ${song.artist}
-            </strong>
-          </p>
-
-
-          <p>
-            Listen to
-            <strong>
-              ${song.name}
-            </strong>
-            by
-            <strong>
-              ${song.artist}
-            </strong>
-            on Tehalka Music.
-          </p>
-
-
-          <audio controls>
-
-            <source
-              src="${song.mp3}"
-              type="audio/mpeg"
-            >
-
-            Your browser does not support
-            the audio player.
-
-          </audio>
-
-
-          <br><br>
-
-
-          <a
-            href="${song.page}"
-          >
-
-            <button>
-              🎵 View Song Details
-            </button>
-
-          </a>
-
-
-          <br><br>
-
-
-          <a
-            href="${song.mp3}"
-            download
-          >
-
-            <button>
-              ⬇ Download Song
-            </button>
-
-          </a>
-
-        `;
-
-
-        container.appendChild(
-          songCard
-        );
-
-
-      }
-    );
+    }
 
 
   }
-);
 
 </script>
 
 
 
+<!-- ================================= -->
 <!-- MAIN JAVASCRIPT -->
+<!-- ================================= -->
 
-<script
-  src="script.js"
-></script>
+<script src="script.js"></script>
 
 
 </body>
 
-</html>
+</html>         
