@@ -40,9 +40,7 @@
 <body>
 
 
-<!-- ================================ -->
 <!-- HEADER -->
-<!-- ================================ -->
 
 <header>
 
@@ -57,9 +55,7 @@
 </header>
 
 
-<!-- ================================ -->
 <!-- NAVIGATION -->
-<!-- ================================ -->
 
 <nav>
 
@@ -102,9 +98,7 @@
 </nav>
 
 
-<!-- ================================ -->
 <!-- HERO -->
-<!-- ================================ -->
 
 <section class="hero">
 
@@ -120,9 +114,7 @@
 </section>
 
 
-<!-- ================================ -->
 <!-- ARTISTS -->
-<!-- ================================ -->
 
 <div class="container">
 
@@ -133,16 +125,130 @@
   </h2>
 
 
-  <div
-    id="artistsContainer"
-  ></div>
+  <!-- BILLA SONIPAT ALA -->
+
+  <div class="song-card">
+
+    <h2>
+      🎤 Billa Sonipat Ala
+    </h2>
+
+    <p>
+      Explore songs by Billa Sonipat Ala
+      on Tehalka Music.
+    </p>
+
+    <a href="billa-sonipat-ala.html">
+
+      <button>
+        🎵 View Songs
+      </button>
+
+    </a>
+
+  </div>
+
+
+  <!-- SUMIT GOSWAMI -->
+
+  <div class="song-card">
+
+    <h2>
+      🎤 Sumit Goswami
+    </h2>
+
+    <p>
+      Explore songs by Sumit Goswami
+      on Tehalka Music.
+    </p>
+
+    <a href="sumit-goswami.html">
+
+      <button>
+        🎵 View Songs
+      </button>
+
+    </a>
+
+  </div>
+
+
+  <!-- OYE GURMEET & PRACHI UPADHYAY -->
+
+  <div class="song-card">
+
+    <h2>
+      🎤 Oye Gurmeet & Prachi Upadhyay
+    </h2>
+
+    <p>
+      Explore songs by Oye Gurmeet & Prachi Upadhyay
+      on Tehalka Music.
+    </p>
+
+    <a href="oye-gurmeet-prachi-upadhyay.html">
+
+      <button>
+        🎵 View Songs
+      </button>
+
+    </a>
+
+  </div>
+
+
+  <!-- SHIQARI -->
+
+  <div class="song-card">
+
+    <h2>
+      🎤 Shiqari
+    </h2>
+
+    <p>
+      Explore songs by Shiqari
+      on Tehalka Music.
+    </p>
+
+    <a href="shiqari.html">
+
+      <button>
+        🎵 View Songs
+      </button>
+
+    </a>
+
+  </div>
+
+
+  <!-- MOHIT SHARMA -->
+
+  <div class="song-card">
+
+    <h2>
+      🎤 Mohit Sharma
+    </h2>
+
+    <p>
+      Explore songs by Mohit Sharma
+      on Tehalka Music.
+    </p>
+
+    <a href="mohit-sharma.html">
+
+      <button>
+        🎵 View Songs
+      </button>
+
+    </a>
+
+  </div>
+
 
 </div>
 
 
-<!-- ================================ -->
 <!-- FOOTER -->
-<!-- ================================ -->
 
 <footer>
 
@@ -152,183 +258,6 @@
   </p>
 
 </footer>
-
-
-<!-- ================================ -->
-<!-- SONG DATABASE -->
-<!-- ================================ -->
-
-<script src="songs.js"></script>
-
-
-<!-- ================================ -->
-<!-- ARTIST SYSTEM -->
-<!-- ================================ -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-
-
-    const container =
-      document.getElementById(
-        "artistsContainer"
-      );
-
-
-    // =====================================
-    // CHECK SONG DATABASE
-    // =====================================
-
-    if (
-      typeof songsData === "undefined"
-    ) {
-
-      container.innerHTML =
-
-        "<p style='text-align:center; color:red;'>" +
-
-        "❌ Songs database could not be loaded." +
-
-        "</p>";
-
-      return;
-
-    }
-
-
-    // =====================================
-    // CHECK SONGS
-    // =====================================
-
-    if (
-      songsData.length === 0
-    ) {
-
-      container.innerHTML =
-
-        "<p style='text-align:center;'>" +
-
-        "🎵 No artists available yet." +
-
-        "</p>";
-
-      return;
-
-    }
-
-
-    // =====================================
-    // CREATE ARTIST LIST
-    // =====================================
-
-    const artists = [];
-
-
-    songsData.forEach(
-      function(song) {
-
-
-        const artist =
-          song.artist.trim();
-
-
-        // Avoid duplicate artists
-
-        if (
-          !artists.includes(
-            artist
-          )
-        ) {
-
-          artists.push(
-            artist
-          );
-
-        }
-
-      }
-    );
-
-
-    // =====================================
-    // DISPLAY ARTISTS
-    // =====================================
-
-    artists.forEach(
-      function(artist) {
-
-
-        // Find artist's first song
-
-        const firstSong =
-          songsData.find(
-            function(song) {
-
-              return (
-                song.artist.trim()
-                ===
-                artist
-              );
-
-            }
-          );
-
-
-        const artistCard =
-          document.createElement(
-            "div"
-          );
-
-
-        artistCard.className =
-          "song-card";
-
-
-        artistCard.innerHTML = `
-
-          <h2>
-            🎤 ${artist}
-          </h2>
-
-
-          <p>
-            Explore songs by
-            <strong>
-              ${artist}
-            </strong>
-            on Tehalka Music.
-          </p>
-
-
-          <a
-            href="${firstSong.page}"
-          >
-
-            <button>
-              🎵 View Songs
-            </button>
-
-          </a>
-
-        `;
-
-
-        container.appendChild(
-          artistCard
-        );
-
-
-      }
-    );
-
-
-  }
-);
-
-</script>
 
 
 </body>
