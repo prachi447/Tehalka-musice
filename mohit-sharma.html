@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Mohit Sharma - Songs | Tehalka Music
+  </title>
+
+  <meta
+    name="description"
+    content="Listen to songs by Mohit Sharma on Tehalka Music. Play and download music online."
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <link
+    rel="canonical"
+    href="https://tehalkamusic.website/mohit-sharma.html"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css?v=2"
+  >
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+  <h1>
+    🎵 Tehalka Music
+  </h1>
+
+  <p>
+    Listen • Discover • Download
+  </p>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="latest-songs.html">
+    Latest Songs
+  </a>
+
+  <a href="albums.html">
+    Albums
+  </a>
+
+  <a href="artists.html">
+    Artists
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="contact.html">
+    Contact
+  </a>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <h2>
+    🎤 Mohit Sharma
+  </h2>
+
+  <p>
+    Explore songs by Mohit Sharma
+    on Tehalka Music.
+  </p>
+
+</section>
+
+
+<!-- SONGS -->
+
+<div class="container">
+
+  <h2
+    style="text-align:center; margin-bottom:30px;"
+  >
+    🎵 Songs by Mohit Sharma
+  </h2>
+
+
+  <div
+    id="artistSongsContainer"
+  ></div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <p>
+    © 2026 Tehalka Music |
+    All Rights Reserved
+  </p>
+
+</footer>
+
+
+<!-- SONG DATABASE -->
+
+<script src="songs.js"></script>
+
+
+<!-- ARTIST SONG SYSTEM -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+
+    const container =
+      document.getElementById(
+        "artistSongsContainer"
+      );
+
+
+    // Check database
+
+    if (
+      typeof songsData === "undefined"
+    ) {
+
+      container.innerHTML =
+
+        "<p style='text-align:center; color:red;'>" +
+
+        "❌ Songs database could not be loaded." +
+
+        "</p>";
+
+      return;
+
+    }
+
+
+    // Artist name
+
+    const artistName =
+      "Mohit Sharma";
+
+
+    // Find artist songs
+
+    const artistSongs =
+      songsData.filter(
+        function(song) {
+
+          return (
+
+            song.artist
+              .toLowerCase()
+              .includes(
+                artistName.toLowerCase()
+              )
+
+          );
+
+        }
+      );
+
+
+    // No songs
+
+    if (
+      artistSongs.length === 0
+    ) {
+
+      container.innerHTML =
+
+        "<p style='text-align:center;'>" +
+
+        "🎵 No songs found for this artist." +
+
+        "</p>";
+
+      return;
+
+    }
+
+
+    // Show songs
+
+    artistSongs.forEach(
+      function(song) {
+
+
+        const songCard =
+          document.createElement(
+            "div"
+          );
+
+
+        songCard.className =
+          "song-card";
+
+
+        songCard.innerHTML = `
+
+          <img
+            src="${song.image}"
+            alt="${song.name} by ${song.artist}"
+          >
+
+
+          <h2>
+            ${song.name}
+          </h2>
+
+
+          <p>
+            🎤 Artist:
+            <strong>
+              ${song.artist}
+            </strong>
+          </p>
+
+
+          <audio
+            controls
+            preload="metadata"
+          >
+
+            <source
+              src="${song.mp3}"
+              type="audio/mpeg"
+            >
+
+            Your browser does not support
+            the audio player.
+
+          </audio>
+
+
+          <br><br>
+
+
+          <a
+            href="${song.page}"
+          >
+
+            <button>
+              🎵 View Song Details
+            </button>
+
+          </a>
+
+
+          <br><br>
+
+
+          <a
+            href="${song.mp3}"
+            download
+          >
+
+            <button>
+              ⬇ Download Song
+            </button>
+
+          </a>
+
+        `;
+
+
+        container.appendChild(
+          songCard
+        );
+
+
+      }
+    );
+
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>
