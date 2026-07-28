@@ -16,7 +16,7 @@
 
   <meta
     name="description"
-    content="Explore artists and their songs on Tehalka Music."
+    content="Explore artists and discover their songs on Tehalka Music."
   >
 
   <meta
@@ -40,7 +40,9 @@
 <body>
 
 
+<!-- ================================ -->
 <!-- HEADER -->
+<!-- ================================ -->
 
 <header>
 
@@ -55,7 +57,9 @@
 </header>
 
 
+<!-- ================================ -->
 <!-- NAVIGATION -->
+<!-- ================================ -->
 
 <nav>
 
@@ -98,7 +102,9 @@
 </nav>
 
 
+<!-- ================================ -->
 <!-- HERO -->
+<!-- ================================ -->
 
 <section class="hero">
 
@@ -114,118 +120,29 @@
 </section>
 
 
+<!-- ================================ -->
 <!-- ARTISTS -->
+<!-- ================================ -->
 
 <div class="container">
 
-  <div class="song-card">
-
-    <h2>
-      🎤 Billa Sonipat Ala
-    </h2>
-
-    <p>
-      Listen to Kamar Kamar
-    </p>
-
-    <a href="kamar-kamar.html">
-
-      <button>
-        🎵 View Songs
-      </button>
-
-    </a>
-
-  </div>
+  <h2
+    style="text-align:center; margin-bottom:30px;"
+  >
+    🎤 All Artists
+  </h2>
 
 
-  <div class="song-card">
-
-    <h2>
-      🎤 Sumit Goswami
-    </h2>
-
-    <p>
-      Listen to Parindey
-    </p>
-
-    <a href="parindey.html">
-
-      <button>
-        🎵 View Songs
-      </button>
-
-    </a>
-
-  </div>
-
-
-  <div class="song-card">
-
-    <h2>
-      🎤 Oye Gurmeet & Prachi Upadhyay
-    </h2>
-
-    <p>
-      Listen to Sukoon
-    </p>
-
-    <a href="sukoon.html">
-
-      <button>
-        🎵 View Songs
-      </button>
-
-    </a>
-
-  </div>
-
-
-  <div class="song-card">
-
-    <h2>
-      🎤 Shiqari
-    </h2>
-
-    <p>
-      Listen to Chundadi
-    </p>
-
-    <a href="Chundadi.html">
-
-      <button>
-        🎵 View Songs
-      </button>
-
-    </a>
-
-  </div>
-
-
-  <div class="song-card">
-
-    <h2>
-      🎤 Mohit Sharma
-    </h2>
-
-    <p>
-      Listen to Patli Kamar
-    </p>
-
-    <a href="patli-kamar.html">
-
-      <button>
-        🎵 View Songs
-      </button>
-
-    </a>
-
-  </div>
+  <div
+    id="artistsContainer"
+  ></div>
 
 </div>
 
 
+<!-- ================================ -->
 <!-- FOOTER -->
+<!-- ================================ -->
 
 <footer>
 
@@ -235,6 +152,183 @@
   </p>
 
 </footer>
+
+
+<!-- ================================ -->
+<!-- SONG DATABASE -->
+<!-- ================================ -->
+
+<script src="songs.js"></script>
+
+
+<!-- ================================ -->
+<!-- ARTIST SYSTEM -->
+<!-- ================================ -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+
+    const container =
+      document.getElementById(
+        "artistsContainer"
+      );
+
+
+    // =====================================
+    // CHECK SONG DATABASE
+    // =====================================
+
+    if (
+      typeof songsData === "undefined"
+    ) {
+
+      container.innerHTML =
+
+        "<p style='text-align:center; color:red;'>" +
+
+        "❌ Songs database could not be loaded." +
+
+        "</p>";
+
+      return;
+
+    }
+
+
+    // =====================================
+    // CHECK SONGS
+    // =====================================
+
+    if (
+      songsData.length === 0
+    ) {
+
+      container.innerHTML =
+
+        "<p style='text-align:center;'>" +
+
+        "🎵 No artists available yet." +
+
+        "</p>";
+
+      return;
+
+    }
+
+
+    // =====================================
+    // CREATE ARTIST LIST
+    // =====================================
+
+    const artists = [];
+
+
+    songsData.forEach(
+      function(song) {
+
+
+        const artist =
+          song.artist.trim();
+
+
+        // Avoid duplicate artists
+
+        if (
+          !artists.includes(
+            artist
+          )
+        ) {
+
+          artists.push(
+            artist
+          );
+
+        }
+
+      }
+    );
+
+
+    // =====================================
+    // DISPLAY ARTISTS
+    // =====================================
+
+    artists.forEach(
+      function(artist) {
+
+
+        // Find artist's first song
+
+        const firstSong =
+          songsData.find(
+            function(song) {
+
+              return (
+                song.artist.trim()
+                ===
+                artist
+              );
+
+            }
+          );
+
+
+        const artistCard =
+          document.createElement(
+            "div"
+          );
+
+
+        artistCard.className =
+          "song-card";
+
+
+        artistCard.innerHTML = `
+
+          <h2>
+            🎤 ${artist}
+          </h2>
+
+
+          <p>
+            Explore songs by
+            <strong>
+              ${artist}
+            </strong>
+            on Tehalka Music.
+          </p>
+
+
+          <a
+            href="${firstSong.page}"
+          >
+
+            <button>
+              🎵 View Songs
+            </button>
+
+          </a>
+
+        `;
+
+
+        container.appendChild(
+          artistCard
+        );
+
+
+      }
+    );
+
+
+  }
+);
+
+</script>
 
 
 </body>
