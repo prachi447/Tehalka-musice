@@ -44,4 +44,4 @@ const songsData = [
     page: "patli-kamar.html"
   }
 
-]
+];
