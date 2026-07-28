@@ -9,18 +9,36 @@
 
 function searchSong() {
 
-  const input = document.getElementById("searchInput");
+  const input =
+    document.getElementById("searchInput");
+
+
+  // Search box नहीं मिला
 
   if (!input) {
+
     return;
+
   }
 
+
+  // User का search text
+
   const searchText =
-    input.value.trim().toLowerCase();
+    input.value
+      .trim()
+      .toLowerCase();
 
-  if (searchText === "") {
 
-    alert("Please enter a song name.");
+  // Empty search
+
+  if (
+    searchText === ""
+  ) {
+
+    alert(
+      "Please enter a song name."
+    );
 
     return;
 
@@ -28,44 +46,71 @@ function searchSong() {
 
 
   // ========================================
-  // SEARCH FROM SONGS DATABASE
+  // CHECK SONG DATABASE
   // ========================================
 
   if (
-    typeof songsData !== "undefined" &&
-    Array.isArray(songsData)
+    typeof songsData === "undefined"
   ) {
 
-    for (
-      let i = 0;
-      i < songsData.length;
-      i++
+    alert(
+      "❌ Songs database could not be loaded."
+    );
+
+    return;
+
+  }
+
+
+  // ========================================
+  // SEARCH ALL SONGS
+  // ========================================
+
+  for (
+    let i = 0;
+    i < songsData.length;
+    i++
+  ) {
+
+
+    const song =
+      songsData[i];
+
+
+    const songName =
+      song.name
+        .toLowerCase();
+
+
+    const artistName =
+      song.artist
+        .toLowerCase();
+
+
+    // Song name या Artist name से search
+
+    if (
+
+      songName.includes(
+        searchText
+      )
+
+      ||
+
+      artistName.includes(
+        searchText
+      )
+
     ) {
 
-      const song =
-        songsData[i];
 
-      const songName =
-        song.name
-          .toLowerCase();
+      // Song page open
 
-      const artistName =
-        song.artist
-          .toLowerCase();
+      window.location.href =
+        song.page;
 
 
-      if (
-        songName.includes(searchText) ||
-        searchText.includes(songName) ||
-        artistName.includes(searchText)
-      ) {
-
-        window.location.href =
-          song.page;
-
-        return;
-
-      }
+      return;
 
     }
 
@@ -77,30 +122,26 @@ function searchSong() {
   // ========================================
 
   alert(
-    "❌ Song not found.\n\n" +
-    "Please try:\n" +
-    "Kamar Kamar\n" +
-    "Parindey\n" +
-    "Sukoon\n" +
-    "Chundadi\n" +
-    "Patli Kamar"
+    "❌ Song not found.\n\nPlease try another song."
   );
 
 }
 
 
 // ==========================================
-// SEARCH BUTTON + ENTER KEY
+// ENTER KEY SEARCH
 // ==========================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function() {
 
+
     const searchInput =
       document.getElementById(
         "searchInput"
       );
+
 
     const searchButton =
       document.querySelector(
@@ -108,21 +149,29 @@ document.addEventListener(
       );
 
 
+    // ======================================
     // ENTER KEY
+    // ======================================
 
-    if (searchInput) {
+    if (
+      searchInput
+    ) {
 
       searchInput.addEventListener(
         "keydown",
         function(event) {
 
+
           if (
             event.key === "Enter"
           ) {
 
+
             event.preventDefault();
 
+
             searchSong();
+
 
           }
 
@@ -132,17 +181,24 @@ document.addEventListener(
     }
 
 
+    // ======================================
     // SEARCH BUTTON
+    // ======================================
 
-    if (searchButton) {
+    if (
+      searchButton
+    ) {
 
       searchButton.addEventListener(
         "click",
         function(event) {
 
+
           event.preventDefault();
 
+
           searchSong();
+
 
         }
       );
@@ -160,6 +216,7 @@ document.addEventListener(
 const websiteUrl =
   "https://tehalkamusic.website/";
 
+
 const websiteText =
   "🎵 Tehalka Music - Listen and Download Latest Songs";
 
@@ -170,13 +227,20 @@ const websiteText =
 
 function shareWhatsApp() {
 
+
   const whatsappUrl =
     "https://wa.me/?text=" +
+
     encodeURIComponent(
+
       websiteText +
+
       "\n\n" +
+
       websiteUrl
+
     );
+
 
   window.open(
     whatsappUrl,
@@ -192,6 +256,7 @@ function shareWhatsApp() {
 
 function openInstagram() {
 
+
   window.open(
     "https://www.instagram.com/",
     "_blank"
@@ -205,6 +270,7 @@ function openInstagram() {
 // ==========================================
 
 function openYouTube() {
+
 
   window.open(
     "https://www.youtube.com/",
@@ -220,9 +286,11 @@ function openYouTube() {
 
 function shareWebsite() {
 
+
   if (
     navigator.share
   ) {
+
 
     navigator.share({
 
@@ -236,22 +304,29 @@ function shareWebsite() {
         websiteUrl
 
     })
+
+
     .catch(
       function(error) {
+
 
         console.log(
           "Share cancelled:",
           error
         );
 
+
       }
     );
+
 
   }
 
   else {
 
+
     copyWebsiteLink();
+
 
   }
 
@@ -264,42 +339,60 @@ function shareWebsite() {
 
 function copyWebsiteLink() {
 
+
   if (
     navigator.clipboard
   ) {
 
+
     navigator.clipboard
+
       .writeText(
         websiteUrl
       )
+
       .then(
         function() {
+
 
           alert(
             "✅ Tehalka Music website link copied!"
           );
 
+
         }
       )
+
       .catch(
         function() {
 
+
           alert(
+
             "Please copy this link manually:\n" +
+
             websiteUrl
+
           );
+
 
         }
       );
+
 
   }
 
   else {
 
+
     alert(
+
       "Please copy this link manually:\n" +
+
       websiteUrl
+
     );
+
 
   }
 
