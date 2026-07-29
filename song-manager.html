@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Song Manager - Tehalka Music
+  </title>
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      padding: 20px;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      background:
+        #f3f4f6;
+
+      color:
+        #111827;
+
+    }
+
+
+    .manager {
+
+      max-width:
+        700px;
+
+      margin:
+        20px auto;
+
+      background:
+        white;
+
+      padding:
+        25px;
+
+      border-radius:
+        20px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(
+          0,
+          0,
+          0,
+          0.10
+        );
+
+    }
+
+
+    h1 {
+
+      text-align:
+        center;
+
+      margin-bottom:
+        10px;
+
+    }
+
+
+    .subtitle {
+
+      text-align:
+        center;
+
+      color:
+        #666;
+
+      margin-bottom:
+        25px;
+
+    }
+
+
+    label {
+
+      display:
+        block;
+
+      font-weight:
+        bold;
+
+      margin-top:
+        18px;
+
+      margin-bottom:
+        7px;
+
+    }
+
+
+    input,
+    textarea,
+    select {
+
+      width:
+        100%;
+
+      padding:
+        13px;
+
+      border:
+        1px solid
+        #d1d5db;
+
+      border-radius:
+        10px;
+
+      font-size:
+        16px;
+
+      outline:
+        none;
+
+    }
+
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+
+      border-color:
+        #6366f1;
+
+    }
+
+
+    textarea {
+
+      min-height:
+        100px;
+
+      resize:
+        vertical;
+
+    }
+
+
+    .button-group {
+
+      display:
+        flex;
+
+      gap:
+        10px;
+
+      flex-wrap:
+        wrap;
+
+      margin-top:
+        25px;
+
+    }
+
+
+    button {
+
+      flex:
+        1;
+
+      min-width:
+        150px;
+
+      padding:
+        13px;
+
+      border:
+        none;
+
+      border-radius:
+        10px;
+
+      font-size:
+        16px;
+
+      font-weight:
+        bold;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .generate {
+
+      background:
+        #111827;
+
+      color:
+        white;
+
+    }
+
+
+    .clear {
+
+      background:
+        #e5e7eb;
+
+      color:
+        #111827;
+
+    }
+
+
+    .copy {
+
+      background:
+        #16a34a;
+
+      color:
+        white;
+
+    }
+
+
+    .preview {
+
+      margin-top:
+        25px;
+
+      padding:
+        20px;
+
+      background:
+        #f9fafb;
+
+      border-radius:
+        15px;
+
+    }
+
+
+    .preview img {
+
+      width:
+        180px;
+
+      height:
+        180px;
+
+      object-fit:
+        cover;
+
+      border-radius:
+        15px;
+
+      display:
+        block;
+
+      margin:
+        15px auto;
+
+    }
+
+
+    .code-box {
+
+      margin-top:
+        20px;
+
+    }
+
+
+    #generatedCode {
+
+      width:
+        100%;
+
+      min-height:
+        300px;
+
+      padding:
+        15px;
+
+      background:
+        #111827;
+
+      color:
+        #f9fafb;
+
+      border-radius:
+        12px;
+
+      font-family:
+        monospace;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+
+      white-space:
+        pre;
+
+      overflow:
+        auto;
+
+    }
+
+
+    .message {
+
+      text-align:
+        center;
+
+      font-weight:
+        bold;
+
+      margin-top:
+        15px;
+
+    }
+
+
+    .warning {
+
+      background:
+        #fff7ed;
+
+      border:
+        1px solid
+        #fed7aa;
+
+      padding:
+        15px;
+
+      border-radius:
+        10px;
+
+      margin-top:
+        20px;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    @media (
+      max-width: 600px
+    ) {
+
+      body {
+
+        padding:
+          10px;
+
+      }
+
+
+      .manager {
+
+        padding:
+          18px;
+
+        margin:
+          5px auto;
+
+      }
+
+
+      h1 {
+
+        font-size:
+          25px;
+
+      }
+
+
+      .preview img {
+
+        width:
+          150px;
+
+        height:
+          150px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="manager">
+
+
+  <h1>
+    🎵 Tehalka Music
+  </h1>
+
+
+  <p class="subtitle">
+    Song Manager
+  </p>
+
+
+  <!-- ================================= -->
+  <!-- SONG FORM -->
+  <!-- ================================= -->
+
+
+  <form
+    id="songForm"
+  >
+
+
+    <label>
+      🎵 Song Name *
+    </label>
+
+
+    <input
+      type="text"
+      id="songName"
+      placeholder="Example: Sukoon"
+      required
+    >
+
+
+    <label>
+      🎤 Artist / Singer *
+    </label>
+
+
+    <input
+      type="text"
+      id="artistName"
+      placeholder="Example: Oye Gurmeet & Prachi Upadhyay"
+      required
+    >
+
+
+    <label>
+      💿 Album Name
+    </label>
+
+
+    <input
+      type="text"
+      id="albumName"
+      placeholder="Example: Latest Songs"
+    >
+
+
+    <label>
+      🎼 Category
+    </label>
+
+
+    <input
+      type="text"
+      id="category"
+      placeholder="Example: Haryanvi / Romantic / Hindi"
+    >
+
+
+    <label>
+      🖼️ Cover Image File Name *
+    </label>
+
+
+    <input
+      type="text"
+      id="imageFile"
+      placeholder="Example: Sukoon.png"
+      required
+    >
+
+
+    <label>
+      🎧 MP3 File Name *
+    </label>
+
+
+    <input
+      type="text"
+      id="mp3File"
+      placeholder="Example: Sukoon.mp3"
+      required
+    >
+
+
+    <label>
+      🔗 Song Page File Name
+    </label>
+
+
+    <input
+      type="text"
+      id="songPage"
+      placeholder="Example: sukoon.html"
+    >
+
+
+    <label>
+      📝 Song Description
+    </label>
+
+
+    <textarea
+      id="description"
+      placeholder="Write a short description of the song..."
+    ></textarea>
+
+
+    <!-- ================================= -->
+    <!-- BUTTONS -->
+    <!-- ================================= -->
+
+
+    <div class="button-group">
+
+
+      <button
+        type="submit"
+        class="generate"
+      >
+
+        ⚡ Generate Code
+
+      </button>
+
+
+      <button
+        type="button"
+        class="clear"
+        onclick="clearForm()"
+      >
+
+        🗑️ Clear
+
+      </button>
+
+
+    </div>
+
+
+  </form>
+
+
+  <!-- ================================= -->
+  <!-- MESSAGE -->
+  <!-- ================================= -->
+
+
+  <p
+    id="message"
+    class="message"
+  ></p>
+
+
+  <!-- ================================= -->
+  <!-- PREVIEW -->
+  <!-- ================================= -->
+
+
+  <div
+    id="preview"
+    class="preview"
+    style="display:none;"
+  >
+
+
+    <h2>
+      👀 Song Preview
+    </h2>
+
+
+    <img
+      id="previewImage"
+      src=""
+      alt="Song Cover"
+    >
+
+
+    <h3
+      id="previewName"
+    ></h3>
+
+
+    <p
+      id="previewArtist"
+    ></p>
+
+
+    <p
+      id="previewAlbum"
+    ></p>
+
+
+    <p
+      id="previewCategory"
+    ></p>
+
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- GENERATED CODE -->
+  <!-- ================================= -->
+
+
+  <div
+    id="codeBox"
+    class="code-box"
+    style="display:none;"
+  >
+
+
+    <h2>
+      📋 Ready-to-Copy songs.js Code
+    </h2>
+
+
+    <textarea
+      id="generatedCode"
+      readonly
+    ></textarea>
+
+
+    <div class="button-group">
+
+
+      <button
+        type="button"
+        class="copy"
+        onclick="copyCode()"
+      >
+
+        📋 Copy Code
+
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- IMPORTANT NOTE -->
+  <!-- ================================= -->
+
+
+  <div class="warning">
+
+
+    ⚠️ <strong>Important:</strong>
+
+
+    <br><br>
+
+
+    यह tool केवल
+    <strong>
+      songs.js
+    </strong>
+    के लिए code generate करता है।
+
+
+    <br><br>
+
+
+    Song की
+    <strong>
+      MP3 और Cover Image
+    </strong>
+    files को पहले अपने GitHub repository में upload करें।
+
+
+    <br><br>
+
+
+    उसके बाद यहाँ दिए गए generated code को
+    <strong>
+      songs.js
+    </strong>
+    में paste करें।
+
+
+    <br><br>
+
+
+    फिर Home, Latest Songs, Albums और Artists में song automatic दिखाई देगा।
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+
+// ==========================================
+// GENERATE SONG CODE
+// ==========================================
+
+document
+  .getElementById(
+    "songForm"
+  )
+  .addEventListener(
+    "submit",
+    function(event) {
+
+
+      event.preventDefault();
+
+
+      // ======================================
+      // GET VALUES
+      // ======================================
+
+      const songName =
+
+        document
+          .getElementById(
+            "songName"
+          )
+          .value
+          .trim();
+
+
+      const artistName =
+
+        document
+          .getElementById(
+            "artistName"
+          )
+          .value
+          .trim();
+
+
+      const albumName =
+
+        document
+          .getElementById(
+            "albumName"
+          )
+          .value
+          .trim();
+
+
+      const category =
+
+        document
+          .getElementById(
+            "category"
+          )
+          .value
+          .trim();
+
+
+      const imageFile =
+
+        document
+          .getElementById(
+            "imageFile"
+          )
+          .value
+          .trim();
+
+
+      const mp3File =
+
+        document
+          .getElementById(
+            "mp3File"
+          )
+          .value
+          .trim();
+
+
+      let songPage =
+
+        document
+          .getElementById(
+            "songPage"
+          )
+          .value
+          .trim();
+
+
+      const description =
+
+        document
+          .getElementById(
+            "description"
+          )
+          .value
+          .trim();
+
+
+      // ======================================
+      // AUTO SONG PAGE
+      // ======================================
+
+      if (
+        songPage === ""
+      ) {
+
+
+        songPage =
+
+          songName
+
+            .toLowerCase()
+
+            .replace(
+              /[^a-z0-9]+/g,
+              "-"
+            )
+
+            .replace(
+              /^-+|-+$/g,
+              ""
+            )
+
+            +
+            ".html";
+
+
+      }
+
+
+      // ======================================
+      // VALIDATION
+      // ======================================
+
+      if (
+        !songName ||
+        !artistName ||
+        !imageFile ||
+        !mp3File
+      ) {
+
+
+        showMessage(
+          "❌ Please fill all required fields.",
+          "red"
+        );
+
+
+        return;
+
+      }
+
+
+      // ======================================
+      // CREATE SONG OBJECT
+      // ======================================
+
+      let code = `
+
+  {
+    name: "${escapeQuotes(songName)}",
+    artist: "${escapeQuotes(artistName)}",
+    album: "${escapeQuotes(albumName || "Singles")}",
+    category: "${escapeQuotes(category || "Music")}",
+    image: "${escapeQuotes(imageFile)}",
+    mp3: "${escapeQuotes(mp3File)}",
+    page: "${escapeQuotes(songPage)}",
+    description: "${escapeQuotes(description)}"
+  }
+
+`;
+
+
+      // ======================================
+      // SHOW GENERATED CODE
+      // ======================================
+
+      document
+        .getElementById(
+          "generatedCode"
+        )
+        .value = code.trim();
+
+
+      document
+        .getElementById(
+          "codeBox"
+        )
+        .style.display =
+          "block";
+
+
+      // ======================================
+      // PREVIEW
+      // ======================================
+
+      document
+        .getElementById(
+          "previewImage"
+        )
+        .src =
+          imageFile;
+
+
+      document
+        .getElementById(
+          "previewName"
+        )
+        .textContent =
+          "🎵 " + songName;
+
+
+      document
+        .getElementById(
+          "previewArtist"
+        )
+        .textContent =
+          "🎤 " + artistName;
+
+
+      document
+        .getElementById(
+          "previewAlbum"
+        )
+        .textContent =
+          "💿 " +
+          (
+            albumName ||
+            "Singles"
+          );
+
+
+      document
+        .getElementById(
+          "previewCategory"
+        )
+        .textContent =
+          "🎼 " +
+          (
+            category ||
+            "Music"
+          );
+
+
+      document
+        .getElementById(
+          "preview"
+        )
+        .style.display =
+          "block";
+
+
+      // ======================================
+      // SUCCESS MESSAGE
+      // ======================================
+
+      showMessage(
+        "✅ Song code generated successfully!",
+        "green"
+      );
+
+
+      // ======================================
+      // SCROLL TO CODE
+      // ======================================
+
+      document
+        .getElementById(
+          "codeBox"
+        )
+        .scrollIntoView({
+          behavior:
+            "smooth"
+        });
+
+
+    }
+  );
+
+
+// ==========================================
+// ESCAPE QUOTES
+// ==========================================
+
+function escapeQuotes(
+  text
+) {
+
+
+  return text
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /"/g,
+      '\\"'
+    )
+
+    .replace(
+      /\n/g,
+      " "
+    );
+
+}
+
+
+// ==========================================
+// COPY CODE
+// ==========================================
+
+function copyCode() {
+
+
+  const codeBox =
+
+    document
+      .getElementById(
+        "generatedCode"
+      );
+
+
+  codeBox
+    .select();
+
+
+  codeBox
+    .setSelectionRange(
+      0,
+      99999
+    );
+
+
+  navigator
+    .clipboard
+    .writeText(
+      codeBox.value
+    )
+    .then(
+      function() {
+
+
+        showMessage(
+          "✅ Code copied! अब songs.js में paste करें.",
+          "green"
+        );
+
+
+      }
+    )
+    .catch(
+      function() {
+
+
+        document
+          .execCommand(
+            "copy"
+          );
+
+
+        showMessage(
+          "✅ Code copied!",
+          "green"
+        );
+
+
+      }
+    );
+
+}
+
+
+// ==========================================
+// CLEAR FORM
+// ==========================================
+
+function clearForm() {
+
+
+  document
+    .getElementById(
+      "songForm"
+    )
+    .reset();
+
+
+  document
+    .getElementById(
+      "preview"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "codeBox"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "message"
+    )
+    .textContent =
+      "";
+
+
+}
+
+
+// ==========================================
+// MESSAGE
+// ==========================================
+
+function showMessage(
+  text,
+  color
+) {
+
+
+  const message =
+
+    document
+      .getElementById(
+        "message"
+      );
+
+
+  message
+    .textContent =
+      text;
+
+
+  message
+    .style.color =
+      color;
+
+}
+
+
+</script>
+
+
+</body>
+
+      </html>
