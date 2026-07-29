@@ -10,65 +10,87 @@
     content="width=device-width, initial-scale=1.0"
   >
 
+
+  <!-- ================================= -->
+  <!-- SEO -->
+  <!-- ================================= -->
+
   <title>
     Latest Songs - Tehalka Music
   </title>
 
+
   <meta
     name="description"
-    content="Listen to and download the latest songs on Tehalka Music. Discover new music, artists and releases."
+    content="Discover the latest Hindi, Haryanvi and Indian songs on Tehalka Music. Listen online, explore artists and download available songs."
   >
+
 
   <meta
     name="keywords"
-    content="Tehalka Music, latest songs, new songs, download songs, listen songs, music"
+    content="Tehalka Music, latest songs, new songs, Hindi songs, Haryanvi songs, Indian music, listen songs, download songs, new music releases"
   >
+
 
   <meta
     name="author"
     content="Tehalka Music"
   >
 
+
   <meta
     name="robots"
     content="index, follow"
   >
 
-  <!-- Canonical -->
+
+  <!-- ================================= -->
+  <!-- CANONICAL -->
+  <!-- ================================= -->
 
   <link
     rel="canonical"
     href="https://tehalkamusic.website/latest-songs.html"
   >
 
-  <!-- Open Graph -->
+
+  <!-- ================================= -->
+  <!-- OPEN GRAPH -->
+  <!-- ================================= -->
 
   <meta
     property="og:type"
     content="website"
   >
 
+
   <meta
     property="og:url"
     content="https://tehalkamusic.website/latest-songs.html"
   >
+
 
   <meta
     property="og:title"
     content="Latest Songs - Tehalka Music"
   >
 
+
   <meta
     property="og:description"
-    content="Discover, listen and download the latest songs on Tehalka Music."
+    content="Discover, listen and download the latest Hindi, Haryanvi and Indian songs on Tehalka Music."
   >
+
 
   <meta
     property="og:site_name"
     content="Tehalka Music"
   >
 
+
+  <!-- ================================= -->
   <!-- CSS -->
+  <!-- ================================= -->
 
   <link
     rel="stylesheet"
@@ -108,33 +130,41 @@
     Home
   </a>
 
+
   <a href="latest-songs.html">
     Latest Songs
   </a>
+
 
   <a href="albums.html">
     Albums
   </a>
 
+
   <a href="artists.html">
     Artists
   </a>
+
 
   <a href="about.html">
     About
   </a>
 
+
   <a href="contact.html">
     Contact
   </a>
+
 
   <a href="privacy-policy.html">
     Privacy Policy
   </a>
 
+
   <a href="terms.html">
     Terms & Conditions
   </a>
+
 
   <a href="copyright.html">
     Copyright Policy
@@ -152,6 +182,7 @@
   <h2>
     🆕 Latest Songs
   </h2>
+
 
   <p>
     Discover the latest music releases
@@ -181,6 +212,7 @@
       autocomplete="off"
     >
 
+
     <button
       type="button"
       onclick="filterLatestSongs()"
@@ -201,7 +233,10 @@
 
   <p
     id="songCount"
-    style="text-align:center; font-weight:bold;"
+    style="
+      text-align:center;
+      font-weight:bold;
+    "
   ></p>
 
 </section>
@@ -222,12 +257,16 @@
 
   <div
     id="noResults"
-    style="display:none; text-align:center;"
+    style="
+      display:none;
+      text-align:center;
+    "
   >
 
     <h2>
       😔 No Songs Found
     </h2>
+
 
     <p>
       Try searching with another song
@@ -254,10 +293,12 @@
 
 
 <!-- ================================= -->
-<!-- SONG DATABASE -->
+<!-- CENTRAL SONG DATABASE -->
 <!-- ================================= -->
 
-<script src="songs.js"></script>
+<script
+  src="songs.js"
+></script>
 
 
 <!-- ================================= -->
@@ -266,12 +307,17 @@
 
 <script>
 
+
+// ==========================================
+// GLOBAL SONG DATA
+// ==========================================
+
 let allLatestSongs = [];
 
 
-/* =================================
-   PAGE LOAD
-================================= */
+// ==========================================
+// PAGE LOAD
+// ==========================================
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -284,49 +330,80 @@ document.addEventListener(
       );
 
 
-    /* =============================
-       CHECK DATABASE
-    ============================= */
+    // ======================================
+    // CHECK SONG DATABASE
+    // ======================================
 
     if (
       typeof songsData === "undefined"
     ) {
 
+
       container.innerHTML =
 
-        "<p style='text-align:center; color:red;'>" +
+        "<p style='text-align:center;color:red;'>" +
 
         "❌ Songs database could not be loaded." +
 
         "</p>";
+
 
       return;
 
     }
 
 
-    /* =============================
-       SAVE SONGS
-    ============================= */
+    // ======================================
+    // CHECK SONG DATABASE EMPTY
+    // ======================================
+
+    if (
+      !Array.isArray(
+        songsData
+      )
+      ||
+      songsData.length === 0
+    ) {
+
+
+      container.innerHTML =
+
+        "<p style='text-align:center;'>" +
+
+        "🎵 No songs available yet." +
+
+        "</p>";
+
+
+      return;
+
+    }
+
+
+    // ======================================
+    // CENTRAL DATABASE COPY
+    // ======================================
 
     allLatestSongs =
+
       [...songsData].reverse();
 
 
-    /* =============================
-       SHOW SONGS
-    ============================= */
+    // ======================================
+    // DISPLAY ALL SONGS
+    // ======================================
 
     displayLatestSongs(
       allLatestSongs
     );
 
 
-    /* =============================
-       ENTER KEY SEARCH
-    ============================= */
+    // ======================================
+    // ENTER KEY SEARCH
+    // ======================================
 
     const searchInput =
+
       document.getElementById(
         "latestSearchInput"
       );
@@ -336,15 +413,35 @@ document.addEventListener(
       "keydown",
       function(event) {
 
+
         if (
           event.key === "Enter"
         ) {
 
+
           event.preventDefault();
+
 
           filterLatestSongs();
 
+
         }
+
+      }
+    );
+
+
+    // ======================================
+    // LIVE SEARCH
+    // ======================================
+
+    searchInput.addEventListener(
+      "input",
+      function() {
+
+
+        filterLatestSongs();
+
 
       }
     );
@@ -354,9 +451,9 @@ document.addEventListener(
 );
 
 
-/* =================================
-   DISPLAY SONGS
-================================= */
+// ==========================================
+// DISPLAY SONGS
+// ==========================================
 
 function displayLatestSongs(
   songs
@@ -364,52 +461,66 @@ function displayLatestSongs(
 
 
   const container =
+
     document.getElementById(
       "latestSongsContainer"
     );
 
 
   const noResults =
+
     document.getElementById(
       "noResults"
     );
 
 
   const songCount =
+
     document.getElementById(
       "songCount"
     );
 
 
-  /* =============================
-     CLEAR OLD SONGS
-  ============================= */
+  // ======================================
+  // CLEAR OLD SONGS
+  // ======================================
 
   container.innerHTML = "";
 
 
-  /* =============================
-     NO SONGS
-  ============================= */
+  // ======================================
+  // NO SONGS
+  // ======================================
 
   if (
     songs.length === 0
   ) {
 
+
     noResults.style.display =
       "block";
 
+
     songCount.textContent =
       "0 songs found";
+
 
     return;
 
   }
 
 
+  // ======================================
+  // HIDE NO RESULTS
+  // ======================================
+
   noResults.style.display =
     "none";
 
+
+  // ======================================
+  // SONG COUNT
+  // ======================================
 
   songCount.textContent =
 
@@ -422,15 +533,16 @@ function displayLatestSongs(
     );
 
 
-  /* =============================
-     CREATE SONG CARDS
-  ============================= */
+  // ======================================
+  // CREATE SONG CARDS
+  // ======================================
 
   songs.forEach(
     function(song) {
 
 
       const songCard =
+
         document.createElement(
           "div"
         );
@@ -439,6 +551,10 @@ function displayLatestSongs(
       songCard.className =
         "song-card";
 
+
+      // ==================================
+      // SONG CARD HTML
+      // ==================================
 
       songCard.innerHTML = `
 
@@ -467,20 +583,37 @@ function displayLatestSongs(
 
         <p>
 
+          ${song.category
+            ? "🎵 Category: " +
+              song.category
+            : ""
+          }
+
+        </p>
+
+
+        <p>
+
           Listen to
+
           <strong>
             ${song.name}
           </strong>
+
           by
+
           <strong>
             ${song.artist}
           </strong>
+
           on Tehalka Music.
 
         </p>
 
 
-        <!-- AUDIO -->
+        <!-- ========================== -->
+        <!-- AUDIO PLAYER -->
+        <!-- ========================== -->
 
         <audio
           controls
@@ -502,34 +635,53 @@ function displayLatestSongs(
         <br>
 
 
+        <!-- ========================== -->
         <!-- SONG DETAILS -->
+        <!-- ========================== -->
 
         <a
           href="${song.page}"
         >
 
-          <button>
+          <button
+            type="button"
+          >
+
             🎵 View Song Details
+
           </button>
 
         </a>
 
 
+        <br><br>
+
+
+        <!-- ========================== -->
         <!-- DOWNLOAD -->
+        <!-- ========================== -->
 
         <a
           href="${song.mp3}"
           download
         >
 
-          <button>
+          <button
+            type="button"
+          >
+
             ⬇ Download Song
+
           </button>
 
         </a>
 
       `;
 
+
+      // ==================================
+      // ADD CARD
+      // ==================================
 
       container.appendChild(
         songCard
@@ -543,59 +695,86 @@ function displayLatestSongs(
 }
 
 
-/* =================================
-   SEARCH / FILTER
-================================= */
+// ==========================================
+// SEARCH / FILTER
+// ==========================================
 
 function filterLatestSongs() {
 
 
   const input =
+
     document.getElementById(
       "latestSearchInput"
     );
 
 
   const searchText =
+
     input.value
       .trim()
       .toLowerCase();
 
 
-  /* =============================
-     EMPTY SEARCH
-  ============================= */
+  // ======================================
+  // EMPTY SEARCH
+  // ======================================
 
   if (
     searchText === ""
   ) {
 
+
     displayLatestSongs(
       allLatestSongs
     );
+
 
     return;
 
   }
 
 
-  /* =============================
-     FILTER SONGS
-  ============================= */
+  // ======================================
+  // FILTER CENTRAL DATABASE
+  // ======================================
 
   const filteredSongs =
+
     allLatestSongs.filter(
       function(song) {
 
 
         const songName =
-          song.name
-            .toLowerCase();
+
+          (
+            song.name || ""
+          )
+          .toLowerCase();
 
 
         const artistName =
-          song.artist
-            .toLowerCase();
+
+          (
+            song.artist || ""
+          )
+          .toLowerCase();
+
+
+        const categoryName =
+
+          (
+            song.category || ""
+          )
+          .toLowerCase();
+
+
+        const albumName =
+
+          (
+            song.album || ""
+          )
+          .toLowerCase();
 
 
         return (
@@ -610,6 +789,18 @@ function filterLatestSongs() {
             searchText
           )
 
+          ||
+
+          categoryName.includes(
+            searchText
+          )
+
+          ||
+
+          albumName.includes(
+            searchText
+          )
+
         );
 
 
@@ -617,9 +808,9 @@ function filterLatestSongs() {
     );
 
 
-  /* =============================
-     DISPLAY RESULTS
-  ============================= */
+  // ======================================
+  // DISPLAY RESULTS
+  // ======================================
 
   displayLatestSongs(
     filteredSongs
@@ -635,7 +826,9 @@ function filterLatestSongs() {
 <!-- MAIN JAVASCRIPT -->
 <!-- ================================= -->
 
-<script src="script.js"></script>
+<script
+  src="script.js"
+></script>
 
 
 </body>
