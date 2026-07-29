@@ -44,15 +44,3 @@ const songsData = [
     page: "patli-kamar.html"
   },
 
-  {
-    name: "Ghadi",
-    artist: "Mitta Bahu Ala",
-    album: "Singles",
-    category: "Haryanvi",
-    image: "sddefault.jpg",
-    mp3: "Ghadi.mp3",
-    page: "ghadi.html",
-    description: "Listen to Ghadi by Mitta Bahu Ala, a Haryanvi song on Tehalka Music."
-  }
-
-];
