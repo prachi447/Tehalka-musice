@@ -16,12 +16,12 @@
 
   <meta
     name="description"
-    content="Explore music albums and collections on Tehalka Music. Listen to and download your favourite songs."
+    content="Explore music albums and collections on Tehalka Music. Listen to songs, discover artists and download available music."
   >
 
   <meta
     name="keywords"
-    content="Tehalka Music albums, music albums, latest albums, songs, artists, download music"
+    content="Tehalka Music albums, music albums, Hindi albums, Haryanvi albums, latest music, songs, artists, download music"
   >
 
   <meta
@@ -34,14 +34,14 @@
     content="index, follow"
   >
 
-  <!-- Canonical -->
+  <!-- CANONICAL -->
 
   <link
     rel="canonical"
     href="https://tehalkamusic.website/albums.html"
   >
 
-  <!-- Open Graph -->
+  <!-- OPEN GRAPH -->
 
   <meta
     property="og:type"
@@ -60,7 +60,7 @@
 
   <meta
     property="og:description"
-    content="Explore albums and music collections on Tehalka Music."
+    content="Explore music albums and collections on Tehalka Music."
   >
 
   <meta
@@ -75,137 +75,239 @@
     href="style.css?v=3"
   >
 
-  <!-- Album Page Extra Design -->
+
+  <!-- ALBUM PAGE DESIGN -->
 
   <style>
 
+
+    /* ============================= */
+    /* ALBUM SEARCH */
+    /* ============================= */
+
     .album-search {
+
       width: 92%;
+
       max-width: 650px;
+
       margin: 25px auto;
+
       display: flex;
+
       gap: 10px;
+
       background: white;
+
       padding: 10px;
+
       border-radius: 40px;
+
       box-shadow:
         0 5px 20px
         rgba(0, 0, 0, 0.08);
+
     }
 
 
     .album-search input {
+
       flex: 1;
+
       min-width: 0;
+
       border: none;
+
       outline: none;
+
       padding: 12px 15px;
+
       font-size: 16px;
+
       background: transparent;
+
     }
 
+
+    /* ============================= */
+    /* ALBUM GRID */
+    /* ============================= */
 
     .album-grid {
+
       display: grid;
-      grid-template-columns: 1fr;
+
+      grid-template-columns:
+        1fr;
+
       gap: 25px;
+
     }
 
 
+    /* ============================= */
+    /* ALBUM CARD */
+    /* ============================= */
+
     .album-card {
+
       background: white;
+
       border-radius: 20px;
+
       padding: 20px;
+
       box-shadow:
         0 5px 20px
         rgba(0, 0, 0, 0.08);
+
       text-align: center;
+
       transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
+
     }
 
 
     .album-card:hover {
-      transform: translateY(-5px);
+
+      transform:
+        translateY(-5px);
+
       box-shadow:
         0 12px 30px
         rgba(0, 0, 0, 0.12);
+
     }
 
+
+    /* ============================= */
+    /* ALBUM COVER */
+    /* ============================= */
 
     .album-cover {
+
       width: 100%;
+
       max-width: 250px;
+
       aspect-ratio: 1 / 1;
+
       object-fit: cover;
+
       border-radius: 16px;
+
       display: block;
-      margin: 0 auto 18px;
+
+      margin:
+        0 auto 18px;
+
     }
 
 
+    /* ============================= */
+    /* ALBUM TITLE */
+    /* ============================= */
+
     .album-card h2 {
+
       color: #111827;
+
       margin-bottom: 8px;
+
     }
 
 
     .album-card p {
+
       color: #666;
+
       margin-bottom: 15px;
+
     }
 
 
+    /* ============================= */
+    /* SONG LIST */
+    /* ============================= */
+
     .album-songs {
+
       margin-top: 20px;
+
       text-align: left;
+
     }
 
 
     .album-song {
+
       background: #f5f7fb;
+
       padding: 15px;
+
       margin-top: 12px;
+
       border-radius: 12px;
+
     }
 
 
     .album-song h3 {
+
       margin-bottom: 5px;
+
       color: #111827;
+
     }
 
 
     .album-song p {
+
       margin-bottom: 8px;
+
       font-size: 14px;
+
     }
 
 
     .album-song audio {
+
       width: 100%;
+
       margin: 8px 0;
+
     }
 
 
     .album-song-actions {
+
       text-align: center;
+
     }
 
 
     .album-song-actions button {
+
       margin: 4px;
+
     }
 
+
+    /* ============================= */
+    /* DESKTOP */
+    /* ============================= */
 
     @media (
       min-width: 601px
     ) {
 
       .album-grid {
+
         grid-template-columns:
           repeat(2, 1fr);
+
       }
 
     }
@@ -216,33 +318,46 @@
     ) {
 
       .album-grid {
+
         grid-template-columns:
           repeat(3, 1fr);
+
       }
 
     }
 
+
+    /* ============================= */
+    /* MOBILE */
+    /* ============================= */
 
     @media (
       max-width: 600px
     ) {
 
       .album-search {
+
         width: 94%;
+
       }
 
 
       .album-search input {
+
         font-size: 14px;
+
       }
 
 
       .album-search button {
+
         padding:
           9px 14px;
+
       }
 
     }
+
 
   </style>
 
@@ -325,9 +440,8 @@
   </h2>
 
   <p>
-    Discover artists and explore
-    their music collections on
-    Tehalka Music.
+    Discover music albums and
+    collections on Tehalka Music.
   </p>
 
 </section>
@@ -349,7 +463,7 @@
     <input
       type="text"
       id="albumSearchInput"
-      placeholder="Search by artist or song..."
+      placeholder="Search album, song or artist..."
       autocomplete="off"
     >
 
@@ -358,7 +472,9 @@
       type="button"
       onclick="filterAlbums()"
     >
+
       Search
+
     </button>
 
   </div>
@@ -374,7 +490,10 @@
 
   <p
     id="albumCount"
-    style="text-align:center; font-weight:bold;"
+    style="
+      text-align:center;
+      font-weight:bold;
+    "
   ></p>
 
 </section>
@@ -396,7 +515,10 @@
 
   <div
     id="noAlbums"
-    style="display:none; text-align:center;"
+    style="
+      display:none;
+      text-align:center;
+    "
   >
 
     <h2>
@@ -405,7 +527,7 @@
 
     <p>
       Try searching with another
-      artist or song name.
+      album, song or artist name.
     </p>
 
   </div>
@@ -428,10 +550,12 @@
 
 
 <!-- ================================= -->
-<!-- SONG DATABASE -->
+<!-- CENTRAL SONG DATABASE -->
 <!-- ================================= -->
 
-<script src="songs.js"></script>
+<script
+  src="songs.js"
+></script>
 
 
 <!-- ================================= -->
@@ -440,77 +564,119 @@
 
 <script>
 
+
+// ==========================================
+// GLOBAL ALBUM DATA
+// ==========================================
+
 let allAlbums = [];
 
 
-/* =================================
-   PAGE LOAD
-================================= */
+// ==========================================
+// PAGE LOAD
+// ==========================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function() {
 
 
-    /*
-    ================================
-    CHECK SONG DATABASE
-    ================================
-    */
+    // ======================================
+    // CHECK SONG DATABASE
+    // ======================================
 
     if (
       typeof songsData === "undefined"
     ) {
 
+
       document.getElementById(
         "albumsContainer"
       ).innerHTML =
 
-        "<p style='text-align:center; color:red;'>" +
+        "<p style='text-align:center;color:red;'>" +
 
         "❌ Songs database could not be loaded." +
 
         "</p>";
+
 
       return;
 
     }
 
 
-    /*
-    ================================
-    CREATE AUTOMATIC ALBUMS
-    ================================
-    */
+    // ======================================
+    // CHECK EMPTY DATABASE
+    // ======================================
+
+    if (
+      !Array.isArray(
+        songsData
+      )
+      ||
+      songsData.length === 0
+    ) {
+
+
+      document.getElementById(
+        "albumsContainer"
+      ).innerHTML =
+
+        "<p style='text-align:center;'>" +
+
+        "🎵 No albums available yet." +
+
+        "</p>";
+
+
+      return;
+
+    }
+
+
+    // ======================================
+    // CREATE ALBUM MAP
+    // ======================================
 
     const albumMap = {};
 
+
+    // ======================================
+    // READ CENTRAL SONG DATABASE
+    // ======================================
 
     songsData.forEach(
       function(song) {
 
 
-        const artist =
-          song.artist.trim();
+        // ------------------------------
+        // ALBUM NAME
+        // ------------------------------
+
+        const albumName =
+
+          (
+            song.album
+            ||
+            "Singles"
+          )
+          .trim();
 
 
-        /*
-        ==============================
-        CREATE ALBUM FOR ARTIST
-        ==============================
-        */
+        // ------------------------------
+        // CREATE ALBUM
+        // ------------------------------
 
         if (
-          !albumMap[artist]
+          !albumMap[albumName]
         ) {
 
-          albumMap[artist] = {
+
+          albumMap[albumName] = {
 
             name:
-              artist + " Collection",
-
-            artist:
-              artist,
+              albumName,
 
             image:
               song.image,
@@ -523,13 +689,11 @@ document.addEventListener(
         }
 
 
-        /*
-        ==============================
-        ADD SONG
-        ==============================
-        */
+        // ------------------------------
+        // ADD SONG
+        // ------------------------------
 
-        albumMap[artist]
+        albumMap[albumName]
           .songs
           .push(song);
 
@@ -538,54 +702,42 @@ document.addEventListener(
     );
 
 
-    /*
-    ================================
-    CONVERT TO ARRAY
-    ================================
-    */
+    // ======================================
+    // CONVERT MAP TO ARRAY
+    // ======================================
 
     allAlbums =
+
       Object.values(
         albumMap
       );
 
 
-    /*
-    ================================
-    SHOW ALBUMS
-    ================================
-    */
+    // ======================================
+    // DISPLAY ALBUMS
+    // ======================================
 
     displayAlbums(
       allAlbums
     );
 
 
-    /*
-    ================================
-    ENTER KEY SEARCH
-    ================================
-    */
+    // ======================================
+    // LIVE SEARCH
+    // ======================================
 
     const searchInput =
+
       document.getElementById(
         "albumSearchInput"
       );
 
 
     searchInput.addEventListener(
-      "keydown",
-      function(event) {
+      "input",
+      function() {
 
-        if (
-          event.key === "Enter"
-        ) {
-
-          event.preventDefault();
-
-          filterAlbums();
-
-        }
+        filterAlbums();
 
       }
     );
@@ -595,9 +747,9 @@ document.addEventListener(
 );
 
 
-/* =================================
-   DISPLAY ALBUMS
-================================= */
+// ==========================================
+// DISPLAY ALBUMS
+// ==========================================
 
 function displayAlbums(
   albums
@@ -605,41 +757,41 @@ function displayAlbums(
 
 
   const container =
+
     document.getElementById(
       "albumsContainer"
     );
 
 
   const noAlbums =
+
     document.getElementById(
       "noAlbums"
     );
 
 
   const albumCount =
+
     document.getElementById(
       "albumCount"
     );
 
 
-  /*
-  ================================
-  CLEAR OLD ALBUMS
-  ================================
-  */
+  // ======================================
+  // CLEAR
+  // ======================================
 
   container.innerHTML = "";
 
 
-  /*
-  ================================
-  NO RESULTS
-  ================================
-  */
+  // ======================================
+  // NO RESULTS
+  // ======================================
 
   if (
     albums.length === 0
   ) {
+
 
     noAlbums.style.display =
       "block";
@@ -658,6 +810,10 @@ function displayAlbums(
     "none";
 
 
+  // ======================================
+  // COUNT
+  // ======================================
+
   albumCount.textContent =
 
     albums.length +
@@ -669,17 +825,16 @@ function displayAlbums(
     );
 
 
-  /*
-  ================================
-  CREATE ALBUM CARDS
-  ================================
-  */
+  // ======================================
+  // CREATE ALBUM CARDS
+  // ======================================
 
   albums.forEach(
     function(album) {
 
 
       const albumCard =
+
         document.createElement(
           "div"
         );
@@ -689,11 +844,9 @@ function displayAlbums(
         "album-card";
 
 
-      /*
-      ==============================
-      SONG LIST
-      ==============================
-      */
+      // ==================================
+      // SONG HTML
+      // ==================================
 
       let songsHTML = "";
 
@@ -716,6 +869,19 @@ function displayAlbums(
               <p>
                 🎤 ${song.artist}
               </p>
+
+
+              ${
+                song.category
+                ?
+                `
+                <p>
+                  🎼 ${song.category}
+                </p>
+                `
+                :
+                ""
+              }
 
 
               <audio
@@ -742,8 +908,12 @@ function displayAlbums(
                   href="${song.page}"
                 >
 
-                  <button>
+                  <button
+                    type="button"
+                  >
+
                     🎵 View
+
                   </button>
 
                 </a>
@@ -754,8 +924,12 @@ function displayAlbums(
                   download
                 >
 
-                  <button>
+                  <button
+                    type="button"
+                  >
+
                     ⬇ Download
+
                   </button>
 
                 </a>
@@ -766,23 +940,20 @@ function displayAlbums(
 
           `;
 
-
         }
       );
 
 
-      /*
-      ==============================
-      ALBUM CARD
-      ==============================
-      */
+      // ==================================
+      // ALBUM CARD
+      // ==================================
 
       albumCard.innerHTML = `
 
         <img
           class="album-cover"
           src="${album.image}"
-          alt="${album.name}"
+          alt="${album.name} album cover"
           loading="lazy"
         >
 
@@ -793,21 +964,17 @@ function displayAlbums(
 
 
         <p>
-          🎤 Artist:
-          <strong>
-            ${album.artist}
-          </strong>
-        </p>
 
-
-        <p>
           🎵
+
           ${album.songs.length}
+
           ${
             album.songs.length === 1
               ? "Song"
               : "Songs"
           }
+
         </p>
 
 
@@ -822,6 +989,10 @@ function displayAlbums(
       `;
 
 
+      // ==================================
+      // ADD TO PAGE
+      // ==================================
+
       container.appendChild(
         albumCard
       );
@@ -834,90 +1005,124 @@ function displayAlbums(
 }
 
 
-/* =================================
-   FILTER ALBUMS
-================================= */
+// ==========================================
+// FILTER ALBUMS
+// ==========================================
 
 function filterAlbums() {
 
 
   const input =
+
     document.getElementById(
       "albumSearchInput"
     );
 
 
   const searchText =
+
     input.value
       .trim()
       .toLowerCase();
 
 
-  /*
-  ================================
-  EMPTY SEARCH
-  ================================
-  */
+  // ======================================
+  // EMPTY SEARCH
+  // ======================================
 
   if (
     searchText === ""
   ) {
 
+
     displayAlbums(
       allAlbums
     );
+
 
     return;
 
   }
 
 
-  /*
-  ================================
-  FILTER
-  ================================
-  */
+  // ======================================
+  // FILTER
+  // ======================================
 
   const filteredAlbums =
+
     allAlbums.filter(
       function(album) {
 
 
-        const artistName =
-          album.artist
-            .toLowerCase();
-
+        // ------------------------------
+        // ALBUM NAME
+        // ------------------------------
 
         const albumName =
-          album.name
-            .toLowerCase();
 
+          (
+            album.name
+            ||
+            ""
+          )
+          .toLowerCase();
+
+
+        // ------------------------------
+        // SONG SEARCH
+        // ------------------------------
 
         const songFound =
+
           album.songs.some(
             function(song) {
 
+
+              const songName =
+
+                (
+                  song.name
+                  ||
+                  ""
+                )
+                .toLowerCase();
+
+
+              const artistName =
+
+                (
+                  song.artist
+                  ||
+                  ""
+                )
+                .toLowerCase();
+
+
               return (
 
-                song.name
-                  .toLowerCase()
-                  .includes(
-                    searchText
-                  )
+                songName.includes(
+                  searchText
+                )
+
+                ||
+
+                artistName.includes(
+                  searchText
+                )
 
               );
+
 
             }
           );
 
 
+        // ------------------------------
+        // RETURN RESULT
+        // ------------------------------
+
         return (
-
-          artistName.includes(
-            searchText
-          )
-
-          ||
 
           albumName.includes(
             searchText
@@ -934,11 +1139,9 @@ function filterAlbums() {
     );
 
 
-  /*
-  ================================
-  DISPLAY FILTERED
-  ================================
-  */
+  // ======================================
+  // DISPLAY
+  // ======================================
 
   displayAlbums(
     filteredAlbums
@@ -954,7 +1157,9 @@ function filterAlbums() {
 <!-- MAIN JAVASCRIPT -->
 <!-- ================================= -->
 
-<script src="script.js"></script>
+<script
+  src="script.js"
+></script>
 
 
 </body>
