@@ -155,3 +155,18 @@ const songsData = [
   }
 
 ];
+  {
+,
+
+  {
+    name: "Ghadi",
+    artist: "Mitta bahu ala",
+    album: "Singles",
+    category: "Haryanvi",
+    image: "sddefault.jpg",
+    mp3: "Ghadi.mp3",
+    page: "ghadi.html",
+    description: "Listen to ghadi by mitta bahu ala a haryanvi song on tehalka music"
+  }
+
+];
