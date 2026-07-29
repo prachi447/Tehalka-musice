@@ -117,8 +117,7 @@
 
 
     input,
-    textarea,
-    select {
+    textarea {
 
       width:
         100%;
@@ -143,8 +142,7 @@
 
 
     input:focus,
-    textarea:focus,
-    select:focus {
+    textarea:focus {
 
       border-color:
         #6366f1;
@@ -527,7 +525,7 @@
     <input
       type="text"
       id="songPage"
-      placeholder="Example: sukoon.html"
+      placeholder="Example: sukoon.html (optional)"
     >
 
 
@@ -629,6 +627,11 @@
 
     <p
       id="previewCategory"
+    ></p>
+
+
+    <p
+      id="previewPage"
     ></p>
 
 
@@ -734,7 +737,7 @@
 
 
 // ==========================================
-// GENERATE SONG CODE
+// FORM SUBMIT
 // ==========================================
 
 document
@@ -750,7 +753,7 @@ document
 
 
       // ======================================
-      // GET VALUES
+      // GET FORM VALUES
       // ======================================
 
       const songName =
@@ -834,7 +837,7 @@ document
 
 
       // ======================================
-      // AUTO SONG PAGE
+      // AUTO GENERATE SONG PAGE
       // ======================================
 
       if (
@@ -844,22 +847,9 @@ document
 
         songPage =
 
-          songName
-
-            .toLowerCase()
-
-            .replace(
-              /[^a-z0-9]+/g,
-              "-"
-            )
-
-            .replace(
-              /^-+|-+$/g,
-              ""
-            )
-
-            +
-            ".html";
+          createCleanFilename(
+            songName
+          );
 
 
       }
@@ -889,12 +879,12 @@ document
 
 
       // ======================================
-      // CREATE SONG OBJECT
+      // GENERATE SONG OBJECT
       // ======================================
 
-      let code = `
+      let code =
 
-  {
+`  {
     name: "${escapeQuotes(songName)}",
     artist: "${escapeQuotes(artistName)}",
     album: "${escapeQuotes(albumName || "Singles")}",
@@ -903,20 +893,19 @@ document
     mp3: "${escapeQuotes(mp3File)}",
     page: "${escapeQuotes(songPage)}",
     description: "${escapeQuotes(description)}"
-  }
-
-`;
+  }`;
 
 
       // ======================================
-      // SHOW GENERATED CODE
+      // SHOW CODE
       // ======================================
 
       document
         .getElementById(
           "generatedCode"
         )
-        .value = code.trim();
+        .value =
+          code;
 
 
       document
@@ -928,23 +917,52 @@ document
 
 
       // ======================================
-      // PREVIEW
+      // PREVIEW IMAGE
       // ======================================
 
-      document
-        .getElementById(
-          "previewImage"
-        )
-        .src =
-          imageFile;
+      const previewImage =
 
+        document
+          .getElementById(
+            "previewImage"
+          );
+
+
+      previewImage.src =
+        imageFile;
+
+
+      previewImage.onerror =
+
+        function() {
+
+          this.style.display =
+            "none";
+
+        };
+
+
+      previewImage.onload =
+
+        function() {
+
+          this.style.display =
+            "block";
+
+        };
+
+
+      // ======================================
+      // PREVIEW DATA
+      // ======================================
 
       document
         .getElementById(
           "previewName"
         )
         .textContent =
-          "🎵 " + songName;
+          "🎵 " +
+          songName;
 
 
       document
@@ -952,7 +970,8 @@ document
           "previewArtist"
         )
         .textContent =
-          "🎤 " + artistName;
+          "🎤 " +
+          artistName;
 
 
       document
@@ -960,7 +979,7 @@ document
           "previewAlbum"
         )
         .textContent =
-          "💿 " +
+          "💿 Album: " +
           (
             albumName ||
             "Singles"
@@ -972,12 +991,25 @@ document
           "previewCategory"
         )
         .textContent =
-          "🎼 " +
+          "🎼 Category: " +
           (
             category ||
             "Music"
           );
 
+
+      document
+        .getElementById(
+          "previewPage"
+        )
+        .textContent =
+          "🔗 Page: " +
+          songPage;
+
+
+      // ======================================
+      // SHOW PREVIEW
+      // ======================================
 
       document
         .getElementById(
@@ -1013,6 +1045,87 @@ document
 
     }
   );
+
+
+// ==========================================
+// CREATE CLEAN SONG PAGE FILENAME
+// ==========================================
+
+function createCleanFilename(
+  text
+) {
+
+
+  let filename =
+
+    text
+
+      // Convert to lowercase
+
+      .toLowerCase()
+
+      // Remove extra spaces
+
+      .trim()
+
+      // Replace special characters
+
+      .replace(
+        /[^a-z0-9\s-]/g,
+        ""
+      )
+
+      // Replace one or more spaces
+
+      .replace(
+        /\s+/g,
+        "-"
+      )
+
+      // Remove duplicate hyphens
+
+      .replace(
+        /-+/g,
+        "-"
+      )
+
+      // Remove hyphens from beginning
+
+      .replace(
+        /^-+/,
+        ""
+      )
+
+      // Remove hyphens from end
+
+      .replace(
+        /-+$/,
+        ""
+      );
+
+
+  // ======================================
+  // FALLBACK
+  // ======================================
+
+  if (
+    filename === ""
+  ) {
+
+    filename =
+      "new-song";
+
+  }
+
+
+  return (
+
+    filename +
+    ".html"
+
+  );
+
+}
 
 
 // ==========================================
@@ -1059,6 +1172,77 @@ function copyCode() {
       );
 
 
+  const code =
+    codeBox.value;
+
+
+  // ======================================
+  // MODERN COPY
+  // ======================================
+
+  if (
+    navigator.clipboard
+  ) {
+
+
+    navigator
+      .clipboard
+      .writeText(
+        code
+      )
+
+      .then(
+        function() {
+
+
+          showMessage(
+            "✅ Code copied! अब इसे songs.js में paste करें.",
+            "green"
+          );
+
+
+        }
+      )
+
+      .catch(
+        function() {
+
+          fallbackCopy(
+            codeBox
+          );
+
+        }
+      );
+
+
+  }
+
+  else {
+
+
+    fallbackCopy(
+      codeBox
+    );
+
+
+  }
+
+}
+
+
+// ==========================================
+// FALLBACK COPY
+// ==========================================
+
+function fallbackCopy(
+  codeBox
+) {
+
+
+  codeBox
+    .focus();
+
+
   codeBox
     .select();
 
@@ -1070,41 +1254,35 @@ function copyCode() {
     );
 
 
-  navigator
-    .clipboard
-    .writeText(
-      codeBox.value
-    )
-    .then(
-      function() {
+  try {
 
 
-        showMessage(
-          "✅ Code copied! अब songs.js में paste करें.",
-          "green"
-        );
+    document
+      .execCommand(
+        "copy"
+      );
 
 
-      }
-    )
-    .catch(
-      function() {
-
-
-        document
-          .execCommand(
-            "copy"
-          );
-
-
-        showMessage(
-          "✅ Code copied!",
-          "green"
-        );
-
-
-      }
+    showMessage(
+      "✅ Code copied!",
+      "green"
     );
+
+
+  }
+
+  catch (
+    error
+  ) {
+
+
+    showMessage(
+      "❌ Copy failed. Code को manually copy करें.",
+      "red"
+    );
+
+
+  }
 
 }
 
@@ -1147,11 +1325,19 @@ function clearForm() {
       "";
 
 
+  document
+    .getElementById(
+      "previewImage"
+    )
+    .style.display =
+      "block";
+
+
 }
 
 
 // ==========================================
-// MESSAGE
+// SHOW MESSAGE
 // ==========================================
 
 function showMessage(
@@ -1185,4 +1371,4 @@ function showMessage(
 
 </body>
 
-      </html>
+        </html>
