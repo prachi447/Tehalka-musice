@@ -21,7 +21,7 @@
 
   <meta
     name="keywords"
-    content="Tehalka Music artists, singers, music artists, latest songs, Indian music"
+    content="Tehalka Music artists, singers, music artists, latest songs, Hindi singers, Haryanvi singers, Indian music"
   >
 
   <meta
@@ -34,14 +34,14 @@
     content="index, follow"
   >
 
-  <!-- Canonical -->
+  <!-- CANONICAL -->
 
   <link
     rel="canonical"
     href="https://tehalkamusic.website/artists.html"
   >
 
-  <!-- Open Graph -->
+  <!-- OPEN GRAPH -->
 
   <meta
     property="og:type"
@@ -60,7 +60,7 @@
 
   <meta
     property="og:description"
-    content="Explore artists and discover their songs on Tehalka Music."
+    content="Explore singers and artists and discover their songs on Tehalka Music."
   >
 
   <meta
@@ -76,47 +76,89 @@
   >
 
 
+  <!-- ================================= -->
   <!-- ARTISTS PAGE DESIGN -->
+  <!-- ================================= -->
 
   <style>
 
+
+    /* ============================= */
+    /* SEARCH */
+    /* ============================= */
+
     .artist-search {
+
       width: 92%;
+
       max-width: 650px;
+
       margin: 25px auto;
+
       display: flex;
+
       gap: 10px;
+
       background: white;
+
       padding: 10px;
+
       border-radius: 40px;
+
       box-shadow:
         0 5px 20px
         rgba(0, 0, 0, 0.08);
+
     }
 
 
     .artist-search input {
+
       flex: 1;
+
       min-width: 0;
+
       border: none;
+
       outline: none;
+
       padding: 12px 15px;
+
       font-size: 16px;
+
       background: transparent;
+
     }
 
+
+    /* ============================= */
+    /* ARTISTS GRID */
+    /* ============================= */
 
     .artists-grid {
+
       display: grid;
-      grid-template-columns: 1fr;
+
+      grid-template-columns:
+        1fr;
+
       gap: 22px;
+
     }
 
 
+    /* ============================= */
+    /* ARTIST CARD */
+    /* ============================= */
+
     .artist-card {
+
       background: white;
+
       padding: 25px 20px;
+
       border-radius: 20px;
+
       text-align: center;
 
       box-shadow:
@@ -126,20 +168,30 @@
       transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
+
     }
 
 
     .artist-card:hover {
-      transform: translateY(-5px);
+
+      transform:
+        translateY(-5px);
 
       box-shadow:
         0 12px 30px
         rgba(0, 0, 0, 0.12);
+
     }
 
 
+    /* ============================= */
+    /* ARTIST IMAGE */
+    /* ============================= */
+
     .artist-image {
+
       width: 160px;
+
       height: 160px;
 
       object-fit: cover;
@@ -158,74 +210,118 @@
       box-shadow:
         0 5px 15px
         rgba(0, 0, 0, 0.12);
+
     }
 
 
+    /* ============================= */
+    /* ARTIST NAME */
+    /* ============================= */
+
     .artist-card h2 {
+
       color: #111827;
 
       margin-bottom: 8px;
 
       font-size: 22px;
+
     }
 
 
     .artist-card p {
+
       color: #666;
 
       margin-bottom: 15px;
+
     }
 
 
+    /* ============================= */
+    /* SONG LIST */
+    /* ============================= */
+
     .artist-song-list {
+
       text-align: left;
 
       margin-top: 20px;
 
       display: none;
+
     }
 
 
     .artist-song {
+
       background: #f5f7fb;
 
-      padding: 12px;
+      padding: 15px;
 
       margin-top: 10px;
 
       border-radius: 12px;
+
     }
 
 
-    .artist-song strong {
+    .artist-song h3 {
+
+      margin-bottom: 6px;
+
       color: #111827;
+
+    }
+
+
+    .artist-song p {
+
+      margin-bottom: 8px;
+
+      font-size: 14px;
+
     }
 
 
     .artist-song audio {
+
       width: 100%;
 
       margin-top: 8px;
+
     }
 
 
     .artist-song-actions {
+
       text-align: center;
+
+      margin-top: 8px;
+
     }
 
 
     .artist-song-actions button {
+
       margin: 4px;
+
     }
 
+
+    /* ============================= */
+    /* DESKTOP */
+    /* ============================= */
 
     @media (
       min-width: 601px
     ) {
 
       .artists-grid {
+
         grid-template-columns:
           repeat(2, 1fr);
+
       }
 
     }
@@ -236,40 +332,55 @@
     ) {
 
       .artists-grid {
+
         grid-template-columns:
           repeat(3, 1fr);
+
       }
 
     }
 
+
+    /* ============================= */
+    /* MOBILE */
+    /* ============================= */
 
     @media (
       max-width: 600px
     ) {
 
       .artist-search {
+
         width: 94%;
+
       }
 
 
       .artist-search input {
+
         font-size: 14px;
+
       }
 
 
       .artist-search button {
+
         padding:
           9px 14px;
+
       }
 
 
       .artist-image {
+
         width: 135px;
 
         height: 135px;
+
       }
 
     }
+
 
   </style>
 
@@ -384,7 +495,9 @@
       type="button"
       onclick="filterArtists()"
     >
+
       Search
+
     </button>
 
   </div>
@@ -460,10 +573,12 @@
 
 
 <!-- ================================= -->
-<!-- SONG DATABASE -->
+<!-- CENTRAL SONG DATABASE -->
 <!-- ================================= -->
 
-<script src="songs.js"></script>
+<script
+  src="songs.js"
+></script>
 
 
 <!-- ================================= -->
@@ -472,27 +587,31 @@
 
 <script>
 
+
+// ==========================================
+// GLOBAL ARTIST DATA
+// ==========================================
+
 let allArtists = [];
 
 
-/* =================================
-   PAGE LOAD
-================================= */
+// ==========================================
+// PAGE LOAD
+// ==========================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function() {
 
 
-    /*
-    ================================
-    CHECK DATABASE
-    ================================
-    */
+    // ======================================
+    // CHECK DATABASE
+    // ======================================
 
     if (
       typeof songsData === "undefined"
     ) {
+
 
       document.getElementById(
         "artistsContainer"
@@ -504,42 +623,79 @@ document.addEventListener(
 
         "</p>";
 
+
       return;
 
     }
 
 
-    /*
-    ================================
-    CREATE ARTISTS
-    ================================
-    */
+    // ======================================
+    // CHECK EMPTY DATABASE
+    // ======================================
+
+    if (
+      !Array.isArray(
+        songsData
+      )
+      ||
+      songsData.length === 0
+    ) {
+
+
+      document.getElementById(
+        "artistsContainer"
+      ).innerHTML =
+
+        "<p style='text-align:center;'>" +
+
+        "🎤 No artists available yet." +
+
+        "</p>";
+
+
+      return;
+
+    }
+
+
+    // ======================================
+    // CREATE ARTIST MAP
+    // ======================================
 
     const artistMap = {};
 
+
+    // ======================================
+    // READ CENTRAL DATABASE
+    // ======================================
 
     songsData.forEach(
       function(song) {
 
 
-        const artist =
-          song.artist.trim();
+        const artistName =
+
+          (
+            song.artist
+            ||
+            "Unknown Artist"
+          )
+          .trim();
 
 
-        /*
-        ==============================
-        CREATE ARTIST
-        ==============================
-        */
+        // ==================================
+        // CREATE ARTIST
+        // ==================================
 
         if (
-          !artistMap[artist]
+          !artistMap[artistName]
         ) {
 
-          artistMap[artist] = {
+
+          artistMap[artistName] = {
 
             name:
-              artist,
+              artistName,
 
             image:
               song.image,
@@ -552,13 +708,11 @@ document.addEventListener(
         }
 
 
-        /*
-        ==============================
-        ADD SONG
-        ==============================
-        */
+        // ==================================
+        // ADD SONG
+        // ==================================
 
-        artistMap[artist]
+        artistMap[artistName]
           .songs
           .push(song);
 
@@ -567,54 +721,42 @@ document.addEventListener(
     );
 
 
-    /*
-    ================================
-    ARRAY
-    ================================
-    */
+    // ======================================
+    // CONVERT TO ARRAY
+    // ======================================
 
     allArtists =
+
       Object.values(
         artistMap
       );
 
 
-    /*
-    ================================
-    DISPLAY
-    ================================
-    */
+    // ======================================
+    // DISPLAY ARTISTS
+    // ======================================
 
     displayArtists(
       allArtists
     );
 
 
-    /*
-    ================================
-    ENTER KEY
-    ================================
-    */
+    // ======================================
+    // LIVE SEARCH
+    // ======================================
 
     const searchInput =
+
       document.getElementById(
         "artistSearchInput"
       );
 
 
     searchInput.addEventListener(
-      "keydown",
-      function(event) {
+      "input",
+      function() {
 
-        if (
-          event.key === "Enter"
-        ) {
-
-          event.preventDefault();
-
-          filterArtists();
-
-        }
+        filterArtists();
 
       }
     );
@@ -624,9 +766,9 @@ document.addEventListener(
 );
 
 
-/* =================================
-   DISPLAY ARTISTS
-================================= */
+// ==========================================
+// DISPLAY ARTISTS
+// ==========================================
 
 function displayArtists(
   artists
@@ -634,41 +776,41 @@ function displayArtists(
 
 
   const container =
+
     document.getElementById(
       "artistsContainer"
     );
 
 
   const noArtists =
+
     document.getElementById(
       "noArtists"
     );
 
 
   const artistCount =
+
     document.getElementById(
       "artistCount"
     );
 
 
-  /*
-  ================================
-  CLEAR
-  ================================
-  */
+  // ======================================
+  // CLEAR
+  // ======================================
 
   container.innerHTML = "";
 
 
-  /*
-  ================================
-  NO RESULTS
-  ================================
-  */
+  // ======================================
+  // NO RESULTS
+  // ======================================
 
   if (
     artists.length === 0
   ) {
+
 
     noArtists.style.display =
       "block";
@@ -687,6 +829,10 @@ function displayArtists(
     "none";
 
 
+  // ======================================
+  // COUNT
+  // ======================================
+
   artistCount.textContent =
 
     artists.length +
@@ -698,17 +844,16 @@ function displayArtists(
     );
 
 
-  /*
-  ================================
-  CREATE CARDS
-  ================================
-  */
+  // ======================================
+  // CREATE ARTIST CARDS
+  // ======================================
 
   artists.forEach(
     function(artist) {
 
 
       const artistCard =
+
         document.createElement(
           "div"
         );
@@ -718,11 +863,9 @@ function displayArtists(
         "artist-card";
 
 
-      /*
-      ==============================
-      SONG LIST
-      ==============================
-      */
+      // ==================================
+      // SONG LIST HTML
+      // ==================================
 
       let songsHTML = "";
 
@@ -737,14 +880,27 @@ function displayArtists(
               class="artist-song"
             >
 
-              <strong>
+              <h3>
                 🎵 ${song.name}
-              </strong>
+              </h3>
 
 
               <p>
                 🎤 ${song.artist}
               </p>
+
+
+              ${
+                song.album
+                ?
+                `
+                <p>
+                  💿 ${song.album}
+                </p>
+                `
+                :
+                ""
+              }
 
 
               <audio
@@ -771,8 +927,12 @@ function displayArtists(
                   href="${song.page}"
                 >
 
-                  <button>
+                  <button
+                    type="button"
+                  >
+
                     🎵 View
+
                   </button>
 
                 </a>
@@ -783,8 +943,12 @@ function displayArtists(
                   download
                 >
 
-                  <button>
+                  <button
+                    type="button"
+                  >
+
                     ⬇ Download
+
                   </button>
 
                 </a>
@@ -795,15 +959,14 @@ function displayArtists(
 
           `;
 
+
         }
       );
 
 
-      /*
-      ==============================
-      ARTIST CARD
-      ==============================
-      */
+      // ==================================
+      // ARTIST CARD
+      // ==================================
 
       artistCard.innerHTML = `
 
@@ -823,6 +986,7 @@ function displayArtists(
         <p>
 
           🎵
+
           ${artist.songs.length}
 
           ${
@@ -855,6 +1019,10 @@ function displayArtists(
       `;
 
 
+      // ==================================
+      // ADD CARD
+      // ==================================
+
       container.appendChild(
         artistCard
       );
@@ -867,9 +1035,9 @@ function displayArtists(
 }
 
 
-/* =================================
-   SHOW / HIDE ARTIST SONGS
-================================= */
+// ==========================================
+// SHOW / HIDE SONGS
+// ==========================================
 
 function toggleArtistSongs(
   button
@@ -877,6 +1045,7 @@ function toggleArtistSongs(
 
 
   const songList =
+
     button.nextElementSibling;
 
 
@@ -885,6 +1054,7 @@ function toggleArtistSongs(
     "block"
   ) {
 
+
     songList.style.display =
       "none";
 
@@ -892,9 +1062,11 @@ function toggleArtistSongs(
     button.textContent =
       "🎵 View Songs";
 
+
   }
 
   else {
+
 
     songList.style.display =
       "block";
@@ -903,78 +1075,112 @@ function toggleArtistSongs(
     button.textContent =
       "🔽 Hide Songs";
 
+
   }
 
 }
 
 
-/* =================================
-   FILTER ARTISTS
-================================= */
+// ==========================================
+// FILTER ARTISTS
+// ==========================================
 
 function filterArtists() {
 
 
   const input =
+
     document.getElementById(
       "artistSearchInput"
     );
 
 
   const searchText =
+
     input.value
       .trim()
       .toLowerCase();
 
 
-  /*
-  ================================
-  EMPTY SEARCH
-  ================================
-  */
+  // ======================================
+  // EMPTY SEARCH
+  // ======================================
 
   if (
     searchText === ""
   ) {
 
+
     displayArtists(
       allArtists
     );
+
 
     return;
 
   }
 
 
-  /*
-  ================================
-  FILTER
-  ================================
-  */
+  // ======================================
+  // FILTER
+  // ======================================
 
   const filteredArtists =
+
     allArtists.filter(
       function(artist) {
 
 
         const artistName =
-          artist.name
-            .toLowerCase();
+
+          (
+            artist.name
+            ||
+            ""
+          )
+          .toLowerCase();
 
 
         const songFound =
+
           artist.songs.some(
             function(song) {
 
+
+              const songName =
+
+                (
+                  song.name
+                  ||
+                  ""
+                )
+                .toLowerCase();
+
+
+              const albumName =
+
+                (
+                  song.album
+                  ||
+                  ""
+                )
+                .toLowerCase();
+
+
               return (
 
-                song.name
-                  .toLowerCase()
-                  .includes(
-                    searchText
-                  )
+                songName.includes(
+                  searchText
+                )
+
+                ||
+
+                albumName.includes(
+                  searchText
+                )
 
               );
+
 
             }
           );
@@ -992,19 +1198,19 @@ function filterArtists() {
 
         );
 
+
       }
     );
 
 
-  /*
-  ================================
-  DISPLAY
-  ================================
-  */
+  // ======================================
+  // DISPLAY
+  // ======================================
 
   displayArtists(
     filteredArtists
   );
+
 
 }
 
@@ -1015,9 +1221,11 @@ function filterArtists() {
 <!-- MAIN JAVASCRIPT -->
 <!-- ================================= -->
 
-<script src="script.js"></script>
+<script
+  src="script.js"
+></script>
 
 
 </body>
 
-</html>
+  </html>
