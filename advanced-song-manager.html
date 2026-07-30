@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Advanced Song Manager - Tehalka Music
+  </title>
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+
+      margin: 0;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        #f4f6fb;
+
+      color:
+        #111827;
+
+    }
+
+
+    header {
+
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #312e81
+        );
+
+      color:
+        white;
+
+      text-align:
+        center;
+
+      padding:
+        35px 20px;
+
+    }
+
+
+    header h1 {
+
+      margin:
+        0 0 10px;
+
+      font-size:
+        30px;
+
+    }
+
+
+    header p {
+
+      margin:
+        0;
+
+      opacity:
+        0.9;
+
+    }
+
+
+    .container {
+
+      width:
+        94%;
+
+      max-width:
+        950px;
+
+      margin:
+        30px auto;
+
+    }
+
+
+    .card {
+
+      background:
+        white;
+
+      padding:
+        25px;
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 8px 30px
+        rgba(
+          0,
+          0,
+          0,
+          0.08
+        );
+
+      margin-bottom:
+        25px;
+
+    }
+
+
+    .card h2 {
+
+      margin-top:
+        0;
+
+      color:
+        #111827;
+
+    }
+
+
+    .form-group {
+
+      margin-bottom:
+        18px;
+
+    }
+
+
+    label {
+
+      display:
+        block;
+
+      font-weight:
+        bold;
+
+      margin-bottom:
+        7px;
+
+    }
+
+
+    .required {
+
+      color:
+        red;
+
+    }
+
+
+    input,
+    textarea,
+    select {
+
+      width:
+        100%;
+
+      padding:
+        13px;
+
+      border:
+        1px solid #d1d5db;
+
+      border-radius:
+        10px;
+
+      font-size:
+        16px;
+
+      outline:
+        none;
+
+    }
+
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+
+      border-color:
+        #4f46e5;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(
+          79,
+          70,
+          229,
+          0.12
+        );
+
+    }
+
+
+    textarea {
+
+      min-height:
+        130px;
+
+      resize:
+        vertical;
+
+    }
+
+
+    .button-row {
+
+      display:
+        flex;
+
+      gap:
+        12px;
+
+      flex-wrap:
+        wrap;
+
+      margin-top:
+        25px;
+
+    }
+
+
+    button {
+
+      border:
+        none;
+
+      border-radius:
+        10px;
+
+      padding:
+        13px 20px;
+
+      font-size:
+        16px;
+
+      font-weight:
+        bold;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .generate {
+
+      background:
+        #111827;
+
+      color:
+        white;
+
+      flex:
+        1;
+
+    }
+
+
+    .clear {
+
+      background:
+        #e5e7eb;
+
+      color:
+        #111827;
+
+      flex:
+        1;
+
+    }
+
+
+    .copy {
+
+      background:
+        #2563eb;
+
+      color:
+        white;
+
+      width:
+        100%;
+
+      margin-top:
+        12px;
+
+    }
+
+
+    .download {
+
+      background:
+        #16a34a;
+
+      color:
+        white;
+
+      width:
+        100%;
+
+      margin-top:
+        12px;
+
+    }
+
+
+    .success {
+
+      display:
+        none;
+
+      background:
+        #dcfce7;
+
+      color:
+        #166534;
+
+      padding:
+        14px;
+
+      border-radius:
+        10px;
+
+      margin-top:
+        20px;
+
+      font-weight:
+        bold;
+
+      text-align:
+        center;
+
+    }
+
+
+    .error {
+
+      display:
+        none;
+
+      background:
+        #fee2e2;
+
+      color:
+        #991b1b;
+
+      padding:
+        14px;
+
+      border-radius:
+        10px;
+
+      margin-top:
+        20px;
+
+      font-weight:
+        bold;
+
+    }
+
+
+    .output {
+
+      display:
+        none;
+
+    }
+
+
+    .output h3 {
+
+      margin-top:
+        25px;
+
+      color:
+        #312e81;
+
+    }
+
+
+    .code-box {
+
+      width:
+        100%;
+
+      min-height:
+        250px;
+
+      background:
+        #111827;
+
+      color:
+        #f9fafb;
+
+      border:
+        none;
+
+      border-radius:
+        12px;
+
+      padding:
+        18px;
+
+      font-family:
+        monospace;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+
+      resize:
+        vertical;
+
+    }
+
+
+    .preview {
+
+      display:
+        none;
+
+      text-align:
+        center;
+
+      padding:
+        25px;
+
+      background:
+        #f9fafb;
+
+      border-radius:
+        15px;
+
+      margin-top:
+        20px;
+
+    }
+
+
+    .preview img {
+
+      width:
+        220px;
+
+      height:
+        220px;
+
+      object-fit:
+        cover;
+
+      border-radius:
+        15px;
+
+      display:
+        block;
+
+      margin:
+        0 auto 15px;
+
+    }
+
+
+    .preview audio {
+
+      width:
+        100%;
+
+      max-width:
+        500px;
+
+      margin-top:
+        15px;
+
+    }
+
+
+    .instructions {
+
+      background:
+        #fff7ed;
+
+      border-left:
+        5px solid #f97316;
+
+      padding:
+        20px;
+
+      border-radius:
+        10px;
+
+      line-height:
+        1.7;
+
+    }
+
+
+    .warning {
+
+      background:
+        #fef3c7;
+
+      color:
+        #92400e;
+
+      padding:
+        15px;
+
+      border-radius:
+        10px;
+
+      margin-top:
+        15px;
+
+    }
+
+
+    @media (
+      max-width: 600px
+    ) {
+
+      header h1 {
+
+        font-size:
+          24px;
+
+      }
+
+
+      .card {
+
+        padding:
+          18px;
+
+      }
+
+
+      .button-row {
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .generate,
+      .clear {
+
+        width:
+          100%;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <h1>
+    🎵 Tehalka Music
+  </h1>
+
+  <p>
+    Advanced Song Manager
+  </p>
+
+</header>
+
+
+<main class="container">
+
+
+  <!-- ================================= -->
+  <!-- SONG INFORMATION -->
+  <!-- ================================= -->
+
+  <div class="card">
+
+    <h2>
+      🎵 Create New Song
+    </h2>
+
+    <p>
+      एक बार जानकारी भरें और
+      songs.js code,
+      Song Page code और
+      Sitemap code तैयार करें।
+    </p>
+
+
+    <!-- SONG NAME -->
+
+    <div class="form-group">
+
+      <label>
+        🎵 Song Name
+        <span class="required">*</span>
+      </label>
+
+      <input
+        id="songName"
+        type="text"
+        placeholder="Example: Ghadi"
+      >
+
+    </div>
+
+
+    <!-- ARTIST -->
+
+    <div class="form-group">
+
+      <label>
+        🎤 Artist / Singer
+        <span class="required">*</span>
+      </label>
+
+      <input
+        id="songArtist"
+        type="text"
+        placeholder="Example: Mitta Bahu Ala"
+      >
+
+    </div>
+
+
+    <!-- ALBUM -->
+
+    <div class="form-group">
+
+      <label>
+        💿 Album Name
+      </label>
+
+      <input
+        id="songAlbum"
+        type="text"
+        placeholder="Example: Singles"
+      >
+
+    </div>
+
+
+    <!-- CATEGORY -->
+
+    <div class="form-group">
+
+      <label>
+        🎼 Category
+      </label>
+
+      <input
+        id="songCategory"
+        type="text"
+        placeholder="Example: Haryanvi"
+      >
+
+    </div>
+
+
+    <!-- IMAGE -->
+
+    <div class="form-group">
+
+      <label>
+        🖼️ Cover Image File Name
+        <span class="required">*</span>
+      </label>
+
+      <input
+        id="songImage"
+        type="text"
+        placeholder="Example: sddefault.jpg"
+      >
+
+    </div>
+
+
+    <!-- MP3 -->
+
+    <div class="form-group">
+
+      <label>
+        🎧 MP3 File Name
+        <span class="required">*</span>
+      </label>
+
+      <input
+        id="songMp3"
+        type="text"
+        placeholder="Example: Ghadi.mp3"
+      >
+
+    </div>
+
+
+    <!-- SONG PAGE -->
+
+    <div class="form-group">
+
+      <label>
+        🔗 Song Page File Name
+      </label>
+
+      <input
+        id="songPage"
+        type="text"
+        placeholder="Example: ghadi.html"
+      >
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+
+    <div class="form-group">
+
+      <label>
+        📝 Song Description
+      </label>
+
+      <textarea
+        id="songDescription"
+        placeholder="Write a short description..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- SEO KEYWORDS -->
+
+    <div class="form-group">
+
+      <label>
+        🔍 SEO Keywords
+      </label>
+
+      <input
+        id="songKeywords"
+        type="text"
+        placeholder="Example: Ghadi, Mitta Bahu Ala, Haryanvi song"
+      >
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="button-row">
+
+      <button
+        class="generate"
+        onclick="generateAll()"
+      >
+        ⚡ Generate Everything
+      </button>
+
+
+      <button
+        class="clear"
+        onclick="clearAll()"
+      >
+        🗑️ Clear
+      </button>
+
+    </div>
+
+
+    <div
+      id="success"
+      class="success"
+    >
+      ✅ All codes generated successfully!
+    </div>
+
+
+    <div
+      id="error"
+      class="error"
+    ></div>
+
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- PREVIEW -->
+  <!-- ================================= -->
+
+  <div
+    id="preview"
+    class="card preview"
+  >
+
+    <h2>
+      👀 Song Preview
+    </h2>
+
+
+    <img
+      id="previewImage"
+      src=""
+      alt="Song Cover"
+    >
+
+
+    <h2
+      id="previewName"
+    ></h2>
+
+
+    <p
+      id="previewArtist"
+    ></p>
+
+
+    <p
+      id="previewAlbum"
+    ></p>
+
+
+    <p
+      id="previewCategory"
+    ></p>
+
+
+    <p
+      id="previewDescription"
+    ></p>
+
+
+    <audio
+      id="previewAudio"
+      controls
+    ></audio>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- OUTPUT -->
+  <!-- ================================= -->
+
+  <div
+    id="output"
+    class="card output"
+  >
+
+    <h2>
+      📋 Generated Codes
+    </h2>
+
+
+    <!-- SONGS JS -->
+
+    <h3>
+      1️⃣ songs.js Code
+    </h3>
+
+    <p>
+      इसे अपने songs.js में
+      <strong>];</strong>
+      से पहले paste करें।
+    </p>
+
+
+    <textarea
+      id="songsJsCode"
+      class="code-box"
+      readonly
+    ></textarea>
+
+
+    <button
+      class="copy"
+      onclick="copyCode('songsJsCode')"
+    >
+      📋 Copy songs.js Code
+    </button>
+
+
+    <!-- SONG PAGE -->
+
+    <h3>
+      2️⃣ Song Page Code
+    </h3>
+
+    <p>
+      इस code को generated
+      song page file में paste करें।
+    </p>
+
+
+    <textarea
+      id="songPageCode"
+      class="code-box"
+      readonly
+    ></textarea>
+
+
+    <button
+      class="copy"
+      onclick="copyCode('songPageCode')"
+    >
+      📋 Copy Song Page Code
+    </button>
+
+
+    <!-- SITEMAP -->
+
+    <h3>
+      3️⃣ Sitemap Code
+    </h3>
+
+    <p>
+      इसे sitemap.xml में
+      <strong>&lt;/urlset&gt;</strong>
+      से पहले add करें।
+    </p>
+
+
+    <textarea
+      id="sitemapCode"
+      class="code-box"
+      readonly
+    ></textarea>
+
+
+    <button
+      class="copy"
+      onclick="copyCode('sitemapCode')"
+    >
+      📋 Copy Sitemap Code
+    </button>
+
+
+    <!-- ROBOTS -->
+
+    <h3>
+      4️⃣ Robots.txt
+    </h3>
+
+
+    <textarea
+      id="robotsCode"
+      class="code-box"
+      readonly
+    ></textarea>
+
+
+    <button
+      class="copy"
+      onclick="copyCode('robotsCode')"
+    >
+      📋 Copy Robots.txt Code
+    </button>
+
+
+    <div class="warning">
+
+      ⚠️ Important:
+      यह Manager GitHub पर files अपने-आप upload नहीं करता।
+      MP3 और Cover Image को पहले GitHub repository में upload करें।
+      उसके बाद generated code को सही files में paste करके
+      Commit Changes करें।
+
+    </div>
+
+
+    <div class="instructions">
+
+      <h3>
+        ✅ New Song Upload Process
+      </h3>
+
+      <ol>
+
+        <li>
+          MP3 और Cover Image GitHub में upload करें।
+        </li>
+
+        <li>
+          इस Manager में song की जानकारी भरें।
+        </li>
+
+        <li>
+          <strong>
+            Generate Everything
+          </strong>
+          दबाएँ।
+        </li>
+
+        <li>
+          Generated
+          <strong>
+            songs.js
+          </strong>
+          code को songs.js में add करें।
+        </li>
+
+        <li>
+          Generated Song Page code से
+          नई
+          <strong>
+            .html
+          </strong>
+          file बनाएँ।
+        </li>
+
+        <li>
+          Sitemap code को sitemap.xml में add करें।
+        </li>
+
+        <li>
+          GitHub में सभी changes
+          <strong>
+            Commit
+          </strong>
+          करें।
+        </li>
+
+        <li>
+          Google Search Console में नई URL की indexing request करें।
+        </li>
+
+      </ol>
+
+    </div>
+
+
+  </div>
+
+
+</main>
+
+
+<script>
+
+
+// ==========================================
+// GENERATE EVERYTHING
+// ==========================================
+
+function generateAll() {
+
+
+  const name =
+    getValue("songName");
+
+
+  const artist =
+    getValue("songArtist");
+
+
+  const album =
+    getValue("songAlbum")
+    || "Singles";
+
+
+  const category =
+    getValue("songCategory")
+    || "Music";
+
+
+  const image =
+    getValue("songImage");
+
+
+  const mp3 =
+    getValue("songMp3");
+
+
+  let page =
+    getValue("songPage");
+
+
+  let description =
+    getValue("songDescription");
+
+
+  const keywords =
+    getValue("songKeywords");
+
+
+  // ========================================
+  // VALIDATION
+  // ========================================
+
+  if (
+    !name ||
+    !artist ||
+    !image ||
+    !mp3
+  ) {
+
+    showError(
+      "⚠️ Please fill Song Name, Artist, Cover Image and MP3 File Name."
+    );
+
+    return;
+
+  }
+
+
+  // ========================================
+  // AUTO PAGE NAME
+  // ========================================
+
+  if (
+    !page
+  ) {
+
+    page =
+
+      slugify(name)
+      +
+
+      ".html";
+
+  }
+
+
+  // ========================================
+  // AUTO DESCRIPTION
+  // ========================================
+
+  if (
+    !description
+  ) {
+
+    description =
+
+      `Listen to ${name} by ${artist}, a ${category} song on Tehalka Music.`;
+
+  }
+
+
+  // ========================================
+  // URL
+  // ========================================
+
+  const fullUrl =
+
+    "https://tehalkamusic.website/" +
+
+    page;
+
+
+  // ========================================
+  // SONGS.JS CODE
+  // ========================================
+
+  const songsCode =
+
+`  {
+    name: "${escapeText(name)}",
+    artist: "${escapeText(artist)}",
+    album: "${escapeText(album)}",
+    category: "${escapeText(category)}",
+    image: "${escapeText(image)}",
+    mp3: "${escapeText(mp3)}",
+    page: "${escapeText(page)}",
+    description: "${escapeText(description)}"
+  }`;
+
+
+  document
+    .getElementById(
+      "songsJsCode"
+    )
+    .value =
+      songsCode;
+
+
+  // ========================================
+  // SONG PAGE CODE
+  // ========================================
+
+  const songPageCode =
+
+`<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    ${escapeHtml(name)} - ${escapeHtml(artist)} | Tehalka Music
+  </title>
+
+  <meta
+    name="description"
+    content="${escapeHtml(description)}"
+  >
+
+  <meta
+    name="keywords"
+    content="${escapeHtml(
+      keywords ||
+      name +
+      ", " +
+      artist +
+      ", " +
+      category +
+      ", Tehalka Music"
+    )}"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <link
+    rel="canonical"
+    href="${fullUrl}"
+  >
+
+  <meta
+    property="og:type"
+    content="music.song"
+  >
+
+  <meta
+    property="og:title"
+    content="${escapeHtml(name)} - ${escapeHtml(artist)}"
+  >
+
+  <meta
+    property="og:description"
+    content="${escapeHtml(description)}"
+  >
+
+  <meta
+    property="og:url"
+    content="${fullUrl}"
+  >
+
+  <meta
+    property="og:image"
+    content="https://tehalkamusic.website/${escapeHtml(image)}"
+  >
+
+  <meta
+    property="og:site_name"
+    content="Tehalka Music"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css?v=3"
+  >
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <h1>
+    🎵 Tehalka Music
+  </h1>
+
+  <p>
+    Listen • Discover • Download
+  </p>
+
+</header>
+
+
+<nav>
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="latest-songs.html">
+    Latest Songs
+  </a>
+
+  <a href="albums.html">
+    Albums
+  </a>
+
+  <a href="artists.html">
+    Artists
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="contact.html">
+    Contact
+  </a>
+
+</nav>
+
+
+<main class="container">
+
+
+  <section class="hero">
+
+    <h2>
+      🎵 ${escapeHtml(name)}
+    </h2>
+
+    <p>
+      🎤 ${escapeHtml(artist)}
+    </p>
+
+  </section>
+
+
+  <section class="song-card">
+
+
+    <img
+      src="${escapeHtml(image)}"
+      alt="${escapeHtml(name)} by ${escapeHtml(artist)}"
+      loading="lazy"
+    >
+
+
+    <h1>
+      ${escapeHtml(name)}
+    </h1>
+
+
+    <h3>
+      🎤 ${escapeHtml(artist)}
+    </h3>
+
+
+    <p>
+      💿 Album:
+      ${escapeHtml(album)}
+    </p>
+
+
+    <p>
+      🎼 Category:
+      ${escapeHtml(category)}
+    </p>
+
+
+    <p>
+      ${escapeHtml(description)}
+    </p>
+
+
+    <audio
+      controls
+      preload="metadata"
+      style="width:100%;"
+    >
+
+      <source
+        src="${escapeHtml(mp3)}"
+        type="audio/mpeg"
+      >
+
+      Your browser does not support
+      the audio player.
+
+    </audio>
+
+
+    <br><br>
+
+
+    <a
+      href="${escapeHtml(mp3)}"
+      download
+    >
+
+      <button>
+        ⬇ Download Song
+      </button>
+
+    </a>
+
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  <p>
+    © 2026 Tehalka Music |
+    All Rights Reserved
+  </p>
+
+</footer>
+
+
+<script
+  src="script.js"
+></script>
+
+
+</body>
+
+</html>`;
+
+
+  document
+    .getElementById(
+      "songPageCode"
+    )
+    .value =
+      songPageCode;
+
+
+  // ========================================
+  // SITEMAP CODE
+  // ========================================
+
+  const sitemapCode =
+
+`  <url>
+    <loc>${fullUrl}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>`;
+
+
+  document
+    .getElementById(
+      "sitemapCode"
+    )
+    .value =
+      sitemapCode;
+
+
+  // ========================================
+  // ROBOTS CODE
+  // ========================================
+
+  const robotsCode =
+
+`User-agent: *
+Allow: /
+
+Sitemap: https://tehalkamusic.website/sitemap.xml`;
+
+
+  document
+    .getElementById(
+      "robotsCode"
+    )
+    .value =
+      robotsCode;
+
+
+  // ========================================
+  // PREVIEW
+  // ========================================
+
+  document
+    .getElementById(
+      "previewImage"
+    )
+    .src =
+      image;
+
+
+  document
+    .getElementById(
+      "previewName"
+    )
+    .textContent =
+      name;
+
+
+  document
+    .getElementById(
+      "previewArtist"
+    )
+    .textContent =
+      "🎤 " + artist;
+
+
+  document
+    .getElementById(
+      "previewAlbum"
+    )
+    .textContent =
+      "💿 Album: " + album;
+
+
+  document
+    .getElementById(
+      "previewCategory"
+    )
+    .textContent =
+      "🎼 Category: " + category;
+
+
+  document
+    .getElementById(
+      "previewDescription"
+    )
+    .textContent =
+      description;
+
+
+  document
+    .getElementById(
+      "previewAudio"
+    )
+    .src =
+      mp3;
+
+
+  document
+    .getElementById(
+      "preview"
+    )
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById(
+      "output"
+    )
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById(
+      "success"
+    )
+    .style.display =
+      "block";
+
+
+  document
+    .getElementById(
+      "error"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "output"
+    )
+    .scrollIntoView({
+
+      behavior:
+        "smooth"
+
+    });
+
+
+}
+
+
+// ==========================================
+// GET VALUE
+// ==========================================
+
+function getValue(
+  id
+) {
+
+  return document
+    .getElementById(id)
+    .value
+    .trim();
+
+}
+
+
+// ==========================================
+// SLUGIFY
+// ==========================================
+
+function slugify(
+  text
+) {
+
+  return text
+
+    .toLowerCase()
+
+    .trim()
+
+    .replace(
+      /[^a-z0-9]+/g,
+      "-"
+    )
+
+    .replace(
+      /^-+|-+$/g,
+      ""
+    );
+
+}
+
+
+// ==========================================
+// ESCAPE JS TEXT
+// ==========================================
+
+function escapeText(
+  text
+) {
+
+  return text
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /"/g,
+      '\\"'
+    )
+
+    .replace(
+      /\r?\n/g,
+      " "
+    );
+
+}
+
+
+// ==========================================
+// ESCAPE HTML
+// ==========================================
+
+funct
