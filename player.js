@@ -4,161 +4,268 @@
 
 (function () {
 
-  let playerAudio;
+  let playerAudio = null;
   let currentSongIndex = -1;
   let songs = [];
 
-  // ========================================
-  // CREATE PLAYER
-  // ========================================
+
+  // ==========================================
+  // CREATE PERSISTENT PLAYER
+  // ==========================================
 
   function createPlayer() {
 
-    if (document.getElementById("persistentMusicPlayer")) {
+    // अगर player पहले से मौजूद है तो दोबारा create न करें
+    if (
+      document.getElementById("musicPlayer")
+    ) {
       return;
     }
 
-    const player = document.createElement("div");
 
-    player.id = "persistentMusicPlayer";
+    const player =
+      document.createElement("div");
+
+
+    player.id =
+      "musicPlayer";
+
 
     player.innerHTML = `
 
-      <div class="persistent-player-progress">
-        <div id="persistentProgress"></div>
+      <!-- PROGRESS BAR -->
+
+      <div class="music-player-progress">
+
+        <div id="playerProgress"></div>
+
       </div>
 
-      <div class="persistent-player-inner">
 
-        <div class="persistent-player-info">
+      <!-- PLAYER INNER -->
 
-          <div id="persistentSongName">
+      <div class="music-player-inner">
+
+
+        <!-- SONG INFO -->
+
+        <div class="music-player-info">
+
+          <div id="playerSongName">
             Tehalka Music
           </div>
 
-          <div id="persistentArtistName">
+          <div id="playerArtistName">
             Select a song
           </div>
 
         </div>
 
-        <div class="persistent-player-controls">
+
+        <!-- PLAYER CONTROLS -->
+
+        <div class="music-player-controls">
+
+
+          <!-- PREVIOUS -->
 
           <button
-            id="persistentPrevious"
+            id="playerPrevious"
             type="button"
+            aria-label="Previous Song"
+            title="Previous Song"
           >
             ⏮
           </button>
 
+
+          <!-- PLAY / PAUSE -->
+
           <button
-            id="persistentPlayPause"
+            id="playerPlayPause"
             type="button"
+            aria-label="Play or Pause"
+            title="Play or Pause"
           >
             ▶️
           </button>
 
+
+          <!-- NEXT -->
+
           <button
-            id="persistentNext"
+            id="playerNext"
             type="button"
+            aria-label="Next Song"
+            title="Next Song"
           >
             ⏭
           </button>
 
+
         </div>
+
 
       </div>
 
+
+      <!-- HIDDEN AUDIO -->
+
       <audio
-        id="persistentAudio"
+        id="playerAudio"
         preload="metadata"
       ></audio>
 
     `;
 
-    document.body.appendChild(player);
+
+    document.body.appendChild(
+      player
+    );
+
+
+    // GET AUDIO ELEMENT
 
     playerAudio =
       document.getElementById(
-        "persistentAudio"
+        "playerAudio"
       );
 
-    setupEvents();
+
+    setupPlayerEvents();
 
   }
 
 
-  // ========================================
-  // FIND SONGS
-  // ========================================
+
+  // ==========================================
+  // FIND ALL SONGS
+  // ==========================================
 
   function findSongs() {
 
     songs = [];
+
 
     const audioPlayers =
       document.querySelectorAll(
         "audio"
       );
 
+
     audioPlayers.forEach(
       function (audio) {
 
+
+        // Persistent player को ignore करें
+
         if (
           audio.id ===
-          "persistentAudio"
+          "playerAudio"
         ) {
+
           return;
+
         }
+
+
+        // Source खोजें
 
         const source =
           audio.querySelector(
             "source"
           );
 
-        if (!source) {
+
+        if (
+          !source
+        ) {
+
           return;
+
         }
+
+
+        // Song card खोजें
 
         const card =
           audio.closest(
             ".song-card, .album-song, .artist-song"
           );
 
+
         let songName =
           "Unknown Song";
+
 
         let artistName =
           "Tehalka Music";
 
-        if (card) {
+
+        // ======================================
+        // GET SONG NAME
+        // ======================================
+
+        if (
+          card
+        ) {
+
 
           const heading =
             card.querySelector(
-              "h2, h3, strong"
+              "h1, h2, h3"
             );
+
+
+          if (
+            heading
+          ) {
+
+            songName =
+              heading.textContent
+                .trim()
+                .replace(
+                  /^🎵\s*/,
+                  ""
+                );
+
+          }
+
+
+          // ====================================
+          // GET ARTIST
+          // ====================================
 
           const artist =
             card.querySelector(
               "p strong"
             );
 
-          if (heading) {
-            songName =
-              heading.textContent.trim();
-          }
 
-          if (artist) {
+          if (
+            artist
+          ) {
+
             artistName =
-              artist.textContent.trim();
+              artist.textContent
+                .trim();
+
           }
 
         }
 
+
+        // ======================================
+        // ADD SONG
+        // ======================================
+
         songs.push({
 
           url:
-            source.src,
+            source.src ||
+            source.getAttribute(
+              "src"
+            ),
 
           name:
             songName,
@@ -171,290 +278,669 @@
 
         });
 
+
       }
     );
+
 
   }
 
 
-  // ========================================
+
+  // ==========================================
   // PLAY SONG
-  // ========================================
+  // ==========================================
 
-  function playSong(index) {
+  function playSong(
+    index
+  ) {
 
-    if (!songs[index]) {
+
+    if (
+      !songs[index]
+    ) {
+
       return;
+
     }
+
 
     currentSongIndex =
       index;
 
+
     const song =
       songs[index];
+
+
+    // ======================================
+    // SET AUDIO SOURCE
+    // ======================================
 
     playerAudio.src =
       song.url;
 
-    document.getElementById(
-      "persistentSongName"
-    ).textContent =
-      song.name;
 
-    document.getElementById(
-      "persistentArtistName"
-    ).textContent =
-      song.artist;
+    playerAudio.load();
 
-    playerAudio.play()
+
+    // ======================================
+    // UPDATE SONG NAME
+    // ======================================
+
+    const songName =
+      document.getElementById(
+        "playerSongName"
+      );
+
+
+    const artistName =
+      document.getElementById(
+        "playerArtistName"
+      );
+
+
+    if (
+      songName
+    ) {
+
+      songName.textContent =
+        song.name;
+
+    }
+
+
+    if (
+      artistName
+    ) {
+
+      artistName.textContent =
+        song.artist;
+
+    }
+
+
+    // ======================================
+    // PLAY SONG
+    // ======================================
+
+    playerAudio
+      .play()
       .then(
         function () {
 
-          document.getElementById(
-            "persistentPlayPause"
-          ).textContent =
-            "⏸️";
+          updatePlayPauseButton(
+            true
+          );
 
         }
       )
       .catch(
         function () {
 
-          document.getElementById(
-            "persistentPlayPause"
-          ).textContent =
-            "▶️";
+          updatePlayPauseButton(
+            false
+          );
 
         }
       );
+
 
   }
 
 
-  // ========================================
-  // PLAYER EVENTS
-  // ========================================
 
-  function setupEvents() {
+  // ==========================================
+  // UPDATE PLAY / PAUSE BUTTON
+  // ==========================================
+
+  function updatePlayPauseButton(
+    isPlaying
+  ) {
+
+
+    const button =
+      document.getElementById(
+        "playerPlayPause"
+      );
+
+
+    if (
+      !button
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      isPlaying
+    ) {
+
+      button.textContent =
+        "⏸️";
+
+    }
+
+    else {
+
+      button.textContent =
+        "▶️";
+
+    }
+
+
+  }
+
+
+
+  // ==========================================
+  // SETUP PLAYER EVENTS
+  // ==========================================
+
+  function setupPlayerEvents() {
+
 
     const playPause =
       document.getElementById(
-        "persistentPlayPause"
+        "playerPlayPause"
       );
+
 
     const previous =
       document.getElementById(
-        "persistentPrevious"
+        "playerPrevious"
       );
+
 
     const next =
       document.getElementById(
-        "persistentNext"
+        "playerNext"
       );
+
 
     const progress =
       document.getElementById(
-        "persistentProgress"
+        "playerProgress"
       );
 
 
+    // ======================================
     // PLAY / PAUSE
+    // ======================================
 
-    playPause.addEventListener(
-      "click",
-      function () {
+    if (
+      playPause
+    ) {
 
-        if (
-          !playerAudio.src
-        ) {
+
+      playPause.addEventListener(
+        "click",
+        function () {
+
+
+          // अगर कोई song select नहीं है
 
           if (
-            songs.length > 0
+            !playerAudio.src
           ) {
 
-            playSong(0);
+
+            if (
+              songs.length > 0
+            ) {
+
+              playSong(
+                0
+              );
+
+            }
+
+
+            return;
 
           }
 
-          return;
+
+          // अगर song paused है
+
+          if (
+            playerAudio.paused
+          ) {
+
+
+            playerAudio
+              .play()
+              .catch(
+                function () {}
+              );
+
+
+          }
+
+          // अगर song चल रहा है
+
+          else {
+
+
+            playerAudio.pause();
+
+          }
+
 
         }
+      );
 
 
-        if (
-          playerAudio.paused
-        ) {
+    }
 
-          playerAudio.play();
+
+
+    // ======================================
+    // PREVIOUS SONG
+    // ======================================
+
+    if (
+      previous
+    ) {
+
+
+      previous.addEventListener(
+        "click",
+        function () {
+
+
+          if (
+            songs.length === 0
+          ) {
+
+            return;
+
+          }
+
+
+          let index;
+
+
+          // अगर कोई current song नहीं है
+
+          if (
+            currentSongIndex === -1
+          ) {
+
+            index =
+              0;
+
+          }
+
+          else {
+
+            index =
+              currentSongIndex - 1;
+
+          }
+
+
+          // पहले song से पीछे जाने पर last song
+
+          if (
+            index < 0
+          ) {
+
+            index =
+              songs.length - 1;
+
+          }
+
+
+          playSong(
+            index
+          );
+
 
         }
+      );
 
-        else {
 
-          playerAudio.pause();
+    }
+
+
+
+    // ======================================
+    // NEXT SONG
+    // ======================================
+
+    if (
+      next
+    ) {
+
+
+      next.addEventListener(
+        "click",
+        function () {
+
+
+          if (
+            songs.length === 0
+          ) {
+
+            return;
+
+          }
+
+
+          let index;
+
+
+          // अगर कोई song select नहीं है
+
+          if (
+            currentSongIndex === -1
+          ) {
+
+            index =
+              0;
+
+          }
+
+          else {
+
+            index =
+              currentSongIndex + 1;
+
+          }
+
+
+          // Last song के बाद पहला song
+
+          if (
+            index >=
+            songs.length
+          ) {
+
+            index =
+              0;
+
+          }
+
+
+          playSong(
+            index
+          );
+
 
         }
-
-      }
-    );
+      );
 
 
-    // PREVIOUS
-
-    previous.addEventListener(
-      "click",
-      function () {
-
-        if (
-          songs.length === 0
-        ) {
-          return;
-        }
-
-        let index =
-          currentSongIndex - 1;
-
-        if (
-          index < 0
-        ) {
-
-          index =
-            songs.length - 1;
-
-        }
-
-        playSong(index);
-
-      }
-    );
+    }
 
 
-    // NEXT
 
-    next.addEventListener(
-      "click",
-      function () {
-
-        if (
-          songs.length === 0
-        ) {
-          return;
-        }
-
-        let index =
-          currentSongIndex + 1;
-
-        if (
-          index >=
-          songs.length
-        ) {
-
-          index = 0;
-
-        }
-
-        playSong(index);
-
-      }
-    );
-
-
-    // PROGRESS
+    // ======================================
+    // AUDIO TIME UPDATE
+    // ======================================
 
     playerAudio.addEventListener(
       "timeupdate",
       function () {
 
+
         if (
-          !playerAudio.duration
+          !playerAudio.duration ||
+          isNaN(
+            playerAudio.duration
+          )
         ) {
+
           return;
+
         }
 
+
         const percent =
+
           (
             playerAudio.currentTime /
             playerAudio.duration
-          ) * 100;
+          ) *
+          100;
 
-        progress.style.width =
-          percent + "%";
+
+        if (
+          progress
+        ) {
+
+          progress.style.width =
+            percent +
+            "%";
+
+        }
+
 
       }
     );
 
 
-    // PLAY
+
+    // ======================================
+    // AUDIO PLAY
+    // ======================================
 
     playerAudio.addEventListener(
       "play",
       function () {
 
-        playPause.textContent =
-          "⏸️";
+        updatePlayPauseButton(
+          true
+        );
 
       }
     );
 
 
-    // PAUSE
+
+    // ======================================
+    // AUDIO PAUSE
+    // ======================================
 
     playerAudio.addEventListener(
       "pause",
       function () {
 
-        playPause.textContent =
-          "▶️";
+        updatePlayPauseButton(
+          false
+        );
 
       }
     );
 
 
-    // NEXT SONG AFTER END
+
+    // ======================================
+    // AUDIO ENDED
+    // ======================================
 
     playerAudio.addEventListener(
       "ended",
       function () {
 
+
         if (
           songs.length === 0
         ) {
+
           return;
+
         }
+
 
         let index =
           currentSongIndex + 1;
+
+
+        // Last song के बाद फिर पहला song
 
         if (
           index >=
           songs.length
         ) {
 
-          index = 0;
+          index =
+            0;
 
         }
 
-        playSong(index);
+
+        playSong(
+          index
+        );
+
 
       }
     );
 
+
   }
 
 
-  // ========================================
-  // START
-  // ========================================
+
+  // ==========================================
+  // CONNECT SONG CARD AUDIO
+  // ==========================================
+
+  function connectSongCards() {
+
+
+    const audioPlayers =
+      document.querySelectorAll(
+        "audio"
+      );
+
+
+    audioPlayers.forEach(
+      function (audio) {
+
+
+        // Persistent audio को ignore करें
+
+        if (
+          audio.id ===
+          "playerAudio"
+        ) {
+
+          return;
+
+        }
+
+
+        audio.addEventListener(
+          "play",
+          function () {
+
+
+            const index =
+              songs.findIndex(
+                function (song) {
+
+                  return (
+                    song.originalAudio ===
+                    audio
+                  );
+
+                }
+              );
+
+
+            if (
+              index === -1
+            ) {
+
+              return;
+
+            }
+
+
+            // Persistent player में वही song चलाएँ
+
+            if (
+              playerAudio.src !==
+              songs[index].url
+            ) {
+
+              currentSongIndex =
+                index;
+
+
+              playerAudio.src =
+                songs[index].url;
+
+
+              playerAudio.load();
+
+
+              document.getElementById(
+                "playerSongName"
+              ).textContent =
+                songs[index].name;
+
+
+              document.getElementById(
+                "playerArtistName"
+              ).textContent =
+                songs[index].artist;
+
+            }
+
+
+            // Persistent player को play करें
+
+            playerAudio
+              .play()
+              .catch(
+                function () {}
+              );
+
+
+          }
+        );
+
+
+      }
+    );
+
+
+  }
+
+
+
+  // ==========================================
+  // START PLAYER
+  // ==========================================
 
   document.addEventListener(
     "DOMContentLoaded",
     function () {
 
+
+      // Player बनाएँ
+
       createPlayer();
+
+
+      // Songs खोजें
 
       findSongs();
 
+
+      // Song cards को connect करें
+
+      connectSongCards();
+
+
     }
   );
+
 
 })();
