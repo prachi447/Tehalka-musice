@@ -9,7 +9,10 @@
 
 <title>Advanced Song Manager - Tehalka Music</title>
 
-<meta name="robots" content="noindex, nofollow">
+<meta
+name="robots"
+content="noindex, nofollow"
+>
 
 <style>
 
@@ -104,6 +107,10 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 .generate {
@@ -389,6 +396,7 @@ placeholder="Example: Ghadi, Mitta Bahu Ala, Haryanvi song"
 <div class="button-row">
 
 <button
+type="button"
 class="generate"
 onclick="generateAll()"
 >
@@ -396,6 +404,7 @@ onclick="generateAll()"
 </button>
 
 <button
+type="button"
 class="clear"
 onclick="clearAll()"
 >
@@ -471,6 +480,7 @@ readonly
 ></textarea>
 
 <button
+type="button"
 class="copy"
 onclick="copyCode('songsJsCode')"
 >
@@ -492,6 +502,7 @@ readonly
 ></textarea>
 
 <button
+type="button"
 class="copy"
 onclick="copyCode('songPageCode')"
 >
@@ -515,6 +526,7 @@ readonly
 ></textarea>
 
 <button
+type="button"
 class="copy"
 onclick="copyCode('sitemapCode')"
 >
@@ -532,6 +544,7 @@ readonly
 ></textarea>
 
 <button
+type="button"
 class="copy"
 onclick="copyCode('robotsCode')"
 >
@@ -607,147 +620,206 @@ Google Search Console में नई URL की indexing request करें�
 
 <script>
 
+/* =========================================
+   GET VALUE
+========================================= */
 
 function getValue(id) {
 
-return document
-.getElementById(id)
-.value
-.trim();
+  const element = document.getElementById(id);
+
+  if (!element) {
+    return "";
+  }
+
+  return element.value.trim();
 
 }
 
 
+/* =========================================
+   ESCAPE JAVASCRIPT TEXT
+========================================= */
 
 function escapeText(text) {
 
-return text
+  return String(text)
 
-.replace(/\\/g, "\\\\")
+    .replace(/\\/g, "\\\\")
 
-.replace(/"/g, '\\"')
+    .replace(/"/g, '\\"')
 
-.replace(/\r?\n/g, " ");
+    .replace(/\r?\n/g, " ");
 
 }
 
 
+/* =========================================
+   ESCAPE HTML
+========================================= */
 
 function escapeHtml(text) {
 
-return text
+  return String(text)
 
-.replace(/&/g, "&amp;")
+    .replace(/&/g, "&amp;")
 
-.replace(/</g, "&lt;")
+    .replace(/</g, "&lt;")
 
-.replace(/>/g, "&gt;")
+    .replace(/>/g, "&gt;")
 
-.replace(/"/g, "&quot;")
+    .replace(/"/g, "&quot;")
 
-.replace(/'/g, "&#039;");
+    .replace(/'/g, "&#039;");
 
 }
 
 
+/* =========================================
+   SLUGIFY
+========================================= */
 
 function slugify(text) {
 
-return text
+  return String(text)
 
-.toLowerCase()
+    .toLowerCase()
 
-.trim()
+    .trim()
 
-.replace(/[^a-z0-9]+/g, "-")
+    .replace(/[^a-z0-9]+/g, "-")
 
-.replace(/^-+|-+$/g, "");
+    .replace(/^-+|-+$/g, "");
 
 }
 
 
+/* =========================================
+   SHOW ERROR
+========================================= */
+
+function showError(message) {
+
+  const error =
+    document.getElementById("error");
+
+  const success =
+    document.getElementById("success");
+
+  error.textContent =
+    message;
+
+  error.style.display =
+    "block";
+
+  success.style.display =
+    "none";
+
+}
+
+
+/* =========================================
+   GENERATE EVERYTHING
+========================================= */
 
 function generateAll() {
 
 
-const name =
-getValue("songName");
+  const name =
+    getValue("songName");
 
 
-const artist =
-getValue("songArtist");
+  const artist =
+    getValue("songArtist");
 
 
-const album =
-getValue("songAlbum") ||
-"Singles";
+  const album =
+    getValue("songAlbum") ||
+    "Singles";
 
 
-const category =
-getValue("songCategory") ||
-"Music";
+  const category =
+    getValue("songCategory") ||
+    "Music";
 
 
-const image =
-getValue("songImage");
+  const image =
+    getValue("songImage");
 
 
-const mp3 =
-getValue("songMp3");
+  const mp3 =
+    getValue("songMp3");
 
 
-let page =
-getValue("songPage");
+  let page =
+    getValue("songPage");
 
 
-let description =
-getValue("songDescription");
+  let description =
+    getValue("songDescription");
 
 
-const keywords =
-getValue("songKeywords");
+  const keywords =
+    getValue("songKeywords");
 
 
-if (
-!name ||
-!artist ||
-!image ||
-!mp3
-) {
+  /* VALIDATION */
 
-showError(
-"⚠️ Please fill Song Name, Artist, Cover Image and MP3 File Name."
-);
+  if (
+    !name ||
+    !artist ||
+    !image ||
+    !mp3
+  ) {
 
-return;
+    showError(
+      "⚠️ Please fill Song Name, Artist, Cover Image and MP3 File Name."
+    );
 
-}
+    return;
 
-
-if (!page) {
-
-page =
-slugify(name) +
-".html";
-
-}
+  }
 
 
-if (!description) {
+  /* AUTO PAGE NAME */
 
-description =
-`Listen to ${name} by ${artist}, a ${category} song on Tehalka Music.`;
+  if (!page) {
 
-}
+    page =
+      slugify(name) +
+      ".html";
 
-
-const fullUrl =
-"https://tehalkamusic.website/" +
-page;
+  }
 
 
+  /* AUTO DESCRIPTION */
 
-const songsCode =
+  if (!description) {
+
+    description =
+      "Listen to " +
+      name +
+      " by " +
+      artist +
+      ", a " +
+      category +
+      " song on Tehalka Music.";
+
+  }
+
+
+  /* FULL URL */
+
+  const fullUrl =
+    "https://tehalkamusic.website/" +
+    page;
+
+
+  /* =====================================
+     SONGS.JS CODE
+  ===================================== */
+
+  const songsCode =
 
 `  {
     name: "${escapeText(name)}",
@@ -761,14 +833,17 @@ const songsCode =
   }`;
 
 
-document
-.getElementById("songsJsCode")
-.value =
-songsCode;
+  document
+    .getElementById("songsJsCode")
+    .value =
+    songsCode;
 
 
+  /* =====================================
+     SONG PAGE CODE
+  ===================================== */
 
-const songPageCode =
+  const songPageCode =
 
 `<!DOCTYPE html>
 <html lang="en">
@@ -818,7 +893,7 @@ content="music.song"
 
 <meta
 property="og:title"
-content="${escapeHtml(name)} - ${escapeHtml(artist)}"
+content="${escapeHtml(name)} - ${escapeHtml(artist)} | Tehalka Music"
 >
 
 <meta
@@ -867,7 +942,9 @@ Listen • Discover • Download
 
 <nav>
 
-<a href="index.html">Home</a>
+<a href="index.html">
+Home
+</a>
 
 <a href="latest-songs.html">
 Latest Songs
@@ -887,6 +964,18 @@ About
 
 <a href="contact.html">
 Contact
+</a>
+
+<a href="privacy-policy.html">
+Privacy Policy
+</a>
+
+<a href="terms.html">
+Terms & Conditions
+</a>
+
+<a href="copyright.html">
+Copyright Policy
 </a>
 
 </nav>
@@ -962,7 +1051,8 @@ the audio player.
 </audio>
 
 
-<br><br>
+<br>
+<br>
 
 
 <a
@@ -970,7 +1060,7 @@ href="${escapeHtml(mp3)}"
 download
 >
 
-<button>
+<button type="button">
 ⬇ Download Song
 </button>
 
@@ -990,6 +1080,26 @@ download
 All Rights Reserved
 </p>
 
+<p>
+
+<a href="privacy-policy.html">
+Privacy Policy
+</a>
+
+|
+
+<a href="terms.html">
+Terms & Conditions
+</a>
+
+|
+
+<a href="copyright.html">
+Copyright Policy
+</a>
+
+</p>
+
 </footer>
 
 
@@ -1001,14 +1111,17 @@ All Rights Reserved
 </html>`;
 
 
-document
-.getElementById("songPageCode")
-.value =
-songPageCode;
+  document
+    .getElementById("songPageCode")
+    .value =
+    songPageCode;
 
 
+  /* =====================================
+     SITEMAP CODE
+  ===================================== */
 
-const sitemapCode =
+  const sitemapCode =
 
 `  <url>
     <loc>${fullUrl}</loc>
@@ -1017,14 +1130,17 @@ const sitemapCode =
   </url>`;
 
 
-document
-.getElementById("sitemapCode")
-.value =
-sitemapCode;
+  document
+    .getElementById("sitemapCode")
+    .value =
+    sitemapCode;
 
 
+  /* =====================================
+     ROBOTS.TXT CODE
+  ===================================== */
 
-const robotsCode =
+  const robotsCode =
 
 `User-agent: *
 Allow: /
@@ -1032,200 +1148,310 @@ Allow: /
 Sitemap: https://tehalkamusic.website/sitemap.xml`;
 
 
-document
-.getElementById("robotsCode")
-.value =
-robotsCode;
+  document
+    .getElementById("robotsCode")
+    .value =
+    robotsCode;
 
 
+  /* =====================================
+     PREVIEW
+  ===================================== */
 
-document
-.getElementById("previewImage")
-.src =
-image;
-
-
-document
-.getElementById("previewName")
-.textContent =
-name;
+  document
+    .getElementById("previewImage")
+    .src =
+    image;
 
 
-document
-.getElementById("previewArtist")
-.textContent =
-"🎤 " + artist;
+  document
+    .getElementById("previewName")
+    .textContent =
+    name;
 
 
-document
-.getElementById("previewAlbum")
-.textContent =
-"💿 Album: " + album;
+  document
+    .getElementById("previewArtist")
+    .textContent =
+    "🎤 " + artist;
 
 
-document
-.getElementById("previewCategory")
-.textContent =
-"🎼 Category: " + category;
+  document
+    .getElementById("previewAlbum")
+    .textContent =
+    "💿 Album: " + album;
 
 
-document
-.getElementById("previewDescription")
-.textContent =
-description;
+  document
+    .getElementById("previewCategory")
+    .textContent =
+    "🎼 Category: " + category;
 
 
-document
-.getElementById("previewAudio")
-.src =
-mp3;
+  document
+    .getElementById("previewDescription")
+    .textContent =
+    description;
 
 
-document
-.getElementById("preview")
-.style.display =
-"block";
+  document
+    .getElementById("previewAudio")
+    .src =
+    mp3;
 
 
-document
-.getElementById("output")
-.style.display =
-"block";
+  /* SHOW PREVIEW */
+
+  document
+    .getElementById("preview")
+    .style.display =
+    "block";
 
 
-document
-.getElementById("success")
-.style.display =
-"block";
+  /* SHOW OUTPUT */
+
+  document
+    .getElementById("output")
+    .style.display =
+    "block";
 
 
-document
-.getElementById("error")
-.style.display =
-"none";
+  /* SHOW SUCCESS */
+
+  document
+    .getElementById("success")
+    .style.display =
+    "block";
 
 
-document
-.getElementById("output")
-.scrollIntoView({
-behavior: "smooth"
-});
+  /* HIDE ERROR */
+
+  document
+    .getElementById("error")
+    .style.display =
+    "none";
+
+
+  /* SCROLL TO OUTPUT */
+
+  document
+    .getElementById("output")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
 
 }
 
 
-
-function showError(message) {
-
-const error =
-document.getElementById("error");
-
-error.textContent =
-message;
-
-error.style.display =
-"block";
-
-document
-.getElementById("success")
-.style.display =
-"none";
-
-}
-
-
+/* =========================================
+   COPY CODE
+========================================= */
 
 function copyCode(id) {
 
-const textarea =
-document.getElementById(id);
 
-navigator.clipboard
-.writeText(textarea.value)
+  const textarea =
+    document.getElementById(id);
 
-.then(function() {
 
-alert("✅ Code copied successfully!");
+  if (!textarea.value) {
 
-})
+    alert(
+      "⚠️ Please generate the code first."
+    );
 
-.catch(function() {
+    return;
 
-textarea.select();
+  }
 
-document.execCommand("copy");
 
-alert("✅ Code copied successfully!");
+  /* Modern Clipboard API */
 
-});
+  if (
+    navigator.clipboard &&
+    window.isSecureContext
+  ) {
+
+    navigator.clipboard
+      .writeText(textarea.value)
+
+      .then(function() {
+
+        alert(
+          "✅ Code copied successfully!"
+        );
+
+      })
+
+      .catch(function() {
+
+        fallbackCopy(textarea);
+
+      });
+
+  }
+
+  else {
+
+    fallbackCopy(textarea);
+
+  }
 
 }
 
 
+/* =========================================
+   FALLBACK COPY
+========================================= */
+
+function fallbackCopy(textarea) {
+
+  textarea.focus();
+
+  textarea.select();
+
+  textarea.setSelectionRange(
+    0,
+    textarea.value.length
+  );
+
+
+  try {
+
+    document.execCommand("copy");
+
+    alert(
+      "✅ Code copied successfully!"
+    );
+
+  }
+
+  catch (error) {
+
+    alert(
+      "⚠️ Copy failed. Please select and copy manually."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   CLEAR ALL
+========================================= */
 
 function clearAll() {
 
-const fields = [
 
-"songName",
+  const fields = [
 
-"songArtist",
+    "songName",
 
-"songAlbum",
+    "songArtist",
 
-"songCategory",
+    "songAlbum",
 
-"songImage",
+    "songCategory",
 
-"songMp3",
+    "songImage",
 
-"songPage",
+    "songMp3",
 
-"songDescription",
+    "songPage",
 
-"songKeywords"
+    "songDescription",
 
-];
+    "songKeywords"
 
-
-fields.forEach(function(id) {
-
-document
-.getElementById(id)
-.value = "";
-
-});
+  ];
 
 
-document
-.getElementById("output")
-.style.display =
-"none";
+  fields.forEach(function(id) {
+
+    const element =
+      document.getElementById(id);
+
+    if (element) {
+
+      element.value =
+        "";
+
+    }
+
+  });
 
 
-document
-.getElementById("preview")
-.style.display =
-"none";
+  document
+    .getElementById("songsJsCode")
+    .value =
+    "";
 
 
-document
-.getElementById("success")
-.style.display =
-"none";
+  document
+    .getElementById("songPageCode")
+    .value =
+    "";
 
 
-document
-.getElementById("error")
-.style.display =
-"none";
+  document
+    .getElementById("sitemapCode")
+    .value =
+    "";
+
+
+  document
+    .getElementById("robotsCode")
+    .value =
+    "";
+
+
+  document
+    .getElementById("output")
+    .style.display =
+    "none";
+
+
+  document
+    .getElementById("preview")
+    .style.display =
+    "none";
+
+
+  document
+    .getElementById("success")
+    .style.display =
+    "none";
+
+
+  document
+    .getElementById("error")
+    .style.display =
+    "none";
+
 
 }
 
+
+/* =========================================
+   PAGE READY
+========================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    console.log(
+      "✅ Tehalka Music Advanced Song Manager loaded successfully."
+    );
+
+  }
+);
 
 </script>
 
 
 </body>
 
-</html>
+  </html>
