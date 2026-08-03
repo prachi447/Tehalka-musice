@@ -1,100 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+
+  <!-- HOME -->
 
   <url>
     <loc>https://tehalkamusic.website/</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+
+  <!-- LATEST SONGS -->
+
   <url>
     <loc>https://tehalkamusic.website/latest-songs.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
+
+  <!-- ALBUMS -->
+
   <url>
     <loc>https://tehalkamusic.website/albums.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://tehalkamusic.website/artists.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://tehalkamusic.website/music-blog.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
+
+  <!-- ARTISTS -->
+
+  <url>
+    <loc>https://tehalkamusic.website/artists.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <!-- ABOUT -->
+
   <url>
     <loc>https://tehalkamusic.website/about.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
+
+  <!-- CONTACT -->
+
   <url>
     <loc>https://tehalkamusic.website/contact.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
+
+  <!-- PRIVACY POLICY -->
+
   <url>
     <loc>https://tehalkamusic.website/privacy-policy.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+
+  <!-- TERMS -->
 
   <url>
     <loc>https://tehalkamusic.website/terms.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+
+  <!-- COPYRIGHT -->
 
   <url>
     <loc>https://tehalkamusic.website/copyright.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
+
+  <!-- KAMAR KAMAR -->
+
   <url>
     <loc>https://tehalkamusic.website/kamar-kamar.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
+
+
+  <!-- PARINDEY -->
 
   <url>
     <loc>https://tehalkamusic.website/parindey.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
+
+
+  <!-- SUKOON -->
 
   <url>
     <loc>https://tehalkamusic.website/sukoon.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+
+  <!-- CHUNDADI -->
 
   <url>
     <loc>https://tehalkamusic.website/Chundadi.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
+
+
+  <!-- PATLI KAMAR -->
 
   <url>
     <loc>https://tehalkamusic.website/patli-kamar.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <!-- GHADI -->
+
+  <url>
+    <loc>https://tehalkamusic.website/ghadi.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+  <!-- MAIN TERI NACHAI NACHUN -->
+
+  <url>
+    <loc>https://tehalkamusic.website/main-teri-nachai-nachun.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <url>
-    <loc>https://tehalkamusic.website/ghadi.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
 
 </urlset>
