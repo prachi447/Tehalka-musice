@@ -11,136 +11,212 @@
 const websiteUrl =
   "https://tehalkamusic.website/";
 
+const websiteTitle =
+  "🎵 Tehalka Music";
+
 const websiteText =
-  "🎵 Tehalka Music - Listen, Discover & Download Latest Songs";
+  "🎵 Tehalka Music\n\n" +
+  "Listen • Discover • Download\n\n" +
+  "Hindi, Punjabi and Haryanvi music.\n" +
+  "Explore latest songs and discover music.\n\n" +
+  "Visit Tehalka Music:\n" +
+  websiteUrl;
 
 
 // ==========================================
-// CREATE WEBSITE SHARE BUTTON
+// WEBSITE NATIVE SHARE
 // ==========================================
 
-function createWebsiteShareButton() {
+function shareWebsite() {
 
-  // अगर button पहले से मौजूद है तो दोबारा न बनाएं
+  const shareData = {
+
+    title: websiteTitle,
+
+    text:
+      "🎵 Tehalka Music\n\n" +
+      "Listen • Discover • Download\n\n" +
+      "Explore Hindi, Punjabi and Haryanvi music.\n\n" +
+      websiteUrl,
+
+    url: websiteUrl
+
+  };
+
+
   if (
-    document.getElementById("tehalkaShareBox")
+    navigator.share
   ) {
+
+    navigator.share(
+      shareData
+    )
+    .then(function() {
+
+      console.log(
+        "Website shared successfully."
+      );
+
+    })
+    .catch(function(error) {
+
+      console.log(
+        "Share cancelled:",
+        error
+      );
+
+    });
+
     return;
-  }
-
-
-  const shareBox =
-    document.createElement("div");
-
-  shareBox.id =
-    "tehalkaShareBox";
-
-
-  shareBox.innerHTML = `
-
-    <div
-      style="
-        text-align:center;
-        margin:25px auto;
-        padding:20px;
-        max-width:600px;
-      "
-    >
-
-      <h3
-        style="
-          margin-bottom:12px;
-        "
-      >
-        📤 Share Tehalka Music
-      </h3>
-
-
-      <button
-        type="button"
-        onclick="shareWebsite()"
-        style="
-          border:none;
-          background:#6a11cb;
-          color:white;
-          padding:12px 20px;
-          border-radius:25px;
-          font-size:15px;
-          cursor:pointer;
-          margin:5px;
-        "
-      >
-        📤 Share Website
-      </button>
-
-
-      <button
-        type="button"
-        onclick="shareWhatsApp()"
-        style="
-          border:none;
-          background:#25D366;
-          color:white;
-          padding:12px 20px;
-          border-radius:25px;
-          font-size:15px;
-          cursor:pointer;
-          margin:5px;
-        "
-      >
-        💬 WhatsApp
-      </button>
-
-
-      <button
-        type="button"
-        onclick="copyWebsiteLink()"
-        style="
-          border:none;
-          background:#333;
-          color:white;
-          padding:12px 20px;
-          border-radius:25px;
-          font-size:15px;
-          cursor:pointer;
-          margin:5px;
-        "
-      >
-        🔗 Copy Link
-      </button>
-
-    </div>
-
-  `;
-
-
-  // Footer से पहले button लगाएं
-  const footer =
-    document.querySelector("footer");
-
-
-  if (footer) {
-
-    footer.parentNode.insertBefore(
-      shareBox,
-      footer
-    );
 
   }
 
-  else {
 
-    document.body.appendChild(
-      shareBox
-    );
-
-  }
+  copyWebsiteLink();
 
 }
 
 
 // ==========================================
-// SEARCH SYSTEM
+// WHATSAPP DIRECT WEBSITE SHARE
+// ==========================================
+
+function shareWebsiteWhatsApp() {
+
+  const message =
+    "🎵 *Tehalka Music*\n\n" +
+
+    "Listen • Discover • Download\n\n" +
+
+    "Hindi, Punjabi and Haryanvi music.\n" +
+
+    "Explore latest songs and discover music.\n\n" +
+
+    "🌐 *Visit Tehalka Music:*\n" +
+
+    websiteUrl;
+
+
+  const whatsappUrl =
+    "https://wa.me/?text=" +
+    encodeURIComponent(
+      message
+    );
+
+
+  window.open(
+    whatsappUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+// ==========================================
+// COPY WEBSITE LINK
+// ==========================================
+
+function copyWebsiteLink() {
+
+  if (
+    navigator.clipboard &&
+    window.isSecureContext
+  ) {
+
+    navigator.clipboard
+      .writeText(
+        websiteUrl
+      )
+      .then(function() {
+
+        alert(
+          "✅ Tehalka Music website link copied!"
+        );
+
+      })
+      .catch(function() {
+
+        fallbackCopyWebsiteLink();
+
+      });
+
+    return;
+
+  }
+
+
+  fallbackCopyWebsiteLink();
+
+}
+
+
+// ==========================================
+// COPY FALLBACK
+// ==========================================
+
+function fallbackCopyWebsiteLink() {
+
+  const textarea =
+    document.createElement(
+      "textarea"
+    );
+
+
+  textarea.value =
+    websiteUrl;
+
+
+  textarea.style.position =
+    "fixed";
+
+
+  textarea.style.left =
+    "-9999px";
+
+
+  document.body.appendChild(
+    textarea
+  );
+
+
+  textarea.focus();
+
+  textarea.select();
+
+
+  try {
+
+    document.execCommand(
+      "copy"
+    );
+
+
+    alert(
+      "✅ Tehalka Music website link copied!"
+    );
+
+  }
+
+  catch (error) {
+
+    alert(
+      "Please copy this link manually:\n\n" +
+      websiteUrl
+    );
+
+  }
+
+
+  document.body.removeChild(
+    textarea
+  );
+
+}
+
+
+// ==========================================
+// SONG SEARCH SYSTEM
 // ==========================================
 
 function searchSong() {
@@ -152,7 +228,9 @@ function searchSong() {
 
 
   if (!input) {
+
     return;
+
   }
 
 
@@ -182,7 +260,8 @@ function searchSong() {
         "kamar kamar",
         "kamar"
       ],
-      page: "kamar-kamar.html"
+      page:
+        "kamar-kamar.html"
     },
 
     {
@@ -190,7 +269,8 @@ function searchSong() {
         "parindey",
         "parindey song"
       ],
-      page: "parindey.html"
+      page:
+        "parindey.html"
     },
 
     {
@@ -198,7 +278,8 @@ function searchSong() {
         "sukoon",
         "sukoon song"
       ],
-      page: "sukoon.html"
+      page:
+        "sukoon.html"
     },
 
     {
@@ -206,7 +287,8 @@ function searchSong() {
         "chundadi",
         "chundadi song"
       ],
-      page: "Chundadi.html"
+      page:
+        "Chundadi.html"
     },
 
     {
@@ -216,21 +298,22 @@ function searchSong() {
         "patli",
         "patali"
       ],
-      page: "patli-kamar.html"
+      page:
+        "patli-kamar.html"
     },
 
     {
       names: [
         "ghadi"
       ],
-      page: "ghadi.html"
+      page:
+        "ghadi.html"
     },
 
     {
       names: [
         "main teri nachai nachun",
-        "main teri nachayi nachu su",
-        "nachai nachun"
+        "main teri nachayi nachu su"
       ],
       page:
         "main-teri-nachai-nachun.html"
@@ -286,178 +369,6 @@ function searchSong() {
     "Chundadi\n" +
     "Patli Kamar\n" +
     "Ghadi"
-  );
-
-}
-
-
-// ==========================================
-// NATIVE WEBSITE SHARE
-// ==========================================
-
-async function shareWebsite() {
-
-  const shareData = {
-
-    title:
-      "Tehalka Music",
-
-    text:
-      websiteText,
-
-    url:
-      websiteUrl
-
-  };
-
-
-  // Android / Chrome native share
-  if (
-    navigator.share
-  ) {
-
-    try {
-
-      await navigator.share(
-        shareData
-      );
-
-      return;
-
-    }
-
-    catch (error) {
-
-      console.log(
-        "Share cancelled:",
-        error
-      );
-
-    }
-
-  }
-
-
-  // अगर native share available नहीं है
-  copyWebsiteLink();
-
-}
-
-
-// ==========================================
-// WHATSAPP SHARE
-// ==========================================
-
-function shareWhatsApp() {
-
-  const whatsappUrl =
-    "https://wa.me/?text=" +
-    encodeURIComponent(
-      websiteText +
-      "\n\n" +
-      websiteUrl
-    );
-
-
-  window.open(
-    whatsappUrl,
-    "_blank"
-  );
-
-}
-
-
-// ==========================================
-// COPY WEBSITE LINK
-// ==========================================
-
-async function copyWebsiteLink() {
-
-  try {
-
-    if (
-      navigator.clipboard
-    ) {
-
-      await navigator.clipboard.writeText(
-        websiteUrl
-      );
-
-
-      alert(
-        "✅ Tehalka Music website link copied!"
-      );
-
-      return;
-
-    }
-
-  }
-
-  catch (error) {
-
-    console.log(
-      "Clipboard error:",
-      error
-    );
-
-  }
-
-
-  // पुराने browser के लिए fallback
-
-  const textarea =
-    document.createElement(
-      "textarea"
-    );
-
-
-  textarea.value =
-    websiteUrl;
-
-
-  textarea.style.position =
-    "fixed";
-
-  textarea.style.opacity =
-    "0";
-
-
-  document.body.appendChild(
-    textarea
-  );
-
-
-  textarea.focus();
-
-  textarea.select();
-
-
-  try {
-
-    document.execCommand(
-      "copy"
-    );
-
-
-    alert(
-      "✅ Website link copied!"
-    );
-
-  }
-
-  catch (error) {
-
-    alert(
-      "Please copy this link manually:\n\n" +
-      websiteUrl
-    );
-
-  }
-
-
-  document.body.removeChild(
-    textarea
   );
 
 }
@@ -658,7 +569,7 @@ function createMusicPlayer() {
 
 
 // ==========================================
-// FIND SONGS
+// FIND SONGS ON CURRENT PAGE
 // ==========================================
 
 function setupMusicPlayerSongs() {
@@ -668,7 +579,9 @@ function setupMusicPlayerSongs() {
 
   const audioElements =
     document.querySelectorAll(
-      ".song-card audio, .album-song audio, .artist-song audio"
+      ".song-card audio, " +
+      ".album-song audio, " +
+      ".artist-song audio"
     );
 
 
@@ -677,12 +590,16 @@ function setupMusicPlayerSongs() {
 
       const card =
         audio.closest(
-          ".song-card, .album-song, .artist-song"
+          ".song-card, " +
+          ".album-song, " +
+          ".artist-song"
         );
 
 
       if (!card) {
+
         return;
+
       }
 
 
@@ -693,7 +610,9 @@ function setupMusicPlayerSongs() {
 
 
       if (!source) {
+
         return;
+
       }
 
 
@@ -719,12 +638,16 @@ function setupMusicPlayerSongs() {
 
         name:
           songNameElement
-            ? songNameElement.textContent.trim()
+            ? songNameElement
+                .textContent
+                .trim()
             : "Unknown Song",
 
         artist:
           artistElement
-            ? artistElement.textContent.trim()
+            ? artistElement
+                .textContent
+                .trim()
             : "Tehalka Music"
 
       });
@@ -738,7 +661,10 @@ function setupMusicPlayerSongs() {
             musicPlayerSongs.findIndex(
               function(item) {
 
-                return item.audio === audio;
+                return (
+                  item.audio ===
+                  audio
+                );
 
               }
             );
@@ -798,7 +724,8 @@ function playSongInPlayer(
     song.artist;
 
 
-  playerAudio.play()
+  playerAudio
+    .play()
     .then(
       function() {
 
@@ -820,10 +747,11 @@ function playSongInPlayer(
 
 
 // ==========================================
-// PLAYER EVENTS
+// MUSIC PLAYER EVENTS
 // ==========================================
 
 function setupMusicPlayerEvents() {
+
 
   playerPlayPause.addEventListener(
     "click",
@@ -837,7 +765,9 @@ function setupMusicPlayerEvents() {
           musicPlayerSongs.length > 0
         ) {
 
-          playSongInPlayer(0);
+          playSongInPlayer(
+            0
+          );
 
         }
 
@@ -850,7 +780,11 @@ function setupMusicPlayerEvents() {
         playerAudio.paused
       ) {
 
-        playerAudio.play();
+        playerAudio
+          .play()
+          .catch(
+            function() {}
+          );
 
       }
 
@@ -1036,34 +970,21 @@ document.addEventListener(
   "DOMContentLoaded",
   function() {
 
-    // Share buttons
-    createWebsiteShareButton();
-
-
-    // Music player
     createMusicPlayer();
 
 
-    // Songs
     setupMusicPlayerSongs();
 
 
-    // Search
+    // SEARCH INPUT
+
     const searchInput =
       document.getElementById(
         "searchInput"
       );
 
 
-    const searchButton =
-      document.querySelector(
-        ".search-box button"
-      );
-
-
-    if (
-      searchInput
-    ) {
+    if (searchInput) {
 
       searchInput.addEventListener(
         "keydown",
@@ -1085,9 +1006,15 @@ document.addEventListener(
     }
 
 
-    if (
-      searchButton
-    ) {
+    // SEARCH BUTTON
+
+    const searchButton =
+      document.querySelector(
+        ".search-box button"
+      );
+
+
+    if (searchButton) {
 
       searchButton.addEventListener(
         "click",
