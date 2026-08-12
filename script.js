@@ -1,30 +1,177 @@
 // ==========================================
 // TEHALKA MUSIC - COMPLETE SCRIPT
-// SEARCH + SHARE + WHATSAPP + COPY + MUSIC PLAYER
+// SEARCH + SHARE + MUSIC PLAYER
 // ==========================================
 
 
 // ==========================================
-// SONG SEARCH SYSTEM
+// WEBSITE DETAILS
+// ==========================================
+
+const websiteUrl =
+  "https://tehalkamusic.website/";
+
+const websiteText =
+  "🎵 Tehalka Music - Listen, Discover & Download Latest Songs";
+
+
+// ==========================================
+// CREATE WEBSITE SHARE BUTTON
+// ==========================================
+
+function createWebsiteShareButton() {
+
+  // अगर button पहले से मौजूद है तो दोबारा न बनाएं
+  if (
+    document.getElementById("tehalkaShareBox")
+  ) {
+    return;
+  }
+
+
+  const shareBox =
+    document.createElement("div");
+
+  shareBox.id =
+    "tehalkaShareBox";
+
+
+  shareBox.innerHTML = `
+
+    <div
+      style="
+        text-align:center;
+        margin:25px auto;
+        padding:20px;
+        max-width:600px;
+      "
+    >
+
+      <h3
+        style="
+          margin-bottom:12px;
+        "
+      >
+        📤 Share Tehalka Music
+      </h3>
+
+
+      <button
+        type="button"
+        onclick="shareWebsite()"
+        style="
+          border:none;
+          background:#6a11cb;
+          color:white;
+          padding:12px 20px;
+          border-radius:25px;
+          font-size:15px;
+          cursor:pointer;
+          margin:5px;
+        "
+      >
+        📤 Share Website
+      </button>
+
+
+      <button
+        type="button"
+        onclick="shareWhatsApp()"
+        style="
+          border:none;
+          background:#25D366;
+          color:white;
+          padding:12px 20px;
+          border-radius:25px;
+          font-size:15px;
+          cursor:pointer;
+          margin:5px;
+        "
+      >
+        💬 WhatsApp
+      </button>
+
+
+      <button
+        type="button"
+        onclick="copyWebsiteLink()"
+        style="
+          border:none;
+          background:#333;
+          color:white;
+          padding:12px 20px;
+          border-radius:25px;
+          font-size:15px;
+          cursor:pointer;
+          margin:5px;
+        "
+      >
+        🔗 Copy Link
+      </button>
+
+    </div>
+
+  `;
+
+
+  // Footer से पहले button लगाएं
+  const footer =
+    document.querySelector("footer");
+
+
+  if (footer) {
+
+    footer.parentNode.insertBefore(
+      shareBox,
+      footer
+    );
+
+  }
+
+  else {
+
+    document.body.appendChild(
+      shareBox
+    );
+
+  }
+
+}
+
+
+// ==========================================
+// SEARCH SYSTEM
 // ==========================================
 
 function searchSong() {
 
   const input =
-    document.getElementById("searchInput");
+    document.getElementById(
+      "searchInput"
+    );
+
 
   if (!input) {
     return;
   }
 
+
   const searchText =
-    input.value.trim().toLowerCase();
+    input.value
+      .trim()
+      .toLowerCase();
 
-  if (searchText === "") {
 
-    alert("Please enter a song name.");
+  if (
+    searchText === ""
+  ) {
+
+    alert(
+      "Please enter a song name."
+    );
 
     return;
+
   }
 
 
@@ -82,9 +229,11 @@ function searchSong() {
     {
       names: [
         "main teri nachai nachun",
-        "main teri nachai nachun su"
+        "main teri nachayi nachu su",
+        "nachai nachun"
       ],
-      page: "main-teri-nachai-nachun.html"
+      page:
+        "main-teri-nachai-nachun.html"
     }
 
   ];
@@ -130,7 +279,7 @@ function searchSong() {
 
   alert(
     "❌ Song not found.\n\n" +
-    "Please try:\n" +
+    "Try:\n" +
     "Kamar Kamar\n" +
     "Parindey\n" +
     "Sukoon\n" +
@@ -143,35 +292,10 @@ function searchSong() {
 
 
 // ==========================================
-// WEBSITE SHARE DETAILS
-// ==========================================
-
-const websiteUrl =
-  "https://tehalkamusic.website/";
-
-const websiteText =
-  "🎵 Tehalka Music - Listen and Download Latest Songs";
-
-
-// ==========================================
-// GET CURRENT PAGE URL
-// ==========================================
-
-function getShareUrl() {
-
-  return window.location.href;
-
-}
-
-
-// ==========================================
-// DIRECT WEBSITE SHARE
+// NATIVE WEBSITE SHARE
 // ==========================================
 
 async function shareWebsite() {
-
-  const shareUrl =
-    getShareUrl();
 
   const shareData = {
 
@@ -182,15 +306,12 @@ async function shareWebsite() {
       websiteText,
 
     url:
-      shareUrl
+      websiteUrl
 
   };
 
 
-  // --------------------------------------
-  // NATIVE ANDROID SHARE
-  // --------------------------------------
-
+  // Android / Chrome native share
   if (
     navigator.share
   ) {
@@ -208,7 +329,7 @@ async function shareWebsite() {
     catch (error) {
 
       console.log(
-        "Native share cancelled:",
+        "Share cancelled:",
         error
       );
 
@@ -217,10 +338,7 @@ async function shareWebsite() {
   }
 
 
-  // --------------------------------------
-  // FALLBACK - COPY LINK
-  // --------------------------------------
-
+  // अगर native share available नहीं है
   copyWebsiteLink();
 
 }
@@ -232,83 +350,114 @@ async function shareWebsite() {
 
 function shareWhatsApp() {
 
-  const shareUrl =
-    getShareUrl();
-
-
-  const message =
-    websiteText +
-    "\n\n" +
-    shareUrl;
-
-
   const whatsappUrl =
     "https://wa.me/?text=" +
     encodeURIComponent(
-      message
+      websiteText +
+      "\n\n" +
+      websiteUrl
     );
 
 
   window.open(
     whatsappUrl,
-    "_blank",
-    "noopener,noreferrer"
+    "_blank"
   );
 
 }
 
 
 // ==========================================
-// FACEBOOK SHARE
+// COPY WEBSITE LINK
 // ==========================================
 
-function shareFacebook() {
+async function copyWebsiteLink() {
 
-  const shareUrl =
-    getShareUrl();
+  try {
+
+    if (
+      navigator.clipboard
+    ) {
+
+      await navigator.clipboard.writeText(
+        websiteUrl
+      );
 
 
-  const facebookUrl =
-    "https://www.facebook.com/sharer/sharer.php?u=" +
-    encodeURIComponent(
-      shareUrl
+      alert(
+        "✅ Tehalka Music website link copied!"
+      );
+
+      return;
+
+    }
+
+  }
+
+  catch (error) {
+
+    console.log(
+      "Clipboard error:",
+      error
+    );
+
+  }
+
+
+  // पुराने browser के लिए fallback
+
+  const textarea =
+    document.createElement(
+      "textarea"
     );
 
 
-  window.open(
-    facebookUrl,
-    "_blank",
-    "noopener,noreferrer"
+  textarea.value =
+    websiteUrl;
+
+
+  textarea.style.position =
+    "fixed";
+
+  textarea.style.opacity =
+    "0";
+
+
+  document.body.appendChild(
+    textarea
   );
 
-}
+
+  textarea.focus();
+
+  textarea.select();
 
 
-// ==========================================
-// TELEGRAM SHARE
-// ==========================================
+  try {
 
-function shareTelegram() {
-
-  const shareUrl =
-    getShareUrl();
-
-
-  const telegramUrl =
-    "https://t.me/share/url?url=" +
-    encodeURIComponent(
-      shareUrl
-    ) +
-    "&text=" +
-    encodeURIComponent(
-      websiteText
+    document.execCommand(
+      "copy"
     );
 
 
-  window.open(
-    telegramUrl,
-    "_blank",
-    "noopener,noreferrer"
+    alert(
+      "✅ Website link copied!"
+    );
+
+  }
+
+  catch (error) {
+
+    alert(
+      "Please copy this link manually:\n\n" +
+      websiteUrl
+    );
+
+  }
+
+
+  document.body.removeChild(
+    textarea
   );
 
 }
@@ -322,8 +471,7 @@ function openInstagram() {
 
   window.open(
     "https://www.instagram.com/",
-    "_blank",
-    "noopener,noreferrer"
+    "_blank"
   );
 
 }
@@ -337,189 +485,14 @@ function openYouTube() {
 
   window.open(
     "https://www.youtube.com/",
-    "_blank",
-    "noopener,noreferrer"
+    "_blank"
   );
 
 }
 
 
 // ==========================================
-// COPY WEBSITE LINK
-// ==========================================
-
-async function copyWebsiteLink() {
-
-  const shareUrl =
-    getShareUrl();
-
-
-  // --------------------------------------
-  // MODERN CLIPBOARD
-  // --------------------------------------
-
-  if (
-    navigator.clipboard &&
-    window.isSecureContext
-  ) {
-
-    try {
-
-      await navigator.clipboard.writeText(
-        shareUrl
-      );
-
-
-      alert(
-        "✅ Tehalka Music link copied!\n\n" +
-        shareUrl
-      );
-
-
-      return;
-
-    }
-
-    catch (error) {
-
-      console.log(
-        "Clipboard API failed:",
-        error
-      );
-
-    }
-
-  }
-
-
-  // --------------------------------------
-  // OLD BROWSER FALLBACK
-  // --------------------------------------
-
-  try {
-
-    const textarea =
-      document.createElement(
-        "textarea"
-      );
-
-
-    textarea.value =
-      shareUrl;
-
-
-    textarea.style.position =
-      "fixed";
-
-    textarea.style.left =
-      "-9999px";
-
-
-    document.body.appendChild(
-      textarea
-    );
-
-
-    textarea.focus();
-
-    textarea.select();
-
-
-    const copied =
-      document.execCommand(
-        "copy"
-      );
-
-
-    document.body.removeChild(
-      textarea
-    );
-
-
-    if (copied) {
-
-      alert(
-        "✅ Tehalka Music link copied!"
-      );
-
-    }
-
-    else {
-
-      alert(
-        "Please copy this link:\n\n" +
-        shareUrl
-      );
-
-    }
-
-  }
-
-  catch (error) {
-
-    alert(
-      "Please copy this link:\n\n" +
-      shareUrl
-    );
-
-  }
-
-}
-
-
-// ==========================================
-// QUICK SHARE MENU
-// ==========================================
-
-function showShareOptions() {
-
-  const shareUrl =
-    getShareUrl();
-
-
-  const choice =
-    prompt(
-      "Share Tehalka Music\n\n" +
-      "1 = Direct Share\n" +
-      "2 = WhatsApp\n" +
-      "3 = Facebook\n" +
-      "4 = Telegram\n" +
-      "5 = Copy Link"
-    );
-
-
-  switch (choice) {
-
-    case "1":
-      shareWebsite();
-      break;
-
-    case "2":
-      shareWhatsApp();
-      break;
-
-    case "3":
-      shareFacebook();
-      break;
-
-    case "4":
-      shareTelegram();
-      break;
-
-    case "5":
-      copyWebsiteLink();
-      break;
-
-    default:
-      break;
-
-  }
-
-}
-
-
-// ==========================================
-// PROFESSIONAL MUSIC PLAYER
+// MUSIC PLAYER VARIABLES
 // ==========================================
 
 let musicPlayerSongs = [];
@@ -685,7 +658,7 @@ function createMusicPlayer() {
 
 
 // ==========================================
-// FIND SONGS ON CURRENT PAGE
+// FIND SONGS
 // ==========================================
 
 function setupMusicPlayerSongs() {
@@ -709,9 +682,7 @@ function setupMusicPlayerSongs() {
 
 
       if (!card) {
-
         return;
-
       }
 
 
@@ -722,9 +693,7 @@ function setupMusicPlayerSongs() {
 
 
       if (!source) {
-
         return;
-
       }
 
 
@@ -738,10 +707,6 @@ function setupMusicPlayerSongs() {
         card.querySelector(
           "p strong"
         );
-
-
-      const songIndex =
-        musicPlayerSongs.length;
 
 
       musicPlayerSongs.push({
@@ -769,9 +734,23 @@ function setupMusicPlayerSongs() {
         "play",
         function() {
 
-          playSongInPlayer(
-            songIndex
-          );
+          const index =
+            musicPlayerSongs.findIndex(
+              function(item) {
+
+                return item.audio === audio;
+
+              }
+            );
+
+
+          if (index !== -1) {
+
+            playSongInPlayer(
+              index
+            );
+
+          }
 
         }
       );
@@ -783,7 +762,7 @@ function setupMusicPlayerSongs() {
 
 
 // ==========================================
-// PLAY SONG IN PLAYER
+// PLAY SONG
 // ==========================================
 
 function playSongInPlayer(
@@ -871,23 +850,7 @@ function setupMusicPlayerEvents() {
         playerAudio.paused
       ) {
 
-        playerAudio.play()
-          .then(
-            function() {
-
-              playerPlayPause.textContent =
-                "⏸️";
-
-            }
-          )
-          .catch(
-            function() {
-
-              playerPlayPause.textContent =
-                "▶️";
-
-            }
-          );
+        playerAudio.play();
 
       }
 
@@ -895,24 +858,17 @@ function setupMusicPlayerEvents() {
 
         playerAudio.pause();
 
-        playerPlayPause.textContent =
-          "▶️";
-
       }
 
     }
   );
 
 
-  const previousButton =
-    document.getElementById(
+  document
+    .getElementById(
       "playerPrevious"
-    );
-
-
-  if (previousButton) {
-
-    previousButton.addEventListener(
+    )
+    .addEventListener(
       "click",
       function() {
 
@@ -946,18 +902,12 @@ function setupMusicPlayerEvents() {
       }
     );
 
-  }
 
-
-  const nextButton =
-    document.getElementById(
+  document
+    .getElementById(
       "playerNext"
-    );
-
-
-  if (nextButton) {
-
-    nextButton.addEventListener(
+    )
+    .addEventListener(
       "click",
       function() {
 
@@ -991,8 +941,6 @@ function setupMusicPlayerEvents() {
       }
     );
 
-  }
-
 
   playerAudio.addEventListener(
     "timeupdate",
@@ -1008,19 +956,14 @@ function setupMusicPlayerEvents() {
 
 
       const percentage =
-
         (
           playerAudio.currentTime /
           playerAudio.duration
         ) * 100;
 
 
-      if (playerProgress) {
-
-        playerProgress.style.width =
-          percentage + "%";
-
-      }
+      playerProgress.style.width =
+        percentage + "%";
 
     }
   );
@@ -1086,24 +1029,26 @@ function setupMusicPlayerEvents() {
 
 
 // ==========================================
-// ENTER KEY SEARCH + INITIALIZATION
+// DOM READY
 // ==========================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function() {
 
-    // Create player
+    // Share buttons
+    createWebsiteShareButton();
+
+
+    // Music player
     createMusicPlayer();
 
-    // Find songs
+
+    // Songs
     setupMusicPlayerSongs();
 
 
-    // --------------------------------------
-    // SEARCH INPUT
-    // --------------------------------------
-
+    // Search
     const searchInput =
       document.getElementById(
         "searchInput"
