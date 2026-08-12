@@ -1,6 +1,6 @@
 // ==========================================
 // TEHALKA MUSIC - COMPLETE SCRIPT
-// SEARCH + SHARE + MUSIC PLAYER
+// SEARCH + SHARE + WHATSAPP + COPY + MUSIC PLAYER
 // ==========================================
 
 
@@ -22,9 +22,7 @@ function searchSong() {
 
   if (searchText === "") {
 
-    alert(
-      "Please enter a song name."
-    );
+    alert("Please enter a song name.");
 
     return;
   }
@@ -72,6 +70,21 @@ function searchSong() {
         "patali"
       ],
       page: "patli-kamar.html"
+    },
+
+    {
+      names: [
+        "ghadi"
+      ],
+      page: "ghadi.html"
+    },
+
+    {
+      names: [
+        "main teri nachai nachun",
+        "main teri nachai nachun su"
+      ],
+      page: "main-teri-nachai-nachun.html"
     }
 
   ];
@@ -122,7 +135,8 @@ function searchSong() {
     "Parindey\n" +
     "Sukoon\n" +
     "Chundadi\n" +
-    "Patli Kamar"
+    "Patli Kamar\n" +
+    "Ghadi"
   );
 
 }
@@ -140,22 +154,161 @@ const websiteText =
 
 
 // ==========================================
+// GET CURRENT PAGE URL
+// ==========================================
+
+function getShareUrl() {
+
+  return window.location.href;
+
+}
+
+
+// ==========================================
+// DIRECT WEBSITE SHARE
+// ==========================================
+
+async function shareWebsite() {
+
+  const shareUrl =
+    getShareUrl();
+
+  const shareData = {
+
+    title:
+      "Tehalka Music",
+
+    text:
+      websiteText,
+
+    url:
+      shareUrl
+
+  };
+
+
+  // --------------------------------------
+  // NATIVE ANDROID SHARE
+  // --------------------------------------
+
+  if (
+    navigator.share
+  ) {
+
+    try {
+
+      await navigator.share(
+        shareData
+      );
+
+      return;
+
+    }
+
+    catch (error) {
+
+      console.log(
+        "Native share cancelled:",
+        error
+      );
+
+    }
+
+  }
+
+
+  // --------------------------------------
+  // FALLBACK - COPY LINK
+  // --------------------------------------
+
+  copyWebsiteLink();
+
+}
+
+
+// ==========================================
 // WHATSAPP SHARE
 // ==========================================
 
 function shareWhatsApp() {
 
+  const shareUrl =
+    getShareUrl();
+
+
+  const message =
+    websiteText +
+    "\n\n" +
+    shareUrl;
+
+
   const whatsappUrl =
     "https://wa.me/?text=" +
     encodeURIComponent(
-      websiteText +
-      "\n\n" +
-      websiteUrl
+      message
     );
+
 
   window.open(
     whatsappUrl,
-    "_blank"
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+// ==========================================
+// FACEBOOK SHARE
+// ==========================================
+
+function shareFacebook() {
+
+  const shareUrl =
+    getShareUrl();
+
+
+  const facebookUrl =
+    "https://www.facebook.com/sharer/sharer.php?u=" +
+    encodeURIComponent(
+      shareUrl
+    );
+
+
+  window.open(
+    facebookUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+// ==========================================
+// TELEGRAM SHARE
+// ==========================================
+
+function shareTelegram() {
+
+  const shareUrl =
+    getShareUrl();
+
+
+  const telegramUrl =
+    "https://t.me/share/url?url=" +
+    encodeURIComponent(
+      shareUrl
+    ) +
+    "&text=" +
+    encodeURIComponent(
+      websiteText
+    );
+
+
+  window.open(
+    telegramUrl,
+    "_blank",
+    "noopener,noreferrer"
   );
 
 }
@@ -169,7 +322,8 @@ function openInstagram() {
 
   window.open(
     "https://www.instagram.com/",
-    "_blank"
+    "_blank",
+    "noopener,noreferrer"
   );
 
 }
@@ -183,52 +337,9 @@ function openYouTube() {
 
   window.open(
     "https://www.youtube.com/",
-    "_blank"
+    "_blank",
+    "noopener,noreferrer"
   );
-
-}
-
-
-// ==========================================
-// MORE SHARE
-// ==========================================
-
-function shareWebsite() {
-
-  if (
-    navigator.share
-  ) {
-
-    navigator.share({
-
-      title:
-        "Tehalka Music",
-
-      text:
-        websiteText,
-
-      url:
-        websiteUrl
-
-    })
-    .catch(
-      function(error) {
-
-        console.log(
-          "Share cancelled:",
-          error
-        );
-
-      }
-    );
-
-  }
-
-  else {
-
-    copyWebsiteLink();
-
-  }
 
 }
 
@@ -237,44 +348,170 @@ function shareWebsite() {
 // COPY WEBSITE LINK
 // ==========================================
 
-function copyWebsiteLink() {
+async function copyWebsiteLink() {
+
+  const shareUrl =
+    getShareUrl();
+
+
+  // --------------------------------------
+  // MODERN CLIPBOARD
+  // --------------------------------------
 
   if (
-    navigator.clipboard
+    navigator.clipboard &&
+    window.isSecureContext
   ) {
 
-    navigator.clipboard
-      .writeText(
-        websiteUrl
-      )
-      .then(
-        function() {
+    try {
 
-          alert(
-            "✅ Tehalka Music website link copied!"
-          );
-
-        }
-      )
-      .catch(
-        function() {
-
-          alert(
-            "Please copy this link manually:\n" +
-            websiteUrl
-          );
-
-        }
+      await navigator.clipboard.writeText(
+        shareUrl
       );
+
+
+      alert(
+        "✅ Tehalka Music link copied!\n\n" +
+        shareUrl
+      );
+
+
+      return;
+
+    }
+
+    catch (error) {
+
+      console.log(
+        "Clipboard API failed:",
+        error
+      );
+
+    }
 
   }
 
-  else {
+
+  // --------------------------------------
+  // OLD BROWSER FALLBACK
+  // --------------------------------------
+
+  try {
+
+    const textarea =
+      document.createElement(
+        "textarea"
+      );
+
+
+    textarea.value =
+      shareUrl;
+
+
+    textarea.style.position =
+      "fixed";
+
+    textarea.style.left =
+      "-9999px";
+
+
+    document.body.appendChild(
+      textarea
+    );
+
+
+    textarea.focus();
+
+    textarea.select();
+
+
+    const copied =
+      document.execCommand(
+        "copy"
+      );
+
+
+    document.body.removeChild(
+      textarea
+    );
+
+
+    if (copied) {
+
+      alert(
+        "✅ Tehalka Music link copied!"
+      );
+
+    }
+
+    else {
+
+      alert(
+        "Please copy this link:\n\n" +
+        shareUrl
+      );
+
+    }
+
+  }
+
+  catch (error) {
 
     alert(
-      "Please copy this link manually:\n" +
-      websiteUrl
+      "Please copy this link:\n\n" +
+      shareUrl
     );
+
+  }
+
+}
+
+
+// ==========================================
+// QUICK SHARE MENU
+// ==========================================
+
+function showShareOptions() {
+
+  const shareUrl =
+    getShareUrl();
+
+
+  const choice =
+    prompt(
+      "Share Tehalka Music\n\n" +
+      "1 = Direct Share\n" +
+      "2 = WhatsApp\n" +
+      "3 = Facebook\n" +
+      "4 = Telegram\n" +
+      "5 = Copy Link"
+    );
+
+
+  switch (choice) {
+
+    case "1":
+      shareWebsite();
+      break;
+
+    case "2":
+      shareWhatsApp();
+      break;
+
+    case "3":
+      shareFacebook();
+      break;
+
+    case "4":
+      shareTelegram();
+      break;
+
+    case "5":
+      copyWebsiteLink();
+      break;
+
+    default:
+      break;
 
   }
 
@@ -465,7 +702,6 @@ function setupMusicPlayerSongs() {
   audioElements.forEach(
     function(audio) {
 
-
       const card =
         audio.closest(
           ".song-card, .album-song, .artist-song"
@@ -473,7 +709,9 @@ function setupMusicPlayerSongs() {
 
 
       if (!card) {
+
         return;
+
       }
 
 
@@ -484,7 +722,9 @@ function setupMusicPlayerSongs() {
 
 
       if (!source) {
+
         return;
+
       }
 
 
@@ -498,6 +738,10 @@ function setupMusicPlayerSongs() {
         card.querySelector(
           "p strong"
         );
+
+
+      const songIndex =
+        musicPlayerSongs.length;
 
 
       musicPlayerSongs.push({
@@ -526,12 +770,11 @@ function setupMusicPlayerSongs() {
         function() {
 
           playSongInPlayer(
-            musicPlayerSongs.length - 1
+            songIndex
           );
 
         }
       );
-
 
     }
   );
@@ -603,11 +846,9 @@ function playSongInPlayer(
 
 function setupMusicPlayerEvents() {
 
-
   playerPlayPause.addEventListener(
     "click",
     function() {
-
 
       if (
         !playerAudio.src
@@ -630,10 +871,23 @@ function setupMusicPlayerEvents() {
         playerAudio.paused
       ) {
 
-        playerAudio.play();
+        playerAudio.play()
+          .then(
+            function() {
 
-        playerPlayPause.textContent =
-          "⏸️";
+              playerPlayPause.textContent =
+                "⏸️";
+
+            }
+          )
+          .catch(
+            function() {
+
+              playerPlayPause.textContent =
+                "▶️";
+
+            }
+          );
 
       }
 
@@ -650,14 +904,17 @@ function setupMusicPlayerEvents() {
   );
 
 
-  document
-    .getElementById(
+  const previousButton =
+    document.getElementById(
       "playerPrevious"
-    )
-    .addEventListener(
+    );
+
+
+  if (previousButton) {
+
+    previousButton.addEventListener(
       "click",
       function() {
-
 
         if (
           musicPlayerSongs.length === 0
@@ -689,15 +946,20 @@ function setupMusicPlayerEvents() {
       }
     );
 
+  }
 
-  document
-    .getElementById(
+
+  const nextButton =
+    document.getElementById(
       "playerNext"
-    )
-    .addEventListener(
+    );
+
+
+  if (nextButton) {
+
+    nextButton.addEventListener(
       "click",
       function() {
-
 
         if (
           musicPlayerSongs.length === 0
@@ -729,11 +991,12 @@ function setupMusicPlayerEvents() {
       }
     );
 
+  }
+
 
   playerAudio.addEventListener(
     "timeupdate",
     function() {
-
 
       if (
         !playerAudio.duration
@@ -752,8 +1015,12 @@ function setupMusicPlayerEvents() {
         ) * 100;
 
 
-      playerProgress.style.width =
-        percentage + "%";
+      if (playerProgress) {
+
+        playerProgress.style.width =
+          percentage + "%";
+
+      }
 
     }
   );
@@ -785,6 +1052,14 @@ function setupMusicPlayerEvents() {
     "ended",
     function() {
 
+      if (
+        musicPlayerSongs.length === 0
+      ) {
+
+        return;
+
+      }
+
 
       let nextIndex =
         currentSongIndex + 1;
@@ -811,19 +1086,23 @@ function setupMusicPlayerEvents() {
 
 
 // ==========================================
-// ENTER KEY SEARCH
+// ENTER KEY SEARCH + INITIALIZATION
 // ==========================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function() {
 
-
+    // Create player
     createMusicPlayer();
 
-
+    // Find songs
     setupMusicPlayerSongs();
 
+
+    // --------------------------------------
+    // SEARCH INPUT
+    // --------------------------------------
 
     const searchInput =
       document.getElementById(
@@ -844,7 +1123,6 @@ document.addEventListener(
       searchInput.addEventListener(
         "keydown",
         function(event) {
-
 
           if (
             event.key === "Enter"
@@ -869,7 +1147,6 @@ document.addEventListener(
       searchButton.addEventListener(
         "click",
         function(event) {
-
 
           event.preventDefault();
 
